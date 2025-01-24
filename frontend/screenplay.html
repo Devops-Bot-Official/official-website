@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevOps-Bot | Screenplay Command Overview</title>
-  <link rel="stylesheet" href="styles/installation.css">
-  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+  <link rel="stylesheet" href="frontend/styles/installation.css">
+  <link rel="icon" href="frontend/styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
 <body class="official">
   <!-- Header Toolbar -->
@@ -27,7 +27,7 @@
 
   <!-- Sidebar (optional) -->
     <!-- Sidebar (optional) -->
-    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <aside id="sidebar" class="sidebar" style="background: url('frontend/styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
       <div class="search-bar">
         <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
         <div id="suggestions" class="suggestions"></div>
@@ -147,7 +147,7 @@
   
   <!-- Main Content Area -->
   <main class="main-content">
-    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+    <section class="hero" style="background: url('frontend/styles/assets/images/back.png') no-repeat center center; background-size: cover;">
       <h1>Screenplay Command Overview</h1>
       <p>The screenplay command offers a robust solution for orchestrating complex AWS workflows, including resource creation, task execution on remote instances, and environment configuration. It supports a wide range of operations, from provisioning EC2 instances and S3 buckets to injecting SSH keys and managing configurations, all with flexible and user-friendly options.</p>
     </section>
@@ -253,7 +253,7 @@ aws destroy <execution_id> --ignore-yml
   </footer>
 
   <!-- JavaScript Files -->
-  <script src="scripts/main.js"></script>
+  <script src="frontend/scripts/main.js"></script>
   <script>
     function toggleNested(event) {
       event.preventDefault();
@@ -275,7 +275,7 @@ aws destroy <execution_id> --ignore-yml
     }
 
     function navigateHome() {
-      window.location.href = 'Home.html';
+      window.location.href = 'index.html';
     }
 
     function navigateOfficialWebsite() {

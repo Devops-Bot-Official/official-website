@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevOps-Bot | Home</title>
-  <link rel="stylesheet" href="styles/mainpage.css">
-  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+  <link rel="stylesheet" href="frontend/styles/mainpage.css">
+  <link rel="icon" href="frontend/styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
 <body class="home full-screen">
   <!-- Header Toolbar -->
@@ -27,7 +27,7 @@
 
   <!-- Main Content Area -->
   <main class="main-content full-screen">
-    <section class="hero full-screen" style="background-image: url('styles/assets/images/main.png'); background-size: cover; background-position: center;">
+    <section class="hero full-screen" style="background-image: url('frontend/styles/assets/images/main.png'); background-size: cover; background-position: center;">
       <div class="intro-text" style="position: relative; top: -170px; left: 300px;">
         <h1>DevOps-Bot</h1>
         <p>Your all-in-one tool for automating DevOps processes. </p>
@@ -43,15 +43,15 @@
   <div class="news-feed">
     <div class="news-item visible">
       <p>Meet Screenplay Your Cloud Provisioning Agent</p>
-      <img src="styles/assets/images/screenplay.png" alt="News 1">
+      <img src="frontend/styles/assets/images/screenplay.png" alt="News 1">
     </div>
     <div class="news-item">
       <p>Meet InfraCycle Your CI/CD Agent</p>
-      <img src="styles/assets/images/infracicle.png" alt="News 2">
+      <img src="frontend/styles/assets/images/infracicle.png" alt="News 2">
     </div>
     <div class="news-item">
       <p>Meet InfraSet Your Configuration Agent</p>
-      <img src="styles/assets/images/infraset.png" alt="News 3">
+      <img src="frontend/styles/assets/images/infraset.png" alt="News 3">
     </div>
   </div>
 
@@ -60,7 +60,7 @@
   </footer>
 
   <!-- JavaScript Files -->
-  <script src="scripts/main.js"></script>
+  <script src="frontend/scripts/main.js"></script>
   <script>
     function performSearch() {
       const query = document.getElementById('search-input').value.toLowerCase();
@@ -76,7 +76,7 @@
     }
 
     function navigateHome() {
-      window.location.href = 'Home.html';
+      window.location.href = 'index.html';
     }
 
     let currentIndex = 0;
