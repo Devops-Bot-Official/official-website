@@ -1,27 +1,31 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  web:
+  backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
+      context: .
+      dockerfile: backend/Dockerfile
     volumes:
       - ./backend:/app
+    ports:
+      - "5000:5000"
     environment:
       - FLASK_ENV=development
-    depends_on:
-      - db
+    command: python app.py
 
-  db:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: community
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - ./frontend:/frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    command: npm start
 
 volumes:
-  postgres_data:
+  backend_data:
+  frontend_data:
+
