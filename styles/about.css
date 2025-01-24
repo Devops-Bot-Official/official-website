@@ -1,0 +1,394 @@
+/* Resetting default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.toolbar {
+    background-color: #1f2937;
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 16px;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+.sidebar {
+    width: 300px;
+    background-color: #374151;
+    color: white;
+    position: fixed;
+    top: 60px; /* Adjust to match the toolbar height */
+    height: calc(100% - 60px); /* Adjust to match the toolbar height */
+    padding-top: 20px;
+    display: block; /* Always visible */
+    overflow-y: auto;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    padding: 10px 20px;
+}
+
+.sidebar a {
+    color: white; /* Ensure the text color is white */
+    text-decoration: none;
+}
+
+.sidebar .nested {
+    display: none;
+    padding-left: 20px;
+}
+
+.sidebar .active > .nested {
+    display: block;
+}
+
+.main-content {
+    margin-left: 100px; /* Adjust to match the sidebar width */
+    margin-right: 100px; /* Adjust to match the sidebar width */
+    padding: 80px 20px 20px 20px; /* Adjust padding to account for the fixed toolbar */
+    flex: 1;
+}
+
+.footer {
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto;
+    position: relative;
+    z-index: 1000;
+}
+
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+}
+
+.installation {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.installation h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #1f2937;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 10px;
+}
+
+.installation h3 {
+    font-size: 28px;
+    margin-top: 30px;
+    color: #374151;
+}
+
+.installation p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #555;
+}
+
+.installation ol {
+    list-style: decimal;
+    padding-left: 20px;
+}
+
+.installation ol li {
+    margin-bottom: 10px;
+}
+
+.installation pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+.installation code {
+    font-family: 'Courier New', Courier, monospace;
+    color: #d63384;
+}
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+
+  .search-bar input {
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+  }
+
+  .search-bar button {
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-left: none;
+    background-color: #3b82f6;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+  }
+
+  .search-bar button:hover {
+    background-color: #1f2937;
+  }
+  .docker-swarm {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.docker-swarm h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #1f2937;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 10px;
+}
+
+.docker-swarm h3 {
+    font-size: 28px;
+    margin-top: 30px;
+    color: #374151;
+}
+
+.docker-swarm p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #555;
+}
+
+.docker-swarm ol {
+    list-style: decimal;
+    padding-left: 20px;
+}
+
+.docker-swarm ol li {
+    margin-bottom: 10px;
+}
+
+.docker-swarm ul {
+    list-style: disc;
+    padding-left: 20px;
+}
+
+.docker-swarm ul li {
+    margin-bottom: 10px;
+}
+/* Template Section */
+.templates {
+    margin-top: 40px;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.templates h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #1f2937;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 10px;
+}
+
+.templates .template {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.templates .template h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #374151;
+}
+
+.templates .template p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.templates .template pre {
+    background-color: #f4f4f4;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #333;
+    font-family: 'Courier New', Courier, monospace;
+    border: 1px solid #ddd;
+}
+
+.templates .template button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3b82f6;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.templates .template button:hover {
+    background-color: #1f2937;
+}
+.hero {
+    background: linear-gradient(135deg, #3b82f6, #1f2937);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .section {
+    padding: 20px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .command-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+  
+  pre {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+  }
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .grid-item {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .grid-item h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #1f2937;
+  }
+  
+  .grid-item p {
+    margin-bottom: 10px;
+    color: #555;
+  }
+  
+  .grid-item ul {
+    padding-left: 20px;
+    list-style: disc;
+  }
+  
+  .grid-item ul li {
+    margin-bottom: 5px;
+  }
+
+.about {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.about h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #1f2937;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 10px;
+}
+
+.about h3 {
+    font-size: 28px;
+    margin-top: 30px;
+    color: #374151;
+}
+
+.about p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: #555;
+}
+
+.profile-photo {
+    float: left;
+    margin-right: 20px;
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

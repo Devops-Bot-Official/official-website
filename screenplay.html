@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Screenplay Command Overview</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <nav class="nav-links">
+      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="docs.html" class="nav-link">Docs</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="About.html" class="nav-link">About</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
+
+  <!-- Sidebar (optional) -->
+    <!-- Sidebar (optional) -->
+    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+      <div class="search-bar">
+        <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
+        <button onclick="performSidebarSearch()">Search</button>
+      </div>
+      <ul>
+        <li><a href="officialwebsite.html">Introduction</a></li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Getting Started</a>
+          <ul class="nested">
+            <li><a href="installation.html">Installation</a></li>
+            <li><a href="uninstall.html">Uninstall</a></li>
+            <li><a href="#">Requirements</a></li>
+            <li><a href="#">Best Practices</a></li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Functions</a>
+              <ul class="nested">
+                <li><a href="webhook.html">Webhook</a></li>
+                <li><a href="persona.html">Persona</a></li>
+                <li><a href="infracred.html">Infrascrid</a></li>
+                <li><a href="vault.html">Vault</a></li>
+                <li><a href="plugins.html">Plugins</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+              <ul class="nested">
+                <li><a href="#">Host CLI</a></li>
+                <li><a href="#">Remote CLI</a></li>
+                <li><a href="#">UI</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Features</a>
+          <ul class="nested">
+            <li>
+              <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+              <ul class="nested">
+                <li><a href="infracircle.html">InfraCycle</a></li>
+                <li><a href="dobp.html">DOBProxy</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Provisioning</a>
+              <ul class="nested">
+                <li><a href="screenplay.html">Screenplay</a></li>
+              </ul>
+            </li>                             
+            <li>
+              <a href="#" onclick="toggleNested(event)">Configuration</a>
+              <ul class="nested">
+                <li><a href="infraset.html">InfraSet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Providers</a>
+          <ul class="nested">
+            <li>
+              <a href="#" onclick="toggleNested(event)">AWS</a>
+              <ul class="nested">
+                <li><a href="aws.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Azure</a>
+              <ul class="nested">
+                <li><a href="azure.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">GCP</a>
+              <ul class="nested">
+                <li><a href="gcp.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+          <ul class="nested">
+            <li><a href="ansible.html">Ansible</a></li>
+            <li><a href="Kubernetes.html">Kubernetes</a></li>
+            <li><a href="dockerswarm.html">Docker Swarm</a></li>
+            <li><a href="jenkins.html">Jenkins</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Use Cases</a></li>
+        <li><a href="#">API Reference</a></li>
+        <li><a href="#">Release Notes</a></li>
+      </ul>
+    </aside>
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Screenplay Command Overview</h1>
+      <p>The screenplay command offers a robust solution for orchestrating complex AWS workflows, including resource creation, task execution on remote instances, and environment configuration. It supports a wide range of operations, from provisioning EC2 instances and S3 buckets to injecting SSH keys and managing configurations, all with flexible and user-friendly options.</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>New Features and Enhancements</h2>
+      <h3>1. Script Execution</h3>
+      <ul>
+        <li>Execute tasks on remote instances listed in /etc/hosts with specified commands.</li>
+        <li>Inject SSH keys into new EC2 instances using <code>--create-remote (--cr)</code>.</li>
+        <li>Save instance IPs and names to /etc/hosts with <code>--add-remote (--ar)</code>.</li>
+      </ul>
+
+      <h3>2. AWS Resource Creation</h3>
+      <p>Create various AWS resources, including:</p>
+      <ul>
+        <li>VPCs: Region-specific configurations.</li>
+        <li>Subnets: Public IPs, custom tags.</li>
+        <li>Internet Gateways, Route Tables, NAT Gateways: Networking setup.</li>
+        <li>EC2 Instances: Tagging, security groups, user data.</li>
+        <li>Security Groups: Customizable rules.</li>
+        <li>EKS Clusters and Node Groups: Container orchestration.</li>
+        <li>S3 Buckets: Lifecycle policies, versioning, logging.</li>
+        <li>RDS Instances: Database setup.</li>
+        <li>CodeBuild Projects: CI/CD pipelines.</li>
+        <li>DynamoDB Tables: Throughput configurations.</li>
+        <li>SSL Certificates, Transit Gateways, Elastic IPs, Load Balancers.</li>
+      </ul>
+
+      <h3>3. Configuration and Overrides</h3>
+      <ul>
+        <li>Alternate variable files (<code>--ver, --rv</code>) and environments (<code>--environment, -e</code>).</li>
+        <li>Override variables directly via <code>--set (-s)</code>.</li>
+        <li>Validate/lint variables using <code>--required-keys-file (--rk)</code>.</li>
+      </ul>
+
+      <h3>4. Resource Outputs and Metrics</h3>
+      <ul>
+        <li>Capture and store resource outputs (e.g., VPC IDs, EC2 Instance IDs).</li>
+        <li>Add instance details to metrics files using <code>--add-remote-metrics (--arm)</code>.</li>
+      </ul>
+
+      <h3>5. Task and Workflow Management</h3>
+      <ul>
+        <li>Support for actions like RUN, CREATE, INSTALL, DEPLOYMENT, and PIPELINE.</li>
+        <li>Conditional execution with <code>when</code> and dependencies with <code>depends_on</code>.</li>
+        <li>Parallel execution and loop configurations (<code>for_each, count</code>).</li>
+      </ul>
+
+      <h3>6. Enhanced Deployment and Notifications</h3>
+      <ul>
+        <li>Multiple deployment strategies: S3, Docker Hub, Blue-Green deployment.</li>
+        <li>Notifications via email/Slack on task completion or failure.</li>
+      </ul>
+
+      <h3>7. State Management and Security</h3>
+      <ul>
+        <li>Maintain state with unique execution IDs and encrypted state files.</li>
+        <li>Debugging support with sensitive variable decryption (<code>--password, --show</code>).</li>
+      </ul>
+
+      <h3>8. Destruction of Resources</h3>
+      <p>Destroy resources via <code>destroy</code> command with priority-based deletion:</p>
+      <ul>
+        <li>EC2 Instances → NAT Gateways → VPCs → Load Balancers → S3 Buckets, etc.</li>
+        <li>Includes dedicated wait functions for dependent resource deletion.</li>
+      </ul>
+
+      <h2>Strengths</h2>
+      <ul>
+        <li><strong>Encryption/Decryption:</strong> Secure data handling with key-based and password-protected encryption.</li>
+        <li><strong>Validation and Linting:</strong> Robust checks for required keys and variable integrity.</li>
+        <li><strong>Error Handling and Logging:</strong> Detailed logs and comprehensive error messages.</li>
+        <li><strong>AWS Integration:</strong> Efficient resource creation and deletion with dependency management.</li>
+      </ul>
+
+      <h2>Usage Examples</h2>
+      <pre><code class="language-bash">
+# Execute tasks on remote instances
+aws screenplay --create-remote --add-remote --command "sudo apt-get update"
+
+# Create AWS resources
+aws screenplay --resource vpc,ec2,s3 --environment dev --set key=value
+
+# Destroy resources for a specific execution ID
+aws destroy <execution_id> --ignore-yml
+      </code></pre>
+      <p>This updated command ensures a streamlined and efficient way to manage AWS workflows while providing extensive configuration and automation capabilities.</p>
+      <h3>Watch the Installation Video</h3>
+      <p>Watch the video below to see the AWS EC2 Creation process in action:</p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/_E4YZJhU3bM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </section>
+
+    <!-- Additional Sections -->
+  </main>
+  <!-- Add GIF Link Here -->
+  <section class="video" style="text-align: center; margin-top: 20px;">
+    <h2>Watch the Screenplay Overview</h2>
+    <img src="styles/assets/images/screenplay.gif" alt="InfraCycle Overview" width="760" height="600">
+  </section>  
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'Home.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+  </script>
+</body>
+</html>

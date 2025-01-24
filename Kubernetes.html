@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Ansible</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+    <!-- Header Toolbar -->
+    <header class="toolbar">
+      <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+      <nav class="nav-links">
+        <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="docs.html" class="nav-link">Docs</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="About.html" class="nav-link">About</a>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+      </div>
+    </header>
+  
+    <!-- Sidebar (optional) -->
+      <!-- Sidebar (optional) -->
+  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <div class="search-bar">
+      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+      <div id="suggestions" class="suggestions"></div>
+      <button onclick="performSidebarSearch()">Search</button>
+    </div>
+    <ul>
+      <li><a href="officialwebsite.html">Introduction</a></li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+        <ul class="nested">
+          <li><a href="installation.html">Installation</a></li>
+          <li><a href="uninstall.html">Uninstall</a></li>
+          <li><a href="#">Requirements</a></li>
+          <li><a href="#">Best Practices</a></li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Functions</a>
+            <ul class="nested">
+              <li><a href="webhook.html">Webhook</a></li>
+              <li><a href="persona.html">Persona</a></li>
+              <li><a href="infracred.html">Infrascrid</a></li>
+              <li><a href="vault.html">Vault</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+            <ul class="nested">
+              <li><a href="#">Host CLI</a></li>
+              <li><a href="#">Remote CLI</a></li>
+              <li><a href="#">UI</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Features</a>
+        <ul class="nested">
+          <li>
+            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+            <ul class="nested">
+              <li><a href="infracircle.html">InfraCycle</a></li>
+              <li><a href="dobp.html">DOBProxy</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Provisioning</a>
+            <ul class="nested">
+              <li><a href="screenplay.html">Screenplay</a></li>
+            </ul>
+          </li>                             
+          <li>
+            <a href="#" onclick="toggleNested(event)">Configuration</a>
+            <ul class="nested">
+              <li><a href="infraset.html">InfraSet</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Providers</a>
+        <ul class="nested">
+          <li>
+            <a href="#" onclick="toggleNested(event)">AWS</a>
+            <ul class="nested">
+              <li><a href="aws.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Azure</a>
+            <ul class="nested">
+              <li><a href="azure.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">GCP</a>
+            <ul class="nested">
+              <li><a href="gcp.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+        <ul class="nested">
+          <li><a href="ansible.html">Ansible</a></li>
+          <li><a href="Kubernetes.html">Kubernetes</a></li>
+          <li><a href="dockerswarm.html">Docker Swarm</a></li>
+          <li><a href="jenkins.html">Jenkins</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Use Cases</a></li>
+      <li><a href="#">API Reference</a></li>
+      <li><a href="#">Release Notes</a></li>
+    </ul>
+  </aside>  
+
+<!-- Main Content Area -->
+<main class="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Kubernetes</h1>
+      <p>Automated provisioning and configuration of Kubernetes clusters with DOB Kubernetes Services (DKS).</p>
+    </section>
+  
+    <!-- Docker Swarm Section -->
+    <section class="docker-swarm">
+      <h2>Commands: <code>dob dks config</code>, <code>dob dks attach-node</code></h2>
+      <p>This feature streamlines the automated provisioning and configuration of Kubernetes clusters (DKS - DOB Kubernetes Services) on cloud infrastructure.</p>
+  
+      <h3>Key Highlights:</h3>
+      <ol>
+        <li>
+          <strong>DKS Configuration Command</strong>
+          <ul>
+            <li><strong>Command:</strong> <code>dob dks config --file-path &lt;yaml-config&gt;</code></li>
+            <li><strong>Functionality:</strong>
+              <ul>
+                <li>Provisions and configures Kubernetes master and worker nodes using the provided YAML configuration.</li>
+                <li>Generates Kubernetes join tokens for worker nodes automatically.</li>
+                <li>Includes a retry mechanism for transient failures during node setup.</li>
+              </ul>
+            </li>
+            <li><strong>Error Handling:</strong>
+              <ul>
+                <li>Validates configuration files and handles missing or invalid files.</li>
+                <li>Provides detailed error messages for provisioning or Kubernetes setup failures.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Attach New Worker Nodes</strong>
+          <ul>
+            <li><strong>Command:</strong> <code>dob dks attach-node --file-path &lt;yaml-config&gt;</code></li>
+            <li><strong>Functionality:</strong>
+              <ul>
+                <li>Attaches new worker nodes to an existing Kubernetes master node.</li>
+                <li>Uses the master node's join token for worker node setup.</li>
+              </ul>
+            </li>
+            <li><strong>Error Handling:</strong>
+              <ul>
+                <li>Ensures proper detection of the master node before attaching workers.</li>
+                <li>Provides clear error feedback for failures during the join process.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <strong>Default Tasks for Master Nodes</strong>
+          <ul>
+            <li>Disabling SELinux and enabling IP forwarding.</li>
+            <li>Installing and configuring Docker and Containerd.</li>
+            <li>Installing Kubernetes components (kubelet, kubeadm, kubectl) and initializing the master node.</li>
+            <li>Deploying Calico as the default network plugin.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Default Tasks for Worker Nodes</strong>
+          <ul>
+            <li>Disabling SELinux and enabling IP forwarding.</li>
+            <li>Installing Docker, Containerd, and Kubernetes components.</li>
+            <li>Automatically joining the worker nodes to the cluster using the join token.</li>
+          </ul>
+        </li>
+        <li>
+          <strong>Error Handling and Logging</strong>
+          <ul>
+            <li>Comprehensive error handling with retry logic for transient issues.</li>
+            <li>Real-time logging of task execution for better visibility and debugging.</li>
+          </ul>
+        </li>
+      </ol>
+  
+      <h3>Example YAML Configuration:</h3>
+      <pre><code class="language-yaml">
+  master:
+    name: k8s-master
+    instance_type: t2.medium
+    key_name: my-ssh-key
+    security_group: my-security-group
+  workers:
+    name: k8s-worker
+    instance_type: t2.small
+    key_name: my-ssh-key
+    security_group: my-security-group
+    count: 3
+      </code></pre>
+  
+      <h3>Example Usage:</h3>
+      <pre><code class="language-bash">
+  dob dks config --file-path /path/to/config.yaml
+  dob dks attach-node --file-path /path/to/new-workers-config.yaml
+      </code></pre>
+    </section>
+  
+  </main>
+  
+
+
+    <footer class="footer">
+      <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+    </footer>
+  
+    <!-- JavaScript Files -->
+    <script src="scripts/main.js"></script>
+    <script>
+      function toggleNested(event) {
+        event.preventDefault();
+        const parent = event.target.parentElement;
+        parent.classList.toggle('active');
+      }
+  
+      function performSearch() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const links = document.querySelectorAll('.nav-links a, .sidebar a');
+  
+        links.forEach(link => {
+          if (link.textContent.toLowerCase().includes(query)) {
+            link.style.display = 'block';
+          } else {
+            link.style.display = 'none';
+          }
+        });
+      }
+  
+      function navigateHome() {
+        window.location.href = 'Home.html';
+      }
+  
+      function navigateOfficialWebsite() {
+        window.location.href = 'officialwebsite.html';
+      }
+    </script>
+  </body>
+  </html>

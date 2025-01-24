@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Webhook Guide</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <nav class="nav-links">
+      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="docs.html" class="nav-link">Docs</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="About.html" class="nav-link">About</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
+
+  <!-- Sidebar (optional) -->
+    <!-- Sidebar (optional) -->
+    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+      <div class="search-bar">
+        <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
+        <button onclick="performSidebarSearch()">Search</button>
+      </div>
+      <ul>
+        <li><a href="officialwebsite.html">Introduction</a></li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Getting Started</a>
+          <ul class="nested">
+            <li><a href="installation.html">Installation</a></li>
+            <li><a href="uninstall.html">Uninstall</a></li>
+            <li><a href="#">Requirements</a></li>
+            <li><a href="#">Best Practices</a></li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Functions</a>
+              <ul class="nested">
+                <li><a href="webhook.html">Webhook</a></li>
+                <li><a href="persona.html">Persona</a></li>
+                <li><a href="infracred.html">Infrascrid</a></li>
+                <li><a href="vault.html">Vault</a></li>
+                <li><a href="plugins.html">Plugins</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+              <ul class="nested">
+                <li><a href="#">Host CLI</a></li>
+                <li><a href="#">Remote CLI</a></li>
+                <li><a href="#">UI</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Features</a>
+          <ul class="nested">
+            <li>
+              <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+              <ul class="nested">
+                <li><a href="infracircle.html">InfraCycle</a></li>
+                <li><a href="dobp.html">DOBProxy</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Provisioning</a>
+              <ul class="nested">
+                <li><a href="screenplay.html">Screenplay</a></li>
+              </ul>
+            </li>                             
+            <li>
+              <a href="#" onclick="toggleNested(event)">Configuration</a>
+              <ul class="nested">
+                <li><a href="infraset.html">InfraSet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Providers</a>
+          <ul class="nested">
+            <li>
+              <a href="#" onclick="toggleNested(event)">AWS</a>
+              <ul class="nested">
+                <li><a href="aws.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Azure</a>
+              <ul class="nested">
+                <li><a href="azure.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">GCP</a>
+              <ul class="nested">
+                <li><a href="gcp.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+          <ul class="nested">
+            <li><a href="ansible.html">Ansible</a></li>
+            <li><a href="Kubernetes.html">Kubernetes</a></li>
+            <li><a href="dockerswarm.html">Docker Swarm</a></li>
+            <li><a href="jenkins.html">Jenkins</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Use Cases</a></li>
+        <li><a href="#">API Reference</a></li>
+        <li><a href="#">Release Notes</a></li>
+      </ul>
+    </aside>
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Webhook User Guide</h1>
+      <p>Learn how to use and configure the webhook functionality of your application.</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>Overview</h2>
+      <p>The webhook functionality is designed to:</p>
+      <ul>
+        <li>Validate incoming GitHub webhook events.</li>
+        <li>Process repositories if specific files (e.g., Dobbuild.yaml) are modified.</li>
+        <li>Execute DevOps workflows based on the content of the Dobbuild.yaml file.</li>
+      </ul>
+
+      <h2>API Endpoints</h2>
+      <h3>1. Generate API Key</h3>
+      <p><strong>Endpoint:</strong> /generate-api-key</p>
+      <p><strong>Method:</strong> POST</p>
+      <p><strong>Description:</strong> Generates a new API key for authentication purposes.</p>
+      <p><strong>Response:</strong></p>
+      <pre><code class="language-json">
+201 (Success):
+{
+  "status": "success",
+  "name": "Generated API Key Name",
+  "token": "Generated API Key Token"
+}
+500 (Error):
+{
+  "status": "error",
+  "message": "Error details"
+}
+      </code></pre>
+
+      <h3>2. Generate Webhook Secret</h3>
+      <p><strong>Endpoint:</strong> /generate-webhook-secret</p>
+      <p><strong>Method:</strong> POST</p>
+      <p><strong>Description:</strong> Generates a new secret key for webhook validation.</p>
+      <p><strong>Response:</strong></p>
+      <pre><code class="language-json">
+201 (Success):
+{
+  "status": "success",
+  "webhook_secret": "Generated Webhook Secret"
+}
+500 (Error):
+{
+  "status": "error",
+  "message": "Error details"
+}
+      </code></pre>
+
+      <h3>3. Handle Webhook</h3>
+      <p><strong>Endpoint:</strong> /webhook</p>
+      <p><strong>Method:</strong> POST</p>
+      <p><strong>Description:</strong> Processes incoming webhook events from GitHub.</p>
+      <p><strong>Features:</strong></p>
+      <ul>
+        <li>Validates the webhook signature using the secret key.</li>
+        <li>Processes only push events.</li>
+        <li>Checks if the Dobbuild.yaml file is modified.</li>
+        <li>Clones the repository and executes the Dobbuild.yaml if present.</li>
+      </ul>
+      <p><strong>Expected Headers:</strong></p>
+      <ul>
+        <li><code>X-GitHub-Event:</code> Specifies the event type (e.g., push).</li>
+        <li><code>X-Hub-Signature-256:</code> Contains the SHA256 HMAC signature of the payload.</li>
+      </ul>
+      <p><strong>Response:</strong></p>
+      <pre><code class="language-json">
+200 (Ignored Event):
+{
+  "status": "ignored",
+  "event": "event_type"
+}
+403 (Invalid Signature):
+{
+  "error": "Invalid GitHub signature"
+}
+500 (Processing Error):
+{
+  "error": "Failed to process payload: Error details"
+}
+      </code></pre>
+
+      <h2>CLI Commands</h2>
+      <h3>1. Regenerate Webhook Secret</h3>
+      <p><strong>Command:</strong> regenerate-webhook-secret</p>
+      <p><strong>Description:</strong> Regenerates the webhook secret key for validating incoming requests.</p>
+      <p><strong>Output:</strong></p>
+      <pre><code class="language-javascript">
+New webhook secret generated: &lt;Generated Secret&gt;
+      </code></pre>
+
+      <h2>Webhook Signature Verification</h2>
+      <p><strong>Function:</strong> verify_signature(payload, signature, secret)</p>
+      <p><strong>Purpose:</strong> Validates the HMAC signature of the payload using the stored webhook secret.</p>
+      <p><strong>Process:</strong></p>
+      <ul>
+        <li>Splits the signature into hash type and value.</li>
+        <li>Generates a HMAC signature using the payload and secret.</li>
+        <li>Compares the generated signature with the received signature.</li>
+      </ul>
+      <p><strong>Returns:</strong></p>
+      <ul>
+        <li>True if signatures match.</li>
+        <li>False otherwise.</li>
+      </ul>
+
+      <h2>Repository Processing</h2>
+      <h3>Steps:</h3>
+      <h4>Clone the Repository:</h4>
+      <ul>
+        <li>Clones the repository using the provided URL and branch.</li>
+        <li>Ensures the repository is cloned to a fresh directory.</li>
+      </ul>
+      <h4>Execute Dobbuild.yaml:</h4>
+      <ul>
+        <li>Checks if Dobbuild.yaml is modified and exists in the repository.</li>
+        <li>Executes the file using the dob CLI command.</li>
+        <li>Logs the output and saves execution results.</li>
+      </ul>
+      <h4>Generate Results Path:</h4>
+      <ul>
+        <li>Determines the path for saving execution results.</li>
+        <li>Limits the number of build files to 100 per repository.</li>
+      </ul>
+      <p><strong>Function Highlights:</strong></p>
+      <ul>
+        <li><code>get_next_build_file_path:</code> Generates the next available build file path.</li>
+        <li><code>execute_dob_command:</code> Executes the dob command and logs results.</li>
+        <li><code>process_repository:</code> Handles repository cloning, validation, and execution.</li>
+      </ul>
+
+      <h2>Webhook Processing Flow</h2>
+      <h3>Receive Webhook:</h3>
+      <ul>
+        <li>Checks the event type from <code>X-GitHub-Event</code> header.</li>
+        <li>Processes only push events.</li>
+      </ul>
+      <h3>Validate Signature:</h3>
+      <ul>
+        <li>Ensures the payload's HMAC signature matches the stored secret.</li>
+      </ul>
+      <h3>Parse Payload:</h3>
+      <ul>
+        <li>Extracts repository details and modified files.</li>
+      </ul>
+      <h3>Check for Changes in Dobbuild.yaml:</h3>
+      <ul>
+        <li>Aborts processing if Dobbuild.yaml is not modified.</li>
+      </ul>
+      <h3>Clone and Process Repository:</h3>
+      <ul>
+        <li>Clones the repository and executes the specified Dobbuild.yaml.</li>
+      </ul>
+      <h3>Return Response:</h3>
+      <ul>
+        <li>Provides appropriate success or error responses.</li>
+      </ul>
+
+      <h2>Error Handling</h2>
+      <h3>Invalid Signature:</h3>
+      <p>Returns a 403 Forbidden response with an error message.</p>
+      <h3>File Not Found:</h3>
+      <p>Aborts if the required Dobbuild.yaml file is missing.</p>
+      <h3>Execution Errors:</h3>
+      <p>Logs and returns details of subprocess or unexpected errors.</p>
+
+      <p>By following this guide, users can efficiently utilize the webhook functionality for automated processing of DevOps workflows.</p>
+    </section>
+
+    <!-- Additional Sections -->
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'Home.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Infracycle</title>
+  <link rel="stylesheet" href="styles/infracircle.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <nav class="nav-links">
+      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="docs.html" class="nav-link">Docs</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="About.html" class="nav-link">About</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
+
+  <!-- Sidebar (optional) -->
+    <!-- Sidebar (optional) -->
+    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+      <div class="search-bar">
+        <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
+        <button onclick="performSidebarSearch()">Search</button>
+      </div>
+      <ul>
+        <li><a href="officialwebsite.html">Introduction</a></li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Getting Started</a>
+          <ul class="nested">
+            <li><a href="installation.html">Installation</a></li>
+            <li><a href="uninstall.html">Uninstall</a></li>
+            <li><a href="#">Requirements</a></li>
+            <li><a href="#">Best Practices</a></li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Functions</a>
+              <ul class="nested">
+                <li><a href="webhook.html">Webhook</a></li>
+                <li><a href="persona.html">Persona</a></li>
+                <li><a href="infracred.html">Infrascrid</a></li>
+                <li><a href="vault.html">Vault</a></li>
+                <li><a href="plugins.html">Plugins</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+              <ul class="nested">
+                <li><a href="#">Host CLI</a></li>
+                <li><a href="#">Remote CLI</a></li>
+                <li><a href="#">UI</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Features</a>
+          <ul class="nested">
+            <li>
+              <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+              <ul class="nested">
+                <li><a href="infracircle.html">InfraCycle</a></li>
+                <li><a href="dobp.html">DOBProxy</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Provisioning</a>
+              <ul class="nested">
+                <li><a href="screenplay.html">Screenplay</a></li>
+              </ul>
+            </li>                             
+            <li>
+              <a href="#" onclick="toggleNested(event)">Configuration</a>
+              <ul class="nested">
+                <li><a href="infraset.html">InfraSet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Providers</a>
+          <ul class="nested">
+            <li>
+              <a href="#" onclick="toggleNested(event)">AWS</a>
+              <ul class="nested">
+                <li><a href="aws.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Azure</a>
+              <ul class="nested">
+                <li><a href="azure.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">GCP</a>
+              <ul class="nested">
+                <li><a href="gcp.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+          <ul class="nested">
+            <li><a href="ansible.html">Ansible</a></li>
+            <li><a href="Kubernetes.html">Kubernetes</a></li>
+            <li><a href="dockerswarm.html">Docker Swarm</a></li>
+            <li><a href="jenkins.html">Jenkins</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Use Cases</a></li>
+        <li><a href="#">API Reference</a></li>
+        <li><a href="#">Release Notes</a></li>
+      </ul>
+    </aside>
+<!-- Main Content Area -->
+<main class="main-content">
+  <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Infracycle Tool User Guide</h1>
+      <p>The Infracycle Tool is a powerful command-line interface designed to manage and automate build and deployment pipelines. This guide provides an in-depth look into its functionality, supported stages, and practical usage.</p>
+    </section>
+    <section class="docker-swarm">
+      <h2>Command Overview</h2>
+      <p><strong>dob infracycle apply</strong></p>
+      <p>Description: The core command that executes the pipeline based on a YAML configuration file. This includes build stages, testing, security analysis, deployments, and more.</p>
+      <p>Options:</p>
+      <div class="grid-container">
+        <div class="grid-item"><strong>--file-path:</strong> Path to the YAML configuration file.</div>
+        <div class="grid-item"><strong>--ver (-v):</strong> Path to an alternate variables file.</div>
+        <div class="grid-item"><strong>--environment (-e):</strong> Specify the environment (e.g., dev, test, prod).</div>
+        <div class="grid-item"><strong>--show (-s):</strong> Display sensitive variables for debugging.</div>
+        <div class="grid-item"><strong>--remote-ver (--rv):</strong> URL to an alternate variables file.</div>
+        <div class="grid-item"><strong>--password (-p):</strong> Password for decrypting sensitive variables.</div>
+        <div class="grid-item"><strong>--remote-config (--rc):</strong> URL to a remote YAML configuration file.</div>
+        <div class="grid-item"><strong>--set (-s):</strong> Directly override variables (key=value).</div>
+      </div>
+  
+      <h2>Pipeline Stages</h2>
+      <p>The pipeline is structured into jobs and stages. Each stage represents a specific task or group of tasks. Below is a comprehensive list of supported stages and their functionality:</p>
+  
+      <div class="grid-container">
+        <div class="grid-item">
+          <h3>1. Setup and Cloning</h3>
+          <p><strong>Purpose:</strong> Prepares the environment by setting up repositories.</p>
+          <ul>
+            <li>Clones the code from a Git repository.</li>
+            <li>Ensures dependencies and environment configurations are set.</li>
+          </ul>
+        </div>
+        <div class="grid-item">
+          <h3>2. Build Stages</h3>
+          <h4>a. Maven Build</h4>
+          <p><strong>Purpose:</strong> Compiles and packages Java-based applications.</p>
+          <ul>
+            <li>Checks for Maven installation.</li>
+            <li>Installs necessary dependencies.</li>
+            <li>Runs mvn build commands.</li>
+          </ul>
+        </div>
+        <div class="grid-item">
+          <h4>b. Gradle Build</h4>
+          <p><strong>Purpose:</strong> Builds projects using Gradle.</p>
+          <ul>
+            <li>Ensures Gradle is installed.</li>
+            <li>Executes gradle build.</li>
+          </ul>
+        </div>
+        <div class="grid-item">
+          <h4>c. Ant Build</h4>
+          <p><strong>Purpose:</strong> Automates build processes for Java applications.</p>
+          <ul>
+            <li>Validates Apache Ant installation.</li>
+            <li>Runs Ant build scripts.</li>
+          </ul>
+        </div>
+        <div class="grid-item">
+          <h4>d. SCons Build</h4>
+          <p><strong>Purpose:</strong> Performs advanced builds using Python-based SCons.</p>
+          <ul>
+            <li>Checks SCons installation.</li>
+            <li>Executes scons commands.</li>
+          </ul>
+        </div>
+        <div class="grid-item">
+          <h4>e. Bazel Build</h4>
+          <p><strong>Purpose:</strong> Compiles large-scale software projects.</p>
+          <ul>
+            <li>Installs Bazel and dependencies.</li>
+            <li>Runs Bazel build commands.</li>
+          </ul>
+        </div>
+        <div class="grid-item">
+          <h3>3. Testing Stages</h3>
+          <h4>a. JUnit Testing</h4>
+          <p><strong>Purpose:</strong> Executes unit tests for Java applications.</p>
+          <ul>
+            <li>Ensures JUnit dependencies are installed.</li>
+            <li>Runs tests and generates reports.</li>
+          </ul>
+        </div>
+        <div class="grid-item">
+          <h4>b. TestNG Testing</h4>
+          <p><strong>Purpose:</strong> Runs TestNG test suites for Java projects.</p>
+          <ul>
+            <li>Executes testng.xml test suites.</li>
+            <li>Produces detailed test results.</li>
+          </ul>
+        </div>
+        <div class="grid-item">
+            <h4>c. Python Testing</h4>
+            <p><strong>Purpose:</strong> Executes Python-based tests.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Installs Python.</li>
+              <li>Runs Python scripts or test frameworks like PyTest.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>d. Go Testing</h4>
+            <p><strong>Purpose:</strong> Runs tests for Go modules.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Validates Go environment setup.</li>
+              <li>Executes go test.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h3>4. Security Analysis</h3>
+            <h4>a. SonarQube Analysis</h4>
+            <p><strong>Purpose:</strong> Scans code for vulnerabilities and maintains code quality.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Configures and runs sonar-scanner.</li>
+              <li>Analyzes and reports issues.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>b. OWASP ZAP Scanning</h4>
+            <p><strong>Purpose:</strong> Identifies vulnerabilities in web applications.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Runs OWASP ZAP in full or specific modes (quick, spider, etc.).</li>
+              <li>Generates reports.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>c. Dependency-Check</h4>
+            <p><strong>Purpose:</strong> Scans for outdated or insecure dependencies.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Runs OWASP Dependency-Check.</li>
+              <li>Reports potential risks.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h3>5. Deployment Stages</h3>
+            <h4>a. Docker Build and Push</h4>
+            <p><strong>Purpose:</strong> Builds and pushes Docker images to a registry.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Builds Docker images.</li>
+              <li>Pushes images to Docker Hub.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>b. Kubernetes Deployment</h4>
+            <p><strong>Purpose:</strong> Deploys applications to Kubernetes clusters.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Configures kubeconfig.</li>
+              <li>Deploys to the specified namespace.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h3>6. Notification and Approval</h3>
+            <h4>a. Notifications</h4>
+            <p><strong>Purpose:</strong> Alerts about pipeline progress.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Sends email or chat notifications on task completion or failure.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>b. External Approval</h4>
+            <p><strong>Purpose:</strong> Requires external approval to proceed.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Sends an approval request via email or web interface.</li>
+              <li>Waits for approval or rejection.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>c. Python Testing</h4>
+            <p><strong>Purpose:</strong> Executes Python-based tests.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Installs Python.</li>
+              <li>Runs Python scripts or test frameworks like PyTest.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>d. Go Testing</h4>
+            <p><strong>Purpose:</strong> Runs tests for Go modules.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Validates Go environment setup.</li>
+              <li>Executes go test.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h3>4. Security Analysis</h3>
+            <h4>a. SonarQube Analysis</h4>
+            <p><strong>Purpose:</strong> Scans code for vulnerabilities and maintains code quality.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Configures and runs sonar-scanner.</li>
+              <li>Analyzes and reports issues.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>b. OWASP ZAP Scanning</h4>
+            <p><strong>Purpose:</strong> Identifies vulnerabilities in web applications.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Runs OWASP ZAP in full or specific modes (quick, spider, etc.).</li>
+              <li>Generates reports.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>c. Dependency-Check</h4>
+            <p><strong>Purpose:</strong> Scans for outdated or insecure dependencies.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Runs OWASP Dependency-Check.</li>
+              <li>Reports potential risks.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h3>5. Deployment Stages</h3>
+            <h4>a. Docker Build and Push</h4>
+            <p><strong>Purpose:</strong> Builds and pushes Docker images to a registry.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Builds Docker images.</li>
+              <li>Pushes images to Docker Hub.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>b. Kubernetes Deployment</h4>
+            <p><strong>Purpose:</strong> Deploys applications to Kubernetes clusters.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Configures kubeconfig.</li>
+              <li>Deploys to the specified namespace.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h3>6. Notification and Approval</h3>
+            <h4>a. Notifications</h4>
+            <p><strong>Purpose:</strong> Alerts about pipeline progress.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Sends email or chat notifications on task completion or failure.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>b. External Approval</h4>
+            <p><strong>Purpose:</strong> Requires external approval to proceed.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Sends an approval request via email or web interface.</li>
+              <li>Waits for approval or rejection.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h3>7. Custom Scripting</h3>
+            <h4>a. Shell Scripting</h4>
+            <p><strong>Purpose:</strong> Executes custom shell commands.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Runs scripts locally or remotely.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>b. Python Scripting</h4>
+            <p><strong>Purpose:</strong> Executes Python commands or scripts.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Ensures Python environment is set up.</li>
+              <li>Runs Python-based logic.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>c. Go Scripting</h4>
+            <p><strong>Purpose:</strong> Executes Go commands or scripts.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Installs Go and dependencies.</li>
+              <li>Executes custom Go logic.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>d. Bash Scripting</h4>
+            <p><strong>Purpose:</strong> Runs advanced Bash commands.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Executes commands defined in the configuration.</li>
+            </ul>
+          </div>
+          <div class="grid-item">
+            <h4>e. Java Scripting</h4>
+            <p><strong>Purpose:</strong> Executes Java-based tasks.</p>
+            <p><strong>Tasks:</strong></p>
+            <ul>
+              <li>Runs Java scripts or custom logic.</li>
+            </ul>
+          </div>
+        </div>
+
+        <section class="docker-swarm">
+
+            <h2>Practical Usage</h2>
+        
+            <h3>Basic Pipeline Execution</h3>
+            <p>Run a simple pipeline using a YAML configuration file:</p>
+            <pre><code class="language-bash">
+dob infracycle apply --file-path pipeline.yaml --environment dev
+            </code></pre>
+        
+            <h3>Enable Debugging</h3>
+            <p>Show sensitive variables for debugging:</p>
+            <pre><code class="language-bash">
+dob infracycle apply --file-path pipeline.yaml --show
+            </code></pre>
+        
+            <h3>Use Remote Configuration</h3>
+            <p>Run a pipeline using remote configurations:</p>
+            <pre><code class="language-bash">
+dob infracycle apply --remote-config https://example.com/config.yaml
+            </code></pre>
+        
+            <h3>Set Variables Inline</h3>
+            <p>Override variables on the command line:</p>
+            <pre><code class="language-bash">
+dob infracycle apply --set key1=value1 --set key2=value2
+            </code></pre>
+        
+            <h3>Request External Approval</h3>
+            <p>Include an approval step in the configuration:</p>
+            <pre><code class="language-yaml">
+stages:
+- name: Deployment
+    tasks:
+        request_external_approval:
+        enabled: true
+        approver_email: approver@example.com
+        approval_message: "Please approve the deployment."
+            </code></pre>
+        
+            <h3>Configuration Example</h3>
+            <p>Here is an example YAML file for a multi-stage pipeline:</p>
+            <pre><code class="language-yaml">
+  jobs:
+    - name: BuildPipeline
+        stages:
+        - name: Setup
+            tasks:
+            setup_and_clone:
+                enabled: true
+                repo_url: "https://github.com/example/repo.git"
+        - name: Build
+            tasks:
+            maven:
+                enabled: true
+        - name: Test
+            tasks:
+            junit:
+                enabled: true
+                test_command: "mvn test"
+        - name: Security
+            tasks:
+            sonarqube_analysis:
+                enabled: true
+                server_url: "http://sonarqube.example.com"
+                project_key: "example-project"
+                token: "your-sonar-token"
+        - name: Deploy
+            tasks:
+            k8s_deploy:
+                enabled: true
+                kubeconfig_path: "/root/.kube/config"
+            </code></pre>
+        
+            <h3>Best Practices</h3>
+            <ul>
+              <li><strong>Organize Pipelines:</strong> Divide tasks into meaningful stages for readability and modularity.</li>
+              <li><strong>Secure Variables:</strong> Use the <code>--password</code> option to encrypt sensitive variables.</li>
+              <li><strong>Notifications:</strong> Enable notifications to track progress and failures in real-time.</li>
+              <li><strong>Testing:</strong> Leverage tools like SonarQube and OWASP ZAP to ensure code quality and security.</li>
+            </ul>
+        
+            <p>This detailed guide ensures you can make full use of the Infracycle Tool for all your DevOps automation needs.</p>
+        
+          </section>
+    <section class="templates">
+        <h2>Templates</h2>
+      
+        <!-- Email Approval Notification Template -->
+        <div class="template">
+          <h3>Email Approval Notification</h3>
+          <p>This template outlines how to configure and use the <code>send_approval_email</code> function to notify approvers for external approval requests via email.</p>
+          <button onclick="copyToClipboard('email-template')">Copy</button>
+          <pre id="email-template"><code class="language-yaml">
+# Email Notification Configuration Example
+email_notification:
+    enabled: true
+    smtp_server: "smtp.example.com"
+    smtp_port: 587
+    sender_email: "your_email@example.com"
+    sender_password: "your_password"
+    recipients:
+    - "approver1@example.com"
+    - "approver2@example.com"
+    subject: "Approval Request for '{task_name}'"
+    body: |
+    Approval is required for the following task:
+
+    Task Name: {task_name}
+    Approval Link: {approval_link}
+          </code></pre>
+        </div>
+      
+        <!-- External Approval Request Template -->
+        <div class="template">
+          <h3>External Approval Request</h3>
+          <p>This template explains the <code>request_external_approval</code> function, used to generate an approval request link and notify the approver via email.</p>
+          <button onclick="copyToClipboard('approval-template')">Copy</button>
+          <pre id="approval-template"><code class="language-yaml">
+# Approval Request Configuration Example
+approval_request:
+enabled: true
+task_name: "Deploy to Production"
+approver_email: "approver@example.com"
+public_ip: "192.168.1.10"  # Public IP or domain for generating approval links
+approval_message: |
+    Approval is required for the following task:
+
+    Task Name: {task_name}
+    Identifier: {identifier}
+    Category: {category}
+    Username: {username}
+
+    Please click the following link to approve or reject the task:
+    {approval_link}
+          </code></pre>
+        </div>
+      
+        <!-- Kubernetes Deployment Template -->
+        <div class="template">
+          <h3>Kubernetes Deployment</h3>
+          <p>This template demonstrates how to configure and use the <code>deploy_to_k8s_with_kubeconfig</code> function for Kubernetes deployments.</p>
+          <button onclick="copyToClipboard('k8s-template')">Copy</button>
+          <pre id="k8s-template"><code class="language-yaml">
+# Kubernetes Deployment Configuration Example
+kubernetes_deployment:
+enabled: true
+kubeconfig_path: "/root/.kube/config"
+manifest_files:
+    - "deployment.yaml"
+    - "service.yaml"
+task_name: "Kubernetes Deployment"
+identifier: "server"
+category: "devops"
+username: "root"
+          </code></pre>
+        </div>
+      
+        <!-- File Transfer Template -->
+        <div class="template">
+          <h3>File Transfer</h3>
+          <p>This template explains the <code>transfer_file</code> function, which enables transferring files or directories to remote servers.</p>
+          <button onclick="copyToClipboard('file-transfer-template')">Copy</button>
+          <pre id="file-transfer-template"><code class="language-yaml">
+# File Transfer Configuration Example
+file_transfer:
+    enabled: true
+    source_file: "/local/path/to/file"
+    dest_path: "/remote/path/target"
+    task_name: "File Transfer"
+    identifier: "server"
+    category: "devops"
+    username: "root"
+          </code></pre>
+        </div>
+        <div class="template">
+            <h3>OWASP ZAP Scan</h3>
+            <p>This template demonstrates how to configure and run an OWASP ZAP scan for security analysis using the <code>run_zap_scan</code> function.</p>
+            <button onclick="copyToClipboard('zap-scan-template')">Copy</button>
+            <pre id="zap-scan-template"><code class="language-yaml">
+# OWASP ZAP Scan Configuration Example    
+jobs:
+    - stages:
+        - name: Security Analysis
+        tasks:
+            zap_scan:
+            enabled: true
+            target_url: "http://example.com"
+            scan_type: "full"                 # Options: "quick", "spider", "api", "full"
+            output_dir: "/tmp/zap_results"    # Directory to save scan results
+            report_format: "html"             # Options: "html", "xml", "json"
+            additional_args: ""               # Additional ZAP arguments if needed
+            </code></pre>
+          </div>
+        <!-- Kubernetes Credential Setup Template -->
+        <div class="template">
+          <h3>Kubernetes Credential Setup</h3>
+          <p>This template describes the <code>run_k8s_credential_setup</code> function to create Kubernetes credentials for applications.</p>
+          <button onclick="copyToClipboard('k8s-cred-template')">Copy</button>
+          <pre id="k8s-cred-template"><code class="language-yaml">
+# Kubernetes Credential Setup Configuration Example
+k8s_credential_setup:
+    enabled: true
+    namespace: "default"
+    service_account_name: "devopsbot"
+    role_name: "app-role"
+    output_dir: "/tmp/k8s_credentials"
+    task_name: "Kubernetes Credential Setup"
+    identifier: "server"
+    category: "devops"
+    username: "root"
+          </code></pre>
+        </div>
+        <div class="template">
+            <h3>SonarQube Analysis</h3>
+            <p>This template provides the configuration for running a SonarQube analysis using the <code>run_sonar_analysis</code> function.</p>
+            <button onclick="copyToClipboard('sonar-analysis-template')">Copy</button>
+            <pre id="sonar-analysis-template"><code class="language-yaml">
+          # SonarQube Analysis Configuration Example
+
+          
+jobs:
+    - stages:
+        - name: Code Quality Analysis
+        tasks:
+            sonar_analysis:
+            enabled: true                 # Must be true to execute the task
+            server_url: "http://sonarqube.example.com"  # SonarQube server URL
+            project_key: "example-project"             # Project key in SonarQube
+            token: "your-sonar-token"                  # Authentication token for SonarQube
+            source_dir: "/path/to/source/code"         # Source directory for analysis
+            java_binaries: "/path/to/classes"          # Path to compiled Java binaries
+            jacoco_report_path: "/path/to/jacoco.xml"  # Path to JaCoCo report
+            language: "java"                           # Optional, programming language
+            inclusions: "**/*.java"                    # Optional, files to include
+            exclusions: "**/test/**"                   # Optional, files to exclude
+            test_sources: "/path/to/test/source"       # Optional, test source directory
+            test_inclusions: "**/test/**/*.java"       # Optional, test files to include
+            test_exclusions: "**/test/mock/**"         # Optional, test files to exclude
+            cpd_exclusions: "**/*.sql"                # Optional, files to exclude from duplication check
+            coverage_exclusions: "**/test/**"         # Optional, files to exclude from coverage
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Trivy Scan</h3>
+            <p>This template provides the configuration for running a Trivy scan using the <code>run_trivy_scan</code> function.</p>
+            <button onclick="copyToClipboard('trivy-scan-template')">Copy</button>
+            <pre id="trivy-scan-template"><code class="language-yaml">
+# Trivy Scan Configuration Example 
+jobs:
+    - stages:
+        - name: Security Scan
+        tasks:
+            trivy_scan:
+            enabled: true                     # Must be true to execute the task
+            target_type: "image"             # Target type: "image" or "filesystem"
+            target: "my-image:latest"        # Target image or file system
+            output_dir: "/tmp/trivy_results" # Directory to save results
+            format: "json"                   # Output format: "table", "json", "sarif"
+            severity: "LOW,MEDIUM,HIGH"      # Severity levels to include
+            timeout: "5m"                    # Timeout for the scan
+            vuln_type: "os,library"          # Types of vulnerabilities to scan for
+            security_checks: "vuln,config"   # Security checks to perform
+            ignore_unfixed: false            # Ignore unfixed vulnerabilities
+            skip_update: false               # Skip updating Trivy database
+            ignore_file: "/path/to/.trivyignore" # Optional, ignore file for Trivy
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>TestNG Tests</h3>
+            <p>This template provides the configuration for running TestNG tests using the <code>run_testng_tests</code> function.</p>
+            <button onclick="copyToClipboard('testng-template')">Copy</button>
+            <pre id="testng-template"><code class="language-yaml">
+# TestNG Tests Configuration Example   
+jobs:
+    - stages:
+        - name: TestNG Testing
+        tasks:
+            testng:
+            enabled: true                     # Ensure this is true to execute the task
+            testng_file: "testng.xml"         # Path to the TestNG configuration file
+            result_dir: "/tmp/testng_results" # Directory to store test results
+            use_html_reporter: true           # Whether to use jq HTML reporter
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>JUnit Tests</h3>
+            <p>This template provides the configuration for running JUnit tests using the <code>run_junit_tests</code> function.</p>
+            <button onclick="copyToClipboard('junit-template')">Copy</button>
+            <pre id="junit-template"><code class="language-yaml">
+# JUnit Tests Configuration Example
+jobs:
+    - stages:
+        - name: JUnit Testing
+            tasks:
+            junit:
+                enabled: true                     # Ensure this is true to execute the task
+                test_command: "mvn test"          # Command to execute JUnit tests
+                output_dir: "/tmp/junit_results"  # Directory to store test results
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Cargo Tasks</h3>
+            <p>This template provides the configuration for running Cargo tasks using the <code>run_cargo_task</code> function.</p>
+            <button onclick="copyToClipboard('cargo-template')">Copy</button>
+            <pre id="cargo-template"><code class="language-yaml">
+# Cargo Task Configuration Example
+jobs:
+    - stages:
+        - name: Cargo Build and Test
+        tasks:
+            cargo:
+            enabled: true                     # Ensure this is true to execute the task
+            test: true                        # Set to true to execute Cargo tests
+            output_dir: "/tmp/cargo_artifacts" # Directory to store build artifacts
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Bundler Tasks</h3>
+            <p>This template provides the configuration for running Bundler tasks using the <code>run_bundler_task</code> function.</p>
+            <button onclick="copyToClipboard('bundler-template')">Copy</button>
+            <pre id="bundler-template"><code class="language-yaml">
+# Bundler Task Configuration Example
+jobs:
+    - stages:
+        - name: Bundler Setup and Execution
+        tasks:
+            bundler:
+            enabled: true                      # Ensure this is true to execute the task
+            task: "rake"                       # Specify the additional Bundler task (e.g., rake, rails commands)
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Rake Tasks</h3>
+            <p>This template provides the configuration for running Rake tasks using the <code>run_rake_task</code> function.</p>
+            <button onclick="copyToClipboard('rake-template')">Copy</button>
+            <pre id="rake-template"><code class="language-yaml">
+# Rake Task Configuration Example
+jobs:
+    - stages:
+        - name: Rake Task Execution
+        tasks:
+            rake:
+            enabled: true                      # Ensure this is true to execute the task
+            task: "db:migrate"                 # Specify the Rake task (e.g., db:migrate, test, default)
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Go Modules Build</h3>
+            <p>This template provides the configuration for building Go Modules using the <code>run_go_build</code> function.</p>
+            <button onclick="copyToClipboard('go-build-template')">Copy</button>
+            <pre id="go-build-template"><code class="language-yaml">
+# Go Build Task Configuration Example
+jobs:
+    - stages:
+        - name: Go Modules Build
+        tasks:
+            go_build:
+            enabled: true                   # Ensure this is true to execute the task
+            output_dir: "/tmp/go_artifacts" # Directory to store build artifacts
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>SCons Build</h3>
+            <p>This template provides the configuration for building projects using SCons with the <code>run_scons_build</code> function.</p>
+            <button onclick="copyToClipboard('scons-build-template')">Copy</button>
+            <pre id="scons-build-template"><code class="language-yaml">
+# SCons Build Task Configuration Example  
+jobs:
+    - stages:
+        - name: SCons Build
+        tasks:
+            scons_build:
+            enabled: true                   # Ensure this is true to execute the task
+            output_dir: "/tmp/scons_artifacts" # Directory to store build artifacts
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Bazel Build</h3>
+            <p>This template provides the configuration for building projects using Bazel with the <code>run_bazel_build</code> function.</p>
+            <button onclick="copyToClipboard('bazel-build-template')">Copy</button>
+            <pre id="bazel-build-template"><code class="language-yaml">
+# Bazel Build Task Configuration Example
+jobs:
+    - stages:
+        - name: Bazel Build
+        tasks:
+            bazel_build:
+            enabled: true                   # Ensure this is true to execute the task
+            output_dir: "/tmp/bazel_artifacts" # Directory to store build artifacts
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Meson Build</h3>
+            <p>This template provides the configuration for building projects using Meson with the <code>run_meson_build</code> function.</p>
+            <button onclick="copyToClipboard('meson-build-template')">Copy</button>
+            <pre id="meson-build-template"><code class="language-yaml">
+# Meson Build Task Configuration Example
+jobs:
+    - stages:
+        - name: Meson Build
+        tasks:
+            meson_build:
+            enabled: true                   # Ensure this is true to execute the task
+            output_dir: "/tmp/meson_artifacts" # Directory to store build artifacts
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Rollup Build</h3>
+            <p>This template demonstrates how to configure and use the <code>run_rollup_build</code> function for bundling JavaScript projects with Rollup.</p>
+            <button onclick="copyToClipboard('rollup-template')">Copy</button>
+            <pre id="rollup-template"><code class="language-yaml">
+# Rollup Build Configuration Example       
+jobs:
+- stages:
+    - name: Rollup Build
+        tasks:
+        rollup_build:
+            enabled: true                     # Ensure this is true to execute the task
+            clone_dir: "/path/to/clone_dir"   # Directory containing source files and rollup.config.mjs
+            output_dir: "/tmp/rollup_artifacts" # Directory to store Rollup build artifacts
+            dependencies:                     # List of dependencies to install via npm
+            - "react"
+            - "react-dom"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Parcel Build</h3>
+            <p>
+              This template demonstrates how to configure and use the <code>run_parcel_build</code> function 
+              for bundling and optimizing web applications with Parcel.
+            </p>
+            <button onclick="copyToClipboard('parcel-template')">Copy</button>
+            <pre id="parcel-template"><code class="language-yaml">
+# Parcel Build Configuration Example
+jobs:
+    - stages:
+        - name: Parcel Build
+        tasks:
+            parcel_build:
+            enabled: true                       # Ensure this is true to execute the task
+            clone_dir: "/path/to/clone_dir"     # Directory containing source files and configuration
+            output_dir: "/tmp/parcel_artifacts" # Directory to store Parcel build artifacts
+            entry_file: "public/index.html"     # The entry file for Parcel to build the project
+            dependencies:                       # List of dependencies to install via npm
+                - "parcel-bundler"
+                - "react"
+                - "react-dom"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Webpack Build</h3>
+            <p>
+              This template demonstrates how to configure and use the <code>run_webpack_build</code> function 
+              for bundling and optimizing web applications using Webpack.
+            </p>
+            <button onclick="copyToClipboard('webpack-template')">Copy</button>
+            <pre id="webpack-template"><code class="language-yaml">
+          # Webpack Build Configuration Example
+jobs:
+    - stages:
+        - name: Webpack Build
+        tasks:
+            webpack_build:
+            enabled: true                       # Ensure this is true to execute the task
+            clone_dir: "/path/to/clone_dir"     # Directory containing source files and configuration
+            output_dir: "/tmp/webpack_artifacts" # Directory to store Webpack build artifacts
+            entry_file: "src/index.js"          # The entry file for Webpack to bundle the project
+            dependencies:                       # List of dependencies to install via npm
+                - "webpack"
+                - "webpack-cli"
+                - "babel-loader"
+                - "@babel/core"
+                - "@babel/preset-env"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Yarn Build</h3>
+            <p>
+              This template demonstrates how to configure and use the <code>run_yarn_build</code> function for building applications with Yarn.
+            </p>
+            <button onclick="copyToClipboard('yarn-template')">Copy</button>
+            <pre id="yarn-template"><code class="language-yaml">
+# Yarn Build Configuration Example
+jobs:
+    - stages:
+        - name: Yarn Build
+        tasks:
+            yarn_build:
+            enabled: true                   # Ensure this is true to execute the task
+            clone_dir: "/path/to/clone_dir" # Directory containing source files and Yarn configuration
+            output_dir: "/tmp/yarn_artifacts" # Directory to store Yarn build artifacts
+            required_files:                 # List of required files for the build
+                - "src/index.css"
+                - "src/index.js"
+                - "package.json"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>NPM Build</h3>
+            <p>
+              This template demonstrates how to configure and use the <code>run_npm_build</code> function for building applications using NPM.
+            </p>
+            <button onclick="copyToClipboard('npm-template')">Copy</button>
+            <pre id="npm-template"><code class="language-yaml">
+# NPM Build Configuration Example
+jobs:
+    - stages:
+        - name: NPM Build
+        tasks:
+            npm_build:
+            enabled: true                    # Ensure this is true to execute the task
+            clone_dir: "/path/to/clone_dir"  # Directory containing the source code and NPM config
+            output_dir: "/tmp/npm_artifacts" # Directory to store build artifacts
+            required_items:                  # List of required files/directories for the build
+                - "dist"                       # Output directory for the build process
+                - "public/index.html"          # Main HTML file
+                - "package.json"               # NPM configuration
+                - "package-lock.json"          # Lock file for dependencies
+                - "webpack.config.js"          # Webpack configuration file (if applicable)
+                - "node_modules"               # Installed dependencies directory
+                - "src"                        # Source code directory
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Custom Shell Script Execution</h3>
+            <p>
+              This template demonstrates how to configure and use the <code>run_shell_steps</code> function to execute custom shell commands in your pipeline.
+            </p>
+            <button onclick="copyToClipboard('shell-steps-template')">Copy</button>
+            <pre id="shell-steps-template"><code class="language-yaml">
+# Shell Script Execution Configuration Example
+jobs:
+    - stages:
+        - name: Shell Script Execution
+        tasks:
+            shell_steps:
+            enabled: true            # Ensure this is true to execute the task
+            mode: remote             # Execution mode: 'local' or 'remote'
+            steps:                   # List of shell commands to execute
+                - "echo 'Starting deployment...'"
+                - "mkdir -p /var/www/myapp"
+                - "cp -r /local/path/* /var/www/myapp/"
+                - "systemctl restart myapp.service"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Local Command Execution</h3>
+            <p>
+              This template demonstrates how to configure and use the <code>execute_command_locally</code> function to run shell commands directly on the local machine.
+            </p>
+            <button onclick="copyToClipboard('local-command-template')">Copy</button>
+            <pre id="local-command-template"><code class="language-yaml">
+# Local Command Execution Configuration Example
+jobs:
+    - stages:
+        - name: Local Command Execution
+        tasks:
+            local_shell_steps:
+            enabled: true           # Ensure this is true to execute the task
+            steps:                  # List of shell commands to execute
+                - "echo 'Starting local setup...'"
+                - "mkdir -p ~/projects/myapp"
+                - "cp -r ~/source/* ~/projects/myapp/"
+                - "chmod -R 755 ~/projects/myapp/"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Python Script Execution</h3>
+            <p>This template demonstrates how to configure and use the <code>run_python_steps</code> function to execute custom Python scripts on a remote server.</p>
+            <button onclick="copyToClipboard('python-steps-template')">Copy</button>
+            <pre id="python-steps-template"><code class="language-yaml">
+# Python Script Execution Configuration Example
+jobs:
+    - stages:
+        - name: Python Script Execution
+        tasks:
+            python_steps:
+            enabled: true                # Ensure this is true to execute the task
+            steps:                       # Python commands to run
+                - "print('Hello, World!')"
+                - "import os; print(os.getcwd())"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Bash Script Execution</h3>
+            <p>This template demonstrates how to configure and use the <code>run_bash_steps</code> function to execute custom Bash commands on a remote server.</p>
+            <button onclick="copyToClipboard('bash-steps-template')">Copy</button>
+            <pre id="bash-steps-template"><code class="language-yaml">
+# Bash Script Execution Configuration Example
+jobs:
+    - stages:
+        - name: Bash Script Execution
+        tasks:
+            bash_steps:
+            enabled: true                # Ensure this is true to execute the task
+            steps:                       # Bash commands to execute
+                - "echo 'Starting setup...'"
+                - "mkdir -p /tmp/sample_project"
+                - "chmod 755 /tmp/sample_project"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Java Command Execution</h3>
+            <p>This template demonstrates how to configure and use the <code>run_java_steps</code> function to execute custom Java commands on a remote server.</p>
+            <button onclick="copyToClipboard('java-steps-template')">Copy</button>
+            <pre id="java-steps-template"><code class="language-yaml">
+# Java Command Execution Configuration Example
+jobs:
+    - stages:
+        - name: Java Command Execution
+        tasks:
+            java_steps:
+            enabled: true                # Ensure this is true to execute the task
+            steps:                       # Java commands to run
+                - "java -jar myapp.jar --config config.yaml"
+                - "javac Main.java"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Go Script Execution</h3>
+            <p>This template demonstrates how to configure and use the <code>run_go_steps</code> function to execute custom Go scripts on a remote server.</p>
+            <button onclick="copyToClipboard('go-steps-template')">Copy</button>
+            <pre id="go-steps-template"><code class="language-yaml">
+# Go Script Execution Configuration Example
+jobs:
+    - stages:
+        - name: Go Script Execution
+        tasks:
+            go_steps:
+            enabled: true                # Ensure this is true to execute the task
+            steps:                       # Go commands to run
+                - "go build -o /tmp/myapp"
+                - "go test ./..."
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Pip Build Execution</h3>
+            <p>This template demonstrates how to configure and use the <code>run_pip_build</code> function to execute a Python pip build process.</p>
+            <button onclick="copyToClipboard('pip-build-template')">Copy</button>
+            <pre id="pip-build-template"><code class="language-yaml">
+# Pip Build Configuration Example
+jobs:
+    - stages:
+        - name: Python Pip Build
+        tasks:
+            pip_build:
+            enabled: true                # Ensure this is true to execute the task
+            requirements_file: "requirements.txt"
+            output_dir: "/tmp/pip_artifacts"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Poetry Build Execution</h3>
+            <p>This template demonstrates how to configure and use the <code>run_poetry_build</code> function to build and package Python projects using Poetry.</p>
+            <button onclick="copyToClipboard('poetry-build-template')">Copy</button>
+            <pre id="poetry-build-template"><code class="language-yaml">
+# Poetry Build Configuration Example 
+jobs:
+    - stages:
+        - name: Python Poetry Build
+        tasks:
+            poetry_build:
+            enabled: true                # Ensure this is true to execute the task
+            output_dir: "/tmp/poetry_artifacts"
+            package_dir: "src"           # Optional: Specify the package directory
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Setuptools Build Execution</h3>
+            <p>This template demonstrates how to configure and use the <code>run_setuptools_build</code> function to build Python packages using Setuptools.</p>
+            <button onclick="copyToClipboard('setuptools-build-template')">Copy</button>
+            <pre id="setuptools-build-template"><code class="language-yaml">
+# Setuptools Build Configuration Example
+jobs:
+    - stages:
+        - name: Setuptools Build
+        tasks:
+            setuptools_build:
+            enabled: true                # Ensure this is true to execute the task
+            output_dir: "/tmp/setuptools_artifacts"  # Directory to store artifacts
+            package_dir: "src"           # Path to the package directory (optional)
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Ant Build Execution</h3>
+            <p>This template demonstrates how to configure and use the <code>run_ant_build</code> function to build Java projects using Apache Ant.</p>
+            <button onclick="copyToClipboard('ant-build-template')">Copy</button>
+            <pre id="ant-build-template"><code class="language-yaml">
+# Ant Build Configuration Example
+jobs:
+    - stages:
+        - name: Ant Build
+        tasks:
+            ant_build:
+            enabled: true                # Ensure this is true to execute the task
+            build_file: "build.xml"      # Path to the Ant build.xml file
+            target: "build"              # Target to execute in build.xml
+            output_dir: "/tmp/ant_artifacts"  # Directory to store artifacts
+            servlet_api_jar: "/usr/share/java/servlet-api.jar"  # Path to Servlet API JAR
+            servlet_api_url: "https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/4.0.1/javax.servlet-api-4.0.1.jar"
+            properties:                  # Additional properties to pass to Ant
+                project.name: "MyProject"
+                build.version: "1.0.0"
+            options:                     # Additional Ant options (optional)
+                - "-verbose"
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Gradle Build Execution</h3>
+            <p>This template demonstrates how to configure and use the <code>run_gradle_build</code> function to build Java projects using Gradle.</p>
+            <button onclick="copyToClipboard('gradle-build-template')">Copy</button>
+            <pre id="gradle-build-template"><code class="language-yaml">
+# Gradle Build Configuration Example
+jobs:
+    - stages:
+        - name: Gradle Build
+        tasks:
+            gradle_build:
+            enabled: true                  # Ensure this is true to execute the task
+            target: "build"                # Gradle task to execute (e.g., build, clean, etc.)
+            output_dir: "/tmp/gradle_artifacts"  # Directory to store build artifacts
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Maven Build Execution</h3>
+            <p>This template demonstrates how to configure and use the <code>run_maven_build</code> function to build Java projects using Maven.</p>
+            <button onclick="copyToClipboard('maven-build-template')">Copy</button>
+            <pre id="maven-build-template"><code class="language-yaml">
+# Maven Build Configuration Example
+jobs:
+    - stages:
+        - name: Maven Build
+        tasks:
+            maven_build:
+            enabled: true                  # Ensure this is true to execute the task
+            project_pom: "pom.xml"         # Path to the Maven POM file
+            goals: "clean install"         # Maven goals to execute (e.g., clean, install)
+            profiles: "dev,qa"             # Optional Maven profiles to use (comma-separated)
+            output_dir: "/tmp/maven_artifacts"  # Directory to store build artifacts
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Docker Build and Push Configuration</h3>
+            <p>This template demonstrates how to configure and use the <code>docker_build</code> and <code>push_to_docker_hub</code> functions to build and push Docker images.</p>
+            <button onclick="copyToClipboard('docker-template')">Copy</button>
+            <pre id="docker-template"><code class="language-yaml">
+# Docker Build and Push Configuration Example
+jobs:
+    - stages:
+        - name: Docker Build and Push
+        tasks:
+            docker_build:
+            enabled: true                    # Ensure this is true to enable Docker build
+            dockerfile_path: "./Dockerfile"  # Path to the Dockerfile
+            build_tag: "v1.0.0"              # Tag for the Docker image
+            image_name: "my_docker_image"    # Name of the Docker image
+            push_to_docker_hub:
+            enabled: true                    # Ensure this is true to enable Docker push
+            username: "dockerhub_user"       # Docker Hub username
+            password: "dockerhub_password"   # Docker Hub password
+            repository: "my_repository"      # Docker Hub repository name
+            image_tag: "v1.0.0"              # Tag for the Docker image on Docker Hub
+            built_image_name: "my_docker_image:v1.0.0"  # Name of the built Docker image
+            </code></pre>
+          </div>
+          <div class="template">
+            <h3>Repository Setup and Cloning Configuration</h3>
+            <p>This template demonstrates how to configure and use the <code>setup_and_clone_repository</code> function to prepare a directory and clone one or more branches of a repository.</p>
+            <button onclick="copyToClipboard('repo-clone-template')">Copy</button>
+            <pre id="repo-clone-template"><code class="language-yaml">
+# Repository Setup and Cloning Configuration Example
+jobs:
+    - stages:
+        - name: Setup and Clone Repository
+            tasks:
+            setup_and_clone:
+                enabled: true                     # Ensure this is true to execute the task
+                clone_dir: "/tmp/clone_repo_trial" # Directory to clone the repository into
+                source_url: "https://github.com/example/repository.git" # Repository URL
+                branches:                        # List of branches to clone
+                - "main"
+                - "feature-branch"
+                private_repo: false              # Set to true for private repositories
+                username: ""                     # Username for private repository access (if applicable)
+                token: ""                        # Token for private repository access (if applicable)
+            </code></pre>
+          </div>
+          
+      </section>
+
+    <!-- Additional Sections -->
+  </main>
+
+  <!-- Add GIF Link Here -->
+  <section class="video" style="text-align: center; margin-top: 20px;">
+    <h2>Watch the InfraCycle Overview</h2>
+    <img src="styles/assets/images/dob-infrcycle.gif" alt="InfraCycle Overview" width="760" height="600">
+  </section>
+  
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'Home.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+
+    function copyToClipboard(elementId) {
+      const element = document.getElementById(elementId);
+      const range = document.createRange();
+      range.selectNodeContents(element);
+      const selection = window.getSelection();
+      selection.removeAllRanges();
+      selection.addRange(range);
+      document.execCommand('copy');
+      alert('Template copied to clipboard!');
+    }
+  </script>
+</body>
+</html>

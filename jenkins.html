@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Jenkins</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+    <!-- Header Toolbar -->
+    <header class="toolbar">
+      <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+      <nav class="nav-links">
+        <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="docs.html" class="nav-link">Docs</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="About.html" class="nav-link">About</a>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+      </div>
+    </header>
+  
+    <!-- Sidebar (optional) -->
+      <!-- Sidebar (optional) -->
+  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <div class="search-bar">
+      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+      <div id="suggestions" class="suggestions"></div>
+      <button onclick="performSidebarSearch()">Search</button>
+    </div>
+    <ul>
+      <li><a href="officialwebsite.html">Introduction</a></li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+        <ul class="nested">
+          <li><a href="installation.html">Installation</a></li>
+          <li><a href="uninstall.html">Uninstall</a></li>
+          <li><a href="#">Requirements</a></li>
+          <li><a href="#">Best Practices</a></li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Functions</a>
+            <ul class="nested">
+              <li><a href="webhook.html">Webhook</a></li>
+              <li><a href="persona.html">Persona</a></li>
+              <li><a href="infracred.html">Infrascrid</a></li>
+              <li><a href="vault.html">Vault</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+            <ul class="nested">
+              <li><a href="#">Host CLI</a></li>
+              <li><a href="#">Remote CLI</a></li>
+              <li><a href="#">UI</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Features</a>
+        <ul class="nested">
+          <li>
+            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+            <ul class="nested">
+              <li><a href="infracircle.html">InfraCycle</a></li>
+              <li><a href="dobp.html">DOBProxy</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Provisioning</a>
+            <ul class="nested">
+              <li><a href="screenplay.html">Screenplay</a></li>
+            </ul>
+          </li>                             
+          <li>
+            <a href="#" onclick="toggleNested(event)">Configuration</a>
+            <ul class="nested">
+              <li><a href="infraset.html">InfraSet</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Providers</a>
+        <ul class="nested">
+          <li>
+            <a href="#" onclick="toggleNested(event)">AWS</a>
+            <ul class="nested">
+              <li><a href="aws.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Azure</a>
+            <ul class="nested">
+              <li><a href="azure.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">GCP</a>
+            <ul class="nested">
+              <li><a href="gcp.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+        <ul class="nested">
+          <li><a href="ansible.html">Ansible</a></li>
+          <li><a href="Kubernetes.html">Kubernetes</a></li>
+          <li><a href="dockerswarm.html">Docker Swarm</a></li>
+          <li><a href="jenkins.html">Jenkins</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Use Cases</a></li>
+      <li><a href="#">API Reference</a></li>
+      <li><a href="#">Release Notes</a></li>
+    </ul>
+  </aside>
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Jenkins</h1>
+      <p>Automated management and configuration of Jenkins servers.</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>Jenkins Command Group</h2>
+      <p>The newly introduced jenkins command group provides a comprehensive set of commands for managing Jenkins servers, jobs, credentials, pipelines, nodes, and system configurations directly from the CLI. This feature significantly enhances DevOps teams' ability to automate Jenkins operations efficiently.</p>
+      
+      <h3>Key Commands and Features:</h3>
+      <ol>
+        <li><strong>Credentials Management</strong>
+          <ul>
+            <li><strong>dob create Credential:</strong> dob jenkins create-credential
+              <ul>
+                <li>Supports various types of credentials: SSH, username-password, secret text, and secret file.</li>
+              </ul>
+            </li>
+            <li><strong>Update Credential:</strong> dob jenkins update-credential
+              <ul>
+                <li>Allows updating existing credentials with new details.</li>
+              </ul>
+            </li>
+            <li><strong>Delete Credential:</strong> dob jenkins delete-credential
+              <ul>
+                <li>Deletes specified Jenkins credentials.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Job Management</strong>
+          <ul>
+            <li><strong>Create Job:</strong> dob jenkins create-job
+              <ul>
+                <li>Creates a new Jenkins job using a specified Jenkinsfile.</li>
+              </ul>
+            </li>
+            <li><strong>Trigger Job:</strong> dob jenkins trigger-job
+              <ul>
+                <li>Triggers a specified Jenkins job.</li>
+              </ul>
+            </li>
+            <li><strong>Replay Pipeline:</strong> dob jenkins replay-pipeline
+              <ul>
+                <li>Replays a previous Jenkins pipeline build with optional modifications.</li>
+              </ul>
+            </li>
+            <li><strong>Update Pipeline:</strong> dob jenkins update-pipeline
+              <ul>
+                <li>Updates the pipeline script for an existing job.</li>
+              </ul>
+            </li>
+            <li><strong>Visualize Pipeline:</strong> dob jenkins visualize-pipeline
+              <ul>
+                <li>Retrieves and displays detailed pipeline stages and steps for a specific build.</li>
+              </ul>
+            </li>
+            <li><strong>Add Job to Folder:</strong> dob jenkins add-job-to-folder
+              <ul>
+                <li>Moves an existing Jenkins job into a specified folder.</li>
+              </ul>
+            </li>
+            <li><strong>Create Multibranch Pipeline:</strong> dob jenkins create-multibranch-pipeline
+              <ul>
+                <li>Creates a new multi-branch pipeline job with Git repository integration.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Node Management</strong>
+          <ul>
+            <li><strong>Create Node:</strong> dob jenkins create-node
+              <ul>
+                <li>Sets up a new Jenkins worker node with SSH credentials and remote FS configuration.</li>
+              </ul>
+            </li>
+            <li><strong>Delete Node:</strong> dob jenkins delete-node
+              <ul>
+                <li>Deletes an existing Jenkins worker node.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>System and Configuration Management</strong>
+          <ul>
+            <li><strong>Backup System:</strong> dob jenkins backup-system
+              <ul>
+                <li>Backs up the Jenkins system configuration and optionally all job configurations.</li>
+              </ul>
+            </li>
+            <li><strong>Restore System:</strong> dob jenkins restore-system
+              <ul>
+                <li>Restores Jenkins configuration from a backup file.</li>
+              </ul>
+            </li>
+            <li><strong>Restart Jenkins:</strong> dob jenkins restart
+              <ul>
+                <li>Safely restarts the Jenkins server.</li>
+              </ul>
+            </li>
+            <li><strong>Set Environment Variables:</strong> dob jenkins set-env-variables
+              <ul>
+                <li>Configures global environment variables in Jenkins.</li>
+              </ul>
+            </li>
+            <li><strong>Update System Config:</strong> dob jenkins update-system-config
+              <ul>
+                <li>Updates Jenkins system settings by uploading a new config.xml.</li>
+              </ul>
+            </li>
+            <li><strong>Check System Health:</strong> dob jenkins check-health
+              <ul>
+                <li>Retrieves Jenkins and plugin health statuses.</li>
+              </ul>
+            </li>
+            <li><strong>Get System Info:</strong> dob jenkins get-system-info
+              <ul>
+                <li>Displays detailed system information including node load and executor status.</li>
+              </ul>
+            </li>
+            <li><strong>Set Quiet Mode:</strong> dob jenkins set-quiet-mode
+              <ul>
+                <li>Enables or disables quiet mode to prevent new builds from starting.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>User Management</strong>
+          <ul>
+            <li><strong>Create User:</strong> dob jenkins create-user
+              <ul>
+                <li>Registers a new Jenkins user with specified credentials.</li>
+              </ul>
+            </li>
+            <li><strong>Delete User:</strong> dob jenkins delete-user
+              <ul>
+                <li>Deletes a specified Jenkins user.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Plugin Management</strong>
+          <ul>
+            <li><strong>List Installed Plugins:</strong> dob jenkins list-installed-plugins
+              <ul>
+                <li>Lists all installed Jenkins plugins along with their versions and statuses.</li>
+              </ul>
+            </li>
+            <li><strong>Check Plugin Status:</strong> dob jenkins check-plugin-status
+              <ul>
+                <li>Retrieves the health status of installed plugins.</li>
+              </ul>
+            </li>
+            <li><strong>Uninstall Plugin:</strong> dob jenkins uninstall-plugin
+              <ul>
+                <li>Uninstalls a specified plugin from Jenkins.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Webhooks Management</strong>
+          <ul>
+            <li><strong>List Webhooks:</strong> dob jenkins list-webhooks
+              <ul>
+                <li>Lists all configured webhooks for a specified job.</li>
+              </ul>
+            </li>
+            <li><strong>Create Webhook:</strong> dob jenkins create-webhook
+              <ul>
+                <li>Creates or updates a webhook for a Jenkins job.</li>
+              </ul>
+            </li>
+            <li><strong>Delete Webhook:</strong> dob jenkins delete-webhook
+              <ul>
+                <li>Removes a webhook from a job trigger.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3>Example Usage:</h3>
+      <pre><code class="language-bash">
+# Create a new Jenkins credential
+dob jenkins create-credential --credential_id my-ssh-key --credential_type ssh --username devops --private_key /path/to/private_key
+
+# Trigger a Jenkins job
+dob jenkins trigger-job --job_name build-project
+
+# Backup Jenkins system with job configurations
+dob jenkins backup-system --backup_path /backups/jenkins --include_jobs
+      </code></pre>
+    </section>
+
+    <!-- Additional Sections -->
+  </main>
+  
+    <footer class="footer">
+        <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+      </footer>
+    
+      <!-- JavaScript Files -->
+      <script src="scripts/main.js"></script>
+      <script>
+        function toggleNested(event) {
+          event.preventDefault();
+          const parent = event.target.parentElement;
+          parent.classList.toggle('active');
+        }
+    
+        function performSearch() {
+          const query = document.getElementById('search-input').value.toLowerCase();
+          const links = document.querySelectorAll('.nav-links a, .sidebar a');
+    
+          links.forEach(link => {
+            if (link.textContent.toLowerCase().includes(query)) {
+              link.style.display = 'block';
+            } else {
+              link.style.display = 'none';
+            }
+          });
+        }
+    
+        function navigateHome() {
+          window.location.href = 'Home.html';
+        }
+    
+        function navigateOfficialWebsite() {
+          window.location.href = 'officialwebsite.html';
+        }
+      </script>
+    </body>
+    </html>

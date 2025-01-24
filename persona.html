@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Persona CLI</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+    <!-- Header Toolbar -->
+    <header class="toolbar">
+      <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+      <nav class="nav-links">
+        <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="docs.html" class="nav-link">Docs</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="About.html" class="nav-link">About</a>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+      </div>
+    </header>
+  
+    <!-- Sidebar (optional) -->
+      <!-- Sidebar (optional) -->
+  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <div class="search-bar">
+      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+      <div id="suggestions" class="suggestions"></div>
+      <button onclick="performSidebarSearch()">Search</button>
+    </div>
+    <ul>
+      <li><a href="officialwebsite.html">Introduction</a></li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+        <ul class="nested">
+          <li><a href="installation.html">Installation</a></li>
+          <li><a href="uninstall.html">Uninstall</a></li>
+          <li><a href="#">Requirements</a></li>
+          <li><a href="#">Best Practices</a></li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Functions</a>
+            <ul class="nested">
+              <li><a href="webhook.html">Webhook</a></li>
+              <li><a href="persona.html">Persona</a></li>
+              <li><a href="infracred.html">Infrascrid</a></li>
+              <li><a href="vault.html">Vault</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+            <ul class="nested">
+              <li><a href="#">Host CLI</a></li>
+              <li><a href="#">Remote CLI</a></li>
+              <li><a href="#">UI</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Features</a>
+        <ul class="nested">
+          <li>
+            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+            <ul class="nested">
+              <li><a href="infracircle.html">InfraCycle</a></li>
+              <li><a href="dobp.html">DOBProxy</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Provisioning</a>
+            <ul class="nested">
+              <li><a href="screenplay.html">Screenplay</a></li>
+            </ul>
+          </li>                             
+          <li>
+            <a href="#" onclick="toggleNested(event)">Configuration</a>
+            <ul class="nested">
+              <li><a href="infraset.html">InfraSet</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Providers</a>
+        <ul class="nested">
+          <li>
+            <a href="#" onclick="toggleNested(event)">AWS</a>
+            <ul class="nested">
+              <li><a href="aws.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Azure</a>
+            <ul class="nested">
+              <li><a href="azure.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">GCP</a>
+            <ul class="nested">
+              <li><a href="gcp.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+        <ul class="nested">
+          <li><a href="ansible.html">Ansible</a></li>
+          <li><a href="Kubernetes.html">Kubernetes</a></li>
+          <li><a href="dockerswarm.html">Docker Swarm</a></li>
+          <li><a href="jenkins.html">Jenkins</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Use Cases</a></li>
+      <li><a href="#">API Reference</a></li>
+      <li><a href="#">Release Notes</a></li>
+    </ul>
+  </aside>
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Persona CLI Guide (Integrated with DOB CLI)</h1>
+      <p>The <code>persona</code> CLI, in collaboration with the <code>dob</code> CLI, provides a robust Role-Based Access Control (RBAC) system for remote command execution and configuration management. This guide details its usage, focusing on commands, configurations, and integration workflows.</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>1. <code>persona config</code></h2>
+      <p><strong>Description:</strong> Configure the remote execution environment by generating a <code>.dobconfig.json</code> file.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">persona config --persona-name &lt;persona_name&gt; --token &lt;token&gt; \
+              --private-key-path &lt;private_key_path&gt; --host-endpoint &lt;host_endpoint&gt;</code></pre>
+      <p><strong>Options:</strong></p>
+      <ul>
+        <li><code>--persona-name</code>: Name of the persona.</li>
+        <li><code>--token</code>: Token associated with the persona.</li>
+        <li><code>--private-key-path</code>: Path to the private key PEM file.</li>
+        <li><code>--host-endpoint</code>: Host endpoint URL (e.g., <code>http://&lt;public_ip&gt;:&lt;port&gt;</code>).</li>
+      </ul>
+      <p><strong>Details:</strong></p>
+      <ol>
+        <li>Creates a configuration file at <code>~/.dobconfig.json</code>.</li>
+        <li>Stores persona information, token, private key path, and host endpoint for seamless remote command execution.</li>
+      </ol>
+      <p><strong>Example:</strong></p>
+      <pre><code class="language-bash">persona config --persona-name admin --token abc123 \
+              --private-key-path ~/keys/admin_key.pem --host-endpoint http://127.0.0.1:8080</code></pre>
+      <p><strong>Output:</strong></p>
+      <ul>
+        <li>A confirmation message: <code>Configuration saved to ~/.dobconfig.json.</code></li>
+      </ul>
+
+      <h2>2. <code>persona run</code></h2>
+      <p><strong>Description:</strong> Proxy any <code>dob</code> command to the host for execution.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">persona run &lt;dob_command&gt; [--file-path &lt;path_to_file&gt;]</code></pre>
+      <p><strong>Options:</strong></p>
+      <ul>
+        <li><code>&lt;dob_command&gt;</code>: The <code>dob</code> CLI command to be executed remotely.</li>
+        <li><code>--file-path</code>: Optional; specifies a file to be included as inline content.</li>
+      </ul>
+      <p><strong>Details:</strong></p>
+      <ol>
+        <li>Loads configuration from <code>~/.dobconfig.json</code>.</li>
+        <li>Signs the token using the specified private key.</li>
+        <li>Sends the command and optional file content to the host endpoint for execution.</li>
+        <li>Outputs the execution result.</li>
+      </ol>
+      <p><strong>Example:</strong></p>
+      <pre><code class="language-bash">persona run create-cluster --region us-east-1 --file-path config.yaml</code></pre>
+      <p><strong>Output:</strong></p>
+      <ul>
+        <li>Execution status and response from the host.</li>
+      </ul>
+      <p><strong>Error Handling:</strong></p>
+      <ul>
+        <li>If <code>--file-path</code> is invalid or missing, an error message is displayed.</li>
+        <li>If the host endpoint is unreachable, the error details are printed.</li>
+      </ul>
+
+      <h2>Configuration File (<code>~/.dobconfig.json</code>)</h2>
+      <p>The configuration file contains the following keys:</p>
+      <pre><code class="language-json">
+{
+    "persona_name": "&lt;persona_name&gt;",
+    "token": "&lt;token&gt;",
+    "private_key_path": "&lt;path_to_private_key&gt;",
+    "host_endpoint": "&lt;host_endpoint_url&gt;"
+}
+      </code></pre>
+      <p><strong>Example:</strong></p>
+      <pre><code class="language-json">
+{
+    "persona_name": "admin",
+    "token": "abc123",
+    "private_key_path": "/home/user/keys/admin_key.pem",
+    "host_endpoint": "http://127.0.0.1:8080"
+}
+      </code></pre>
+
+      <h2>Token Signing</h2>
+      <p>The <code>persona</code> CLI uses RSA key pairs to sign tokens for secure communication. The private key specified in the configuration is used to generate a signature.</p>
+      <p><strong>Function:</strong></p>
+      <pre><code class="language-python">
+def sign_token(private_key_path, token):
+    with open(private_key_path, "rb") as key_file:
+        private_key = serialization.load_pem_private_key(key_file.read(), password=None)
+
+    signature = private_key.sign(
+        token.encode(),
+        padding.PKCS1v15(),
+        hashes.SHA256()
+    )
+
+    return signature.hex()
+      </code></pre>
+      <p><strong>Details:</strong></p>
+      <ul>
+        <li>The signature ensures the integrity of requests sent to the host endpoint.</li>
+        <li>Secure RSA keys are required for reliable communication.</li>
+      </ul>
+
+      <h2>Example Workflow</h2>
+      <ol>
+        <li><strong>Configure Persona:</strong></li>
+        <pre><code class="language-bash">persona config --persona-name admin --token abc123 \
+                 --private-key-path ~/keys/admin_key.pem --host-endpoint http://127.0.0.1:8080</code></pre>
+        <li><strong>Run a Command:</strong></li>
+        <pre><code class="language-bash">persona run create-cluster --region us-east-1 --file-path cluster.yaml</code></pre>
+        <li><strong>Host Execution:</strong></li>
+        <p>The command is forwarded to the host endpoint (<code>http://127.0.0.1:8080/execute</code>). The host validates the signature and token before executing the command.</p>
+        <li><strong>View Results:</strong></li>
+        <p>The <code>persona</code> CLI outputs the result from the host.</p>
+      </ol>
+
+      <h2>Error Handling</h2>
+      <ul>
+        <li><strong>Missing Config File:</strong></li>
+        <pre><code class="language-plaintext">Error: Config file not found at ~/.dobconfig.json. Please run 'persona config' first.</code></pre>
+        <li><strong>Invalid File Path:</strong></li>
+        <pre><code class="language-plaintext">Error: File '&lt;file_path&gt;' not found.</code></pre>
+        <li><strong>Host Communication Failure:</strong></li>
+        <pre><code class="language-plaintext">Execution failed with status 500: Internal Server Error</code></pre>
+      </ul>
+
+      <h2>Security Considerations</h2>
+      <ul>
+        <li><strong>Private Keys:</strong> Ensure that the private key file is securely stored and accessible only to authorized users.</li>
+        <li><strong>Token Management:</strong> Use unique and time-limited tokens for better security.</li>
+        <li><strong>Host Validation:</strong> Verify host endpoints to prevent command interception.</li>
+      </ul>
+
+      <p>This guide ensures you can utilize the <code>persona</code> CLI effectively for secure and controlled remote command execution with <code>dob</code>. For additional support, consult the documentation or contact your system administrator.</p>
+    </section>
+
+    <!-- Additional Sections -->
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'Home.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+  </script>
+</body>
+</html>

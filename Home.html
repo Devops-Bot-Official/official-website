@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Home</title>
+  <link rel="stylesheet" href="styles/mainpage.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="home full-screen">
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <nav class="nav-links">
+      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="docs.html" class="nav-link">Docs</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="About.html" class="nav-link">About</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content full-screen">
+    <section class="hero full-screen" style="background-image: url('styles/assets/images/main.png'); background-size: cover; background-position: center;">
+      <div class="intro-text" style="position: relative; top: -170px; left: 300px;">
+        <h1>DevOps-Bot</h1>
+        <p>Your all-in-one tool for automating DevOps processes. </p>
+        <p>Simplify your workflow with ease. </p>
+        <div class="buttons">
+          <a href="installation.html" class="cta-button">Get Started</a>
+          <a href="officialwebsite.html" class="cta-button">User Guide</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="news-feed">
+    <div class="news-item visible">
+      <p>Meet Screenplay Your Cloud Provisioning Agent</p>
+      <img src="styles/assets/images/screenplay.png" alt="News 1">
+    </div>
+    <div class="news-item">
+      <p>Meet InfraCycle Your CI/CD Agent</p>
+      <img src="styles/assets/images/infracicle.png" alt="News 2">
+    </div>
+    <div class="news-item">
+      <p>Meet InfraSet Your Configuration Agent</p>
+      <img src="styles/assets/images/infraset.png" alt="News 3">
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'Home.html';
+    }
+
+    let currentIndex = 0;
+    const newsItems = document.querySelectorAll('.news-item');
+
+    function showNextNewsItem() {
+      newsItems[currentIndex].classList.remove('visible');
+      currentIndex = (currentIndex + 1) % newsItems.length;
+      newsItems[currentIndex].classList.add('visible');
+    }
+
+    setInterval(showNextNewsItem, 5000);
+  </script>
+</body>
+</html>
+

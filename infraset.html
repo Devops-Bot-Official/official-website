@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | InfraSet</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+    <!-- Header Toolbar -->
+    <header class="toolbar">
+      <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+      <nav class="nav-links">
+        <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="docs.html" class="nav-link">Docs</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="About.html" class="nav-link">About</a>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+      </div>
+    </header>
+  
+    <!-- Sidebar (optional) -->
+      <!-- Sidebar (optional) -->
+  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <div class="search-bar">
+      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+      <div id="suggestions" class="suggestions"></div>
+      <button onclick="performSidebarSearch()">Search</button>
+    </div>
+    <ul>
+      <li><a href="officialwebsite.html">Introduction</a></li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+        <ul class="nested">
+          <li><a href="installation.html">Installation</a></li>
+          <li><a href="uninstall.html">Uninstall</a></li>
+          <li><a href="#">Requirements</a></li>
+          <li><a href="#">Best Practices</a></li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Functions</a>
+            <ul class="nested">
+              <li><a href="webhook.html">Webhook</a></li>
+              <li><a href="persona.html">Persona</a></li>
+              <li><a href="infracred.html">Infrascrid</a></li>
+              <li><a href="vault.html">Vault</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+            <ul class="nested">
+              <li><a href="#">Host CLI</a></li>
+              <li><a href="#">Remote CLI</a></li>
+              <li><a href="#">UI</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Features</a>
+        <ul class="nested">
+          <li>
+            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+            <ul class="nested">
+              <li><a href="infracircle.html">InfraCycle</a></li>
+              <li><a href="dobp.html">DOBProxy</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Provisioning</a>
+            <ul class="nested">
+              <li><a href="screenplay.html">Screenplay</a></li>
+            </ul>
+          </li>                             
+          <li>
+            <a href="#" onclick="toggleNested(event)">Configuration</a>
+            <ul class="nested">
+              <li><a href="infraset.html">InfraSet</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Providers</a>
+        <ul class="nested">
+          <li>
+            <a href="#" onclick="toggleNested(event)">AWS</a>
+            <ul class="nested">
+              <li><a href="aws.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Azure</a>
+            <ul class="nested">
+              <li><a href="azure.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">GCP</a>
+            <ul class="nested">
+              <li><a href="gcp.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+        <ul class="nested">
+          <li><a href="ansible.html">Ansible</a></li>
+          <li><a href="Kubernetes.html">Kubernetes</a></li>
+          <li><a href="dockerswarm.html">Docker Swarm</a></li>
+          <li><a href="jenkins.html">Jenkins</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Use Cases</a></li>
+      <li><a href="#">API Reference</a></li>
+      <li><a href="#">Release Notes</a></li>
+    </ul>
+  </aside>
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>InfraSet User Guide</h1>
+      <p>InfraSet is a function designed to automate and manage complex infrastructure tasks. It supports dynamic configuration, real-time execution, and various management capabilities such as package management, service control, networking, and more.</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>Overview</h2>
+      <p><strong>Key Features:</strong></p>
+      <ul>
+        <li>Modular task execution for diverse infrastructure needs.</li>
+        <li>Support for package, service, and file management.</li>
+        <li>Advanced logging and error handling mechanisms.</li>
+        <li>Integration with cloud platforms and container orchestration systems.</li>
+        <li>Extensible architecture for custom workflows.</li>
+      </ul>
+      <p><strong>Use Cases:</strong></p>
+      <ul>
+        <li>Automated server configuration.</li>
+        <li>Kubernetes and Docker management.</li>
+        <li>Storage, backup, and restore operations.</li>
+        <li>Monitoring and logging setup.</li>
+        <li>Security compliance and auditing.</li>
+      </ul>
+
+      <h2>CLI Commands</h2>
+      <h3>Group Command: <code>infraset</code></h3>
+      <p>This group command serves as the entry point for all InfraSet-related operations.</p>
+      <h3>Command: <code>apply</code></h3>
+      <p>Executes the main InfraSet process based on a YAML configuration file.</p>
+      <pre><code class="language-bash">$ dob infraset apply --file-path &lt;path_to_yaml&gt; [options]</code></pre>
+      <p><strong>Options:</strong></p>
+      <ul>
+        <li><code>--file-path</code>: Path to the YAML configuration file.</li>
+        <li><code>--ver, -v</code>: Path to an alternate variables file.</li>
+        <li><code>--environment, -e</code>: Specify the environment (e.g., dev, test, prod).</li>
+        <li><code>--show, -s</code>: Show sensitive variable values for debugging.</li>
+        <li><code>--remote-ver, --rv</code>: URL to an alternate variables file.</li>
+        <li><code>--password, -p</code>: Password for decrypting sensitive variables.</li>
+        <li><code>--remote-config, --rc</code>: URL to a remote YAML config file.</li>
+        <li><code>--set, -s</code>: Override variables from the command line in key=value format.</li>
+      </ul>
+      <p><strong>Example:</strong></p>
+      <pre><code class="language-bash">$ infraset apply --file-path config.yaml -e dev --show</code></pre>
+
+      <h2>Configuration Management</h2>
+      <h3>YAML Configuration File Structure</h3>
+      <p>The configuration file defines the jobs, stages, and tasks for execution.</p>
+      <pre><code class="language-yaml">
+mode: remote
+jobs:
+  - name: "Job 1"
+    stages:
+      - name: "Setup Stage"
+        tasks:
+          setup_and_clone:
+            enabled: true
+            repo_url: "https://github.com/example/repo.git"
+
+      - name: "Package Installation"
+        tasks:
+          package_management:
+            enabled: true
+            steps:
+              - type: apt
+                name: git
+                state: present
+      </code></pre>
+
+      <h3>Key Features and Tasks</h3>
+      <h4>1. Package Management</h4>
+      <p>Manages installation and removal of software packages.</p>
+      <p><strong>Supported types:</strong> apt, yum, dnf, zypper, brew, pip.</p>
+      <p><strong>Example Configuration:</strong></p>
+      <pre><code class="language-yaml">
+package_management:
+  enabled: true
+  steps:
+    - type: apt
+      name: nginx
+      state: present
+      </code></pre>
+
+      <h4>2. Service Management</h4>
+      <p>Controls services on the target machine.</p>
+      <p><strong>Actions:</strong> start, stop, restart, reload.</p>
+      <p><strong>Example Configuration:</strong></p>
+      <pre><code class="language-yaml">
+service_management:
+  enabled: true
+  steps:
+    - name: nginx
+      state: restarted
+      </code></pre>
+
+      <h4>3. File and Directory Management</h4>
+      <p>Handles file and directory creation, copying, and templating.</p>
+      <p><strong>Example Configuration:</strong></p>
+      <pre><code class="language-yaml">
+file_directory_management:
+  enabled: true
+  steps:
+    - action: create
+      path: /var/log/myapp
+      state: directory
+    - action: remote_copy
+      src: /local/path/to/file
+      dest: /remote/path/to/file
+      </code></pre>
+
+      <h4>4. Networking Management</h4>
+      <p>Configures firewall rules, network interfaces, and DNS settings.</p>
+      <p><strong>Example Configuration:</strong></p>
+      <pre><code class="language-yaml">
+network_management:
+  enabled: true
+  steps:
+    - port: 8080
+      protocol: tcp
+      action: add
+      </code></pre>
+
+      <h4>5. Storage Management</h4>
+      <p>Manages storage devices, mounts, and logical volumes.</p>
+      <p><strong>Example Configuration:</strong></p>
+      <pre><code class="language-yaml">
+storage_management:
+  enabled: true
+  steps:
+    - action: create_lv
+      vg: myvg
+      lv: mylv
+      size: 10G
+      src: /dev/sdb
+      </code></pre>
+
+      <h4>6. System Configuration</h4>
+      <p>Configures system settings such as hostname and sysctl parameters.</p>
+      <p><strong>Example Configuration:</strong></p>
+      <pre><code class="language-yaml">
+system_configuration:
+  enabled: true
+  steps:
+    - action: sysctl
+      name: net.ipv4.ip_forward
+      value: 1
+      </code></pre>
+
+      <h4>7. Cron Job Management</h4>
+      <p>Creates and manages cron jobs.</p>
+      <p><strong>Example Configuration:</strong></p>
+      <pre><code class="language-yaml">
+cron_job:
+  enabled: true
+  steps:
+    - name: "Daily Backup"
+      local_path: /scripts/backup.sh
+      job: /usr/local/bin/backup.sh
+      minute: 0
+      hour: 2
+      </code></pre>
+
+      <h4>8. Security and Compliance</h4>
+      <p>Manages security settings such as SELinux, auditd, and Fail2Ban.</p>
+      <p><strong>Example Configuration:</strong></p>
+      <pre><code class="language-yaml">
+security_compliance_management:
+  enabled: true
+  steps:
+    - type: auditd_service
+      params:
+        name: auditd
+        state: started
+      </code></pre>
+
+      <h4>9. Podman Container Management</h4>
+      <p>This function manages Podman containers by starting or stopping them as specified in the configuration.</p>
+      <p><strong>Function:</strong> <code>run_podman_container_steps</code></p>
+      <p><strong>Arguments:</strong></p>
+      <ul>
+        <li><code>podman_config</code>: Configuration dictionary for Podman management.</li>
+        <li><code>private_ip</code>: IP address of the server.</li>
+        <li><code>task_user</code>: The user executing the commands.</li>
+        <li><code>summary</code>: Tracks task results.</li>
+      </ul>
+      <p><strong>Supported Actions:</strong></p>
+      <ul>
+        <li><code>state: started</code> - Starts a container.</li>
+        <li><code>state: stopped</code> - Stops and removes a container.</li>
+      </ul>
+      <p><strong>Sample Configuration:</strong></p>
+      <pre><code class="language-yaml">
+podman:
+  enabled: true
+  steps:
+    - name: my_container
+      image: nginx:latest
+      state: started
+      </code></pre>
+
+      <h4>10. Job Scheduling</h4>
+      <p>Schedules jobs using the <code>at</code> command for future execution.</p>
+      <p><strong>Function:</strong> <code>run_job_scheduling_steps</code></p>
+      <p><strong>Arguments:</strong></p>
+      <ul>
+        <li><code>job_schedule_config</code>: Configuration for job scheduling.</li>
+        <li><code>private_ip</code>: IP address of the server.</li>
+        <li><code>task_user</code>: User executing the tasks.</li>
+        <li><code>summary</code>: Tracks task results.</li>
+      </ul>
+      <p><strong>Supported Keys:</strong></p>
+      <ul>
+        <li><code>command</code>: Command to execute.</li>
+        <li><code>when</code>: Time to schedule the command.</li>
+      </ul>
+      <p><strong>Sample Configuration:</strong></p>
+      <pre><code class="language-yaml">
+job_scheduling:
+  enabled: true
+  steps:
+    - command: "echo 'Hello World' >> /tmp/hello.txt"
+      when: "now + 1 minute"
+      </code></pre>
+
+      <h4>11. Plugin Management</h4>
+      <p>Handles storing, validating, and compiling plugins.</p>
+      <p><strong>Function:</strong> <code>run_plugin_management_steps</code></p>
+      <p><strong>Arguments:</strong></p>
+      <ul>
+        <li><code>plugin_config</code>: Configuration for plugin management.</li>
+        <li><code>summary</code>: Tracks task results.</li>
+      </ul>
+      <p><strong>Sample Configuration:</strong></p>
+      <pre><code class="language-yaml">
+plugin_management:
+  enabled: true
+  plugins:
+    - name: my_plugin
+      path: /path/to/plugin.zip
+      </code></pre>
+      <p><strong>Steps:</strong></p>
+      <ul>
+        <li><strong>Validation:</strong> Validates the structure of the plugin zip file.</li>
+        <li><strong>Installation:</strong> Extracts and compiles the plugin.</li>
+        <li><strong>Storage:</strong> Stores the plugin in the designated directory.</li>
+      </ul>
+
+      <h4>12. Plugin Execution</h4>
+      <p>Executes compiled plugins with specified parameters and dynamically loaded credentials.</p>
+      <p><strong>Function:</strong> <code>run_plugin_execution_steps</code></p>
+      <p><strong>Arguments:</strong></p>
+      <ul>
+        <li><code>plugin_execution_config</code>: Configuration for plugin execution.</li>
+        <li><code>summary</code>: Tracks task results.</li>
+      </ul>
+      <p><strong>Sample Configuration:</strong></p>
+      <pre><code class="language-yaml">
+plugin_execution:
+  enabled: true
+  steps:
+    - plugin: my_plugin
+      provider: aws
+      parameters:
+        action: create
+        resource_type: ec2_instance
+        instance_type: t2.micro
+      </code></pre>
+      <p><strong>Steps:</strong></p>
+      <ul>
+        <li><strong>Locate Plugin:</strong> Finds the plugin binary.</li>
+        <li><strong>Load Credentials:</strong> Loads cloud provider credentials (AWS, GCP, Azure).</li>
+        <li><strong>Execute Plugin:</strong> Runs the plugin with the specified parameters.</li>
+      </ul>
+
+      <h2>Examples</h2>
+      <h3>Podman Container Management</h3>
+      <p><strong>YAML Configuration:</strong></p>
+      <pre><code class="language-yaml">
+podman:
+  enabled: true
+  steps:
+    - name: web_server
+      image: nginx:latest
+      state: started
+      </code></pre>
+
+      <h3>Job Scheduling</h3>
+      <p><strong>YAML Configuration:</strong></p>
+      <pre><code class="language-yaml">
+job_scheduling:
+  enabled: true
+  steps:
+    - command: "echo 'Job Scheduled' >> /tmp/job.txt"
+      when: "12:00 PM"
+      </code></pre>
+
+      <h3>Plugin Management</h3>
+      <p><strong>YAML Configuration:</strong></p>
+      <pre><code class="language-yaml">
+plugin_management:
+  enabled: true
+  plugins:
+    - name: example_plugin
+      path: /path/to/example_plugin.zip
+      </code></pre>
+
+      <h3>Plugin Execution</h3>
+      <p><strong>YAML Configuration:</strong></p>
+      <pre><code class="language-yaml">
+plugin_execution:
+  enabled: true
+  steps:
+    - plugin: example_plugin
+      provider: aws
+      parameters:
+        action: delete
+        resource_type: s3_bucket
+        bucket_name: example_bucket
+      </code></pre>
+    </section>
+
+    <!-- Additional Sections -->
+  </main>
+  <!-- JavaScript Files -->
+  <section class="video" style="text-align: center; margin-top: 20px;">
+    <h2>Watch the InfraSet Overview</h2>
+    <img src="styles/assets/images/infraset.gif" alt="InfraCycle Overview" width="760" height="600">
+  </section>
+    <footer class="footer">
+        <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+      </footer>
+    
+      <!-- JavaScript Files -->
+      <script src="scripts/main.js"></script>
+      <script>
+        function toggleNested(event) {
+          event.preventDefault();
+          const parent = event.target.parentElement;
+          parent.classList.toggle('active');
+        }
+    
+        function performSearch() {
+          const query = document.getElementById('search-input').value.toLowerCase();
+          const links = document.querySelectorAll('.nav-links a, .sidebar a');
+    
+          links.forEach(link => {
+            if (link.textContent.toLowerCase().includes(query)) {
+              link.style.display = 'block';
+            } else {
+              link.style.display = 'none';
+            }
+          });
+        }
+    
+        function navigateHome() {
+          window.location.href = 'Home.html';
+        }
+    
+        function navigateOfficialWebsite() {
+          window.location.href = 'officialwebsite.html';
+        }
+      </script>
+    </body>
+    </html>

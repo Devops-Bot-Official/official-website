@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | DevOps Bot Proxy CLI</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+    <!-- Header Toolbar -->
+    <header class="toolbar">
+      <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+      <nav class="nav-links">
+        <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="docs.html" class="nav-link">Docs</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="About.html" class="nav-link">About</a>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+      </div>
+    </header>
+  
+    <!-- Sidebar (optional) -->
+      <!-- Sidebar (optional) -->
+  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <div class="search-bar">
+      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+      <div id="suggestions" class="suggestions"></div>
+      <button onclick="performSidebarSearch()">Search</button>
+    </div>
+    <ul>
+      <li><a href="officialwebsite.html">Introduction</a></li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+        <ul class="nested">
+          <li><a href="installation.html">Installation</a></li>
+          <li><a href="uninstall.html">Uninstall</a></li>
+          <li><a href="#">Requirements</a></li>
+          <li><a href="#">Best Practices</a></li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Functions</a>
+            <ul class="nested">
+              <li><a href="webhook.html">Webhook</a></li>
+              <li><a href="persona.html">Persona</a></li>
+              <li><a href="infracred.html">Infrascrid</a></li>
+              <li><a href="vault.html">Vault</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+            <ul class="nested">
+              <li><a href="#">Host CLI</a></li>
+              <li><a href="#">Remote CLI</a></li>
+              <li><a href="#">UI</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Features</a>
+        <ul class="nested">
+          <li>
+            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+            <ul class="nested">
+              <li><a href="infracircle.html">InfraCycle</a></li>
+              <li><a href="dobp.html">DOBProxy</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Provisioning</a>
+            <ul class="nested">
+              <li><a href="screenplay.html">Screenplay</a></li>
+            </ul>
+          </li>                             
+          <li>
+            <a href="#" onclick="toggleNested(event)">Configuration</a>
+            <ul class="nested">
+              <li><a href="infraset.html">InfraSet</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Providers</a>
+        <ul class="nested">
+          <li>
+            <a href="#" onclick="toggleNested(event)">AWS</a>
+            <ul class="nested">
+              <li><a href="aws.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Azure</a>
+            <ul class="nested">
+              <li><a href="azure.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">GCP</a>
+            <ul class="nested">
+              <li><a href="gcp.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+        <ul class="nested">
+          <li><a href="ansible.html">Ansible</a></li>
+          <li><a href="Kubernetes.html">Kubernetes</a></li>
+          <li><a href="dockerswarm.html">Docker Swarm</a></li>
+          <li><a href="jenkins.html">Jenkins</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Use Cases</a></li>
+      <li><a href="#">API Reference</a></li>
+      <li><a href="#">Release Notes</a></li>
+    </ul>
+  </aside>
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>DevOps Bot Proxy CLI Guide</h1>
+      <p>The <code>dobp</code> command group manages the DevOps Bot Proxy, enabling secure container orchestration, VPC management, load balancing, and private container deployments.</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>Command Group: <code>dobp</code></h2>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp [COMMAND]</code></pre>
+      <p><strong>Available Commands:</strong></p>
+      <ul>
+        <li><strong>Configuration & Credentials</strong></li>
+        <ul>
+          <li><code>configure</code> – Configure DevOps Bot Proxy and save credentials locally.</li>
+          <li><code>test-proxy</code> – Test communication with the proxy.</li>
+        </ul>
+        <li><strong>Container Management</strong></li>
+        <ul>
+          <li><code>deploy</code> – Deploy a container.</li>
+          <li><code>destroy</code> – Destroy specified containers.</li>
+          <li><code>blue-green</code> – Perform a blue-green deployment.</li>
+          <li><code>rollback</code> – Rollback to a previous blue deployment.</li>
+          <li><code>auto-scale</code> – Auto-scale container instances.</li>
+          <li><code>logs</code> – Fetch logs for a specific container.</li>
+          <li><code>list-containers</code> – List all running containers.</li>
+        </ul>
+        <li><strong>Volume Management</strong></li>
+        <ul>
+          <li><code>create-volume</code> – Create a new Docker volume.</li>
+          <li><code>attach-volume</code> – Attach a Docker volume to a container.</li>
+          <li><code>detach-volume</code> – Detach a volume from a container.</li>
+          <li><code>view-volume</code> – View details of a specific volume.</li>
+        </ul>
+        <li><strong>Service Discovery & Load Balancing</strong></li>
+        <ul>
+          <li><code>register-service</code> – Register a container under a service.</li>
+          <li><code>resolve-service</code> – Resolve a service name to a container endpoint.</li>
+          <li><code>proxy-to-service</code> – Proxy a request to a specified service.</li>
+          <li><code>setup-load-balancer</code> – Setup load balancing for a container.</li>
+          <li><code>view-load-balancer</code> – View the load balancer status.</li>
+        </ul>
+        <li><strong>VPC Management</strong></li>
+        <ul>
+          <li><code>create-vpc</code> – Create a new VPC.</li>
+          <li><code>create-subnet</code> – Create a new subnet in a VPC.</li>
+          <li><code>create-router</code> – Create a router container in a VPC.</li>
+          <li><code>create-route-table</code> – Create a route table for a VPC.</li>
+          <li><code>add-route</code> – Add a route to a route table.</li>
+        </ul>
+        <li><strong>Private Container Management</strong></li>
+        <ul>
+          <li><code>deploy-private</code> – Deploy private containers.</li>
+        </ul>
+        <li><strong>Advanced Deployment</strong></li>
+        <ul>
+          <li><code>deploy-and-register</code> – Deploy and register multiple containers.</li>
+          <li><code>update-config</code> – Update proxy configuration.</li>
+        </ul>
+        <li><strong>Metrics</strong></li>
+        <ul>
+          <li><code>fetch-metrics</code> – Fetch system metrics.</li>
+        </ul>
+      </ul>
+
+      <h2>1. Configuration & Credentials</h2>
+      <h3><code>dobp configure</code></h3>
+      <p><strong>Description:</strong> Configure and save proxy credentials.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp configure --url &lt;PROXY_URL&gt; --api-key &lt;API_KEY&gt;</code></pre>
+
+      <h3><code>dobp test-proxy</code></h3>
+      <p><strong>Description:</strong> Test communication with the proxy.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp test-proxy</code></pre>
+
+      <h2>2. Container Management</h2>
+      <h3><code>dobp deploy</code></h3>
+      <p><strong>Description:</strong> Deploy a container.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp deploy --container-name &lt;NAME&gt; --image &lt;IMAGE&gt; --host-port &lt;PORT&gt; --container-port &lt;PORT&gt; --count &lt;N&gt;</code></pre>
+
+      <h3><code>dobp destroy</code></h3>
+      <p><strong>Description:</strong> Destroy specified containers.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp destroy --container-name &lt;NAME&gt; --count &lt;N&gt;</code></pre>
+
+      <h3><code>dobp blue-green</code></h3>
+      <p><strong>Description:</strong> Perform a blue-green deployment.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp blue-green --container-name &lt;NAME&gt; --image &lt;IMAGE&gt; --host-port &lt;PORT&gt; --container-port &lt;PORT&gt; --count &lt;N&gt;</code></pre>
+
+      <h3><code>dobp rollback</code></h3>
+      <p><strong>Description:</strong> Rollback to a previous deployment.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp rollback --container-name &lt;NAME&gt; --image &lt;IMAGE&gt; --host-port &lt;PORT&gt; --container-port &lt;PORT&gt; --count &lt;N&gt;</code></pre>
+
+      <h3><code>dobp auto-scale</code></h3>
+      <p><strong>Description:</strong> Auto-scale container instances.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp auto-scale --container-name &lt;NAME&gt; --image &lt;IMAGE&gt; --container-port &lt;PORT&gt; --target-count &lt;N&gt;</code></pre>
+
+      <h3><code>dobp logs</code></h3>
+      <p><strong>Description:</strong> Fetch logs for a specific container.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp logs --container-id &lt;ID&gt;</code></pre>
+
+      <h3><code>dobp list-containers</code></h3>
+      <p><strong>Description:</strong> List all running containers.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp list-containers</code></pre>
+
+      <h2>3. Volume Management</h2>
+      <h3><code>dobp create-volume</code></h3>
+      <p><strong>Description:</strong> Create a new Docker volume.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp create-volume --volume-name &lt;NAME&gt; --driver &lt;DRIVER&gt; --labels &lt;JSON&gt;</code></pre>
+
+      <h3><code>dobp attach-volume</code></h3>
+      <p><strong>Description:</strong> Attach a Docker volume to a container.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp attach-volume --container-name &lt;NAME&gt; --volume-name &lt;NAME&gt; --mount-path &lt;PATH&gt;</code></pre>
+
+      <h3><code>dobp detach-volume</code></h3>
+      <p><strong>Description:</strong> Detach a volume from a container.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp detach-volume --container-name &lt;NAME&gt; --volume-name &lt;NAME&gt;</code></pre>
+
+      <h3><code>dobp view-volume</code></h3>
+      <p><strong>Description:</strong> View details of a specific volume.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp view-volume --volume-name &lt;NAME&gt;</code></pre>
+
+      <h2>4. Service Discovery & Load Balancing</h2>
+      <h3><code>dobp register-service</code></h3>
+      <p><strong>Description:</strong> Register a container under a service.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp register-service --service-name &lt;NAME&gt; --container-name &lt;NAME&gt; --ip &lt;IP&gt; --port &lt;PORT&gt;</code></pre>
+
+      <h3><code>dobp resolve-service</code></h3>
+      <p><strong>Description:</strong> Resolve a service name to a container endpoint.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp resolve-service --service-name &lt;NAME&gt;</code></pre>
+
+      <h3><code>dobp proxy-to-service</code></h3>
+      <p><strong>Description:</strong> Proxy a request to a specified service.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp proxy-to-service --service-name &lt;NAME&gt; --path &lt;PATH&gt; --method &lt;GET|POST&gt; --data &lt;JSON&gt;</code></pre>
+
+      <h3><code>dobp setup-load-balancer</code></h3>
+      <p><strong>Description:</strong> Setup load balancing for a container.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp setup-load-balancer --container-name &lt;NAME&gt;</code></pre>
+
+      <h3><code>dobp view-load-balancer</code></h3>
+      <p><strong>Description:</strong> View load balancer status for a container.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp view-load-balancer --container-name &lt;NAME&gt;</code></pre>
+
+      <h2>5. VPC Management</h2>
+      <h3><code>dobp create-vpc</code></h3>
+      <p><strong>Description:</strong> Create a new VPC.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp create-vpc --vpc-name &lt;NAME&gt;</code></pre>
+
+      <h3><code>dobp create-subnet</code></h3>
+      <p><strong>Description:</strong> Create a new subnet in a VPC.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp create-subnet --vpc-name &lt;NAME&gt; --subnet-name &lt;NAME&gt; --cidr-block &lt;BLOCK&gt; --subnet-type &lt;public|private&gt;</code></pre>
+
+      <h3><code>dobp create-router</code></h3>
+      <p><strong>Description:</strong> Create a router for a VPC.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp create-router --vpc-name &lt;NAME&gt; --router-name &lt;NAME&gt; --public-subnet &lt;NAME&gt; --private-subnet &lt;NAME&gt;</code></pre>
+
+      <h3><code>dobp create-route-table</code></h3>
+      <p><strong>Description:</strong> Create a route table for a VPC.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp create-route-table --vpc-name &lt;NAME&gt; --route-table-name &lt;NAME&gt; --routes &lt;JSON&gt;</code></pre>
+
+      <h3><code>dobp add-route</code></h3>
+      <p><strong>Description:</strong> Add a route to a route table.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp add-route --vpc-name &lt;NAME&gt; --route-table-name &lt;NAME&gt; --destination-cidr &lt;BLOCK&gt; --target &lt;NAME&gt;</code></pre>
+
+      <h2>6. Private Container Management</h2>
+      <h3><code>dobp deploy-private</code></h3>
+      <p><strong>Description:</strong> Deploy private containers.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp deploy-private --container-name &lt;NAME&gt; --image &lt;IMAGE&gt; --container-port &lt;PORT&gt; --count &lt;N&gt;</code></pre>
+
+      <h2>7. Advanced Deployment</h2>
+      <h3><code>dobp deploy-and-register</code></h3>
+      <p><strong>Description:</strong> Deploy and register multiple containers.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp deploy-and-register --service-name &lt;NAME&gt; --image &lt;IMAGE&gt; --container-port &lt;PORT&gt; --count &lt;N&gt;</code></pre>
+
+      <h3><code>dobp update-config</code></h3>
+      <p><strong>Description:</strong> Update proxy configuration.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp update-config --config-file &lt;FILE&gt;</code></pre>
+
+      <h2>8. Metrics</h2>
+      <h3><code>dobp fetch-metrics</code></h3>
+      <p><strong>Description:</strong> Fetch system metrics from the proxy.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dobp fetch-metrics</code></pre>
+    </section>
+
+    <!-- Additional Sections -->
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'Home.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+  </script>
+</body>
+</html>

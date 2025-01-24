@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Vault Management</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+    <!-- Header Toolbar -->
+    <header class="toolbar">
+      <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+      <nav class="nav-links">
+        <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+        <a href="features.html" class="nav-link">Features</a>
+        <a href="docs.html" class="nav-link">Docs</a>
+        <a href="Community.html" class="nav-link">Community</a>
+        <a href="blog.html" class="nav-link">Blog</a>
+        <a href="About.html" class="nav-link">About</a>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+      </div>
+    </header>
+  
+    <!-- Sidebar (optional) -->
+      <!-- Sidebar (optional) -->
+  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <div class="search-bar">
+      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+      <div id="suggestions" class="suggestions"></div>
+      <button onclick="performSidebarSearch()">Search</button>
+    </div>
+    <ul>
+      <li><a href="officialwebsite.html">Introduction</a></li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+        <ul class="nested">
+          <li><a href="installation.html">Installation</a></li>
+          <li><a href="uninstall.html">Uninstall</a></li>
+          <li><a href="#">Requirements</a></li>
+          <li><a href="#">Best Practices</a></li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Functions</a>
+            <ul class="nested">
+              <li><a href="webhook.html">Webhook</a></li>
+              <li><a href="persona.html">Persona</a></li>
+              <li><a href="infracred.html">Infrascrid</a></li>
+              <li><a href="vault.html">Vault</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+            <ul class="nested">
+              <li><a href="#">Host CLI</a></li>
+              <li><a href="#">Remote CLI</a></li>
+              <li><a href="#">UI</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Features</a>
+        <ul class="nested">
+          <li>
+            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+            <ul class="nested">
+              <li><a href="infracircle.html">InfraCycle</a></li>
+              <li><a href="dobp.html">DOBProxy</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Provisioning</a>
+            <ul class="nested">
+              <li><a href="screenplay.html">Screenplay</a></li>
+            </ul>
+          </li>                             
+          <li>
+            <a href="#" onclick="toggleNested(event)">Configuration</a>
+            <ul class="nested">
+              <li><a href="infraset.html">InfraSet</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Providers</a>
+        <ul class="nested">
+          <li>
+            <a href="#" onclick="toggleNested(event)">AWS</a>
+            <ul class="nested">
+              <li><a href="aws.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Azure</a>
+            <ul class="nested">
+              <li><a href="azure.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">GCP</a>
+            <ul class="nested">
+              <li><a href="gcp.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+        <ul class="nested">
+          <li><a href="ansible.html">Ansible</a></li>
+          <li><a href="Kubernetes.html">Kubernetes</a></li>
+          <li><a href="dockerswarm.html">Docker Swarm</a></li>
+          <li><a href="jenkins.html">Jenkins</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Use Cases</a></li>
+      <li><a href="#">API Reference</a></li>
+      <li><a href="#">Release Notes</a></li>
+    </ul>
+  </aside> 
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Vault Management Guide</h1>
+      <p>The Vault function allows you to manage sensitive information by encrypting and decrypting files securely. Below is a detailed guide to setting up and managing the vault.</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>Command Group: <code>vault</code></h2>
+      <p>All vault-related commands are grouped under the <code>vault</code> command.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">vault [COMMAND]</code></pre>
+      <p><strong>Available Commands:</strong></p>
+      <ul>
+        <li><code>setup</code> – Set up the vault for sensitive information.</li>
+        <li><code>config</code> – Configure the vault with a password and token.</li>
+        <li><code>move</code> – Move a file to the vault and encrypt it.</li>
+        <li><code>pull</code> – Pull a file from the vault and decrypt it.</li>
+        <li><code>show</code> – Show files in the vault.</li>
+        <li><code>encrypt</code> – Encrypt a file manually.</li>
+        <li><code>decrypt</code> – Decrypt a file manually.</li>
+      </ul>
+
+      <h2>Command Details</h2>
+      <h3><code>vault setup</code></h3>
+      <p>Sets up the vault for the first time.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dob vault setup</code></pre>
+      <p><strong>Details:</strong></p>
+      <ul>
+        <li>Prompts the user to set a password.</li>
+        <li>Generates a token for authentication.</li>
+        <li>Stores configuration securely.</li>
+      </ul>
+
+      <h3><code>vault config</code></h3>
+      <p>Configures the vault with a password and token.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dob vault config</code></pre>
+      <p><strong>Details:</strong></p>
+      <ul>
+        <li>Validates the token stored in the vault.</li>
+        <li>Verifies the provided password.</li>
+        <li>Confirms successful configuration.</li>
+      </ul>
+
+      <h3><code>vault move</code></h3>
+      <p>Moves a file to the vault and encrypts it.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dob vault move &lt;file_path&gt;</code></pre>
+      <p><strong>Details:</strong></p>
+      <ul>
+        <li>Prompts for a password and token for authentication.</li>
+        <li>Encrypts the specified file and stores it in the vault.</li>
+      </ul>
+
+      <h3><code>vault pull</code></h3>
+      <p>Pulls a file from the vault and decrypts it.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dob vault pull &lt;file_name&gt;</code></pre>
+      <p><strong>Details:</strong></p>
+      <ul>
+        <li>Prompts for a password and token for authentication.</li>
+        <li>Decrypts the specified file from the vault.</li>
+      </ul>
+
+      <h3><code>vault show</code></h3>
+      <p>Displays a list of files stored in the vault.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dob vault show</code></pre>
+      <p><strong>Details:</strong></p>
+      <ul>
+        <li>Lists all files currently stored in the vault.</li>
+      </ul>
+
+      <h3><code>vault encrypt</code></h3>
+      <p>Encrypts a file manually without moving it to the vault.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dob vault encrypt &lt;file_path&gt;</code></pre>
+      <p><strong>Details:</strong></p>
+      <ul>
+        <li>Prompts for a password.</li>
+        <li>Encrypts the specified file in-place.</li>
+      </ul>
+
+      <h3><code>vault decrypt</code></h3>
+      <p>Decrypts a file manually without moving it out of the vault.</p>
+      <p><strong>Usage:</strong></p>
+      <pre><code class="language-bash">dob vault decrypt &lt;file_path&gt;</code></pre>
+      <p><strong>Details:</strong></p>
+      <ul>
+        <li>Prompts for a password.</li>
+        <li>Decrypts the specified file in-place.</li>
+      </ul>
+
+      <h2>Implementation Details</h2>
+      <h3>Setup</h3>
+      <ul>
+        <li>Validates password and confirmation.</li>
+        <li>Stores a securely generated token for future use.</li>
+      </ul>
+
+      <h3>Encryption/Decryption</h3>
+      <ul>
+        <li>Uses a password-derived key (PBKDF2 with a salt).</li>
+        <li>Ensures AES encryption for file security.</li>
+      </ul>
+
+      <h3>Token-Based Authentication</h3>
+      <ul>
+        <li>Tokens are stored securely in the vault configuration file.</li>
+        <li>Validated before critical operations.</li>
+      </ul>
+
+      <h3>Vault Configuration</h3>
+      <ul>
+        <li>Configuration is stored in a secure JSON file.</li>
+        <li>Includes a salted hash for password-based key generation.</li>
+      </ul>
+
+      <h2>Notes</h2>
+      <ul>
+        <li><strong>Security:</strong> Always use strong passwords and secure the generated token.</li>
+        <li><strong>Storage Path:</strong> The vault and its configuration files are stored in a pre-defined directory.</li>
+      </ul>
+
+      <p>This guide provides a comprehensive overview of managing the vault and using its secure file operations effectively. Let me know if you need further customization!</p>
+    </section>
+
+    <!-- Additional Sections -->
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'Home.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+  </script>
+</body>
+</html>

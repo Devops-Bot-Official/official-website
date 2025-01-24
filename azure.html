@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Azure Management Tool</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <nav class="nav-links">
+      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="docs.html" class="nav-link">Docs</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="About.html" class="nav-link">About</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
+
+  <!-- Sidebar (optional) -->
+    <!-- Sidebar (optional) -->
+    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+      <div class="search-bar">
+        <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
+        <button onclick="performSidebarSearch()">Search</button>
+      </div>
+      <ul>
+        <li><a href="officialwebsite.html">Introduction</a></li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Getting Started</a>
+          <ul class="nested">
+            <li><a href="installation.html">Installation</a></li>
+            <li><a href="uninstall.html">Uninstall</a></li>
+            <li><a href="#">Requirements</a></li>
+            <li><a href="#">Best Practices</a></li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Functions</a>
+              <ul class="nested">
+                <li><a href="webhook.html">Webhook</a></li>
+                <li><a href="persona.html">Persona</a></li>
+                <li><a href="infracred.html">Infrascrid</a></li>
+                <li><a href="vault.html">Vault</a></li>
+                <li><a href="plugins.html">Plugins</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+              <ul class="nested">
+                <li><a href="#">Host CLI</a></li>
+                <li><a href="#">Remote CLI</a></li>
+                <li><a href="#">UI</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Features</a>
+          <ul class="nested">
+            <li>
+              <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+              <ul class="nested">
+                <li><a href="infracircle.html">InfraCycle</a></li>
+                <li><a href="dobp.html">DOBProxy</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Provisioning</a>
+              <ul class="nested">
+                <li><a href="screenplay.html">Screenplay</a></li>
+              </ul>
+            </li>                             
+            <li>
+              <a href="#" onclick="toggleNested(event)">Configuration</a>
+              <ul class="nested">
+                <li><a href="infraset.html">InfraSet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Providers</a>
+          <ul class="nested">
+            <li>
+              <a href="#" onclick="toggleNested(event)">AWS</a>
+              <ul class="nested">
+                <li><a href="aws.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Azure</a>
+              <ul class="nested">
+                <li><a href="azure.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">GCP</a>
+              <ul class="nested">
+                <li><a href="gcp.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+          <ul class="nested">
+            <li><a href="ansible.html">Ansible</a></li>
+            <li><a href="Kubernetes.html">Kubernetes</a></li>
+            <li><a href="dockerswarm.html">Docker Swarm</a></li>
+            <li><a href="jenkins.html">Jenkins</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Use Cases</a></li>
+        <li><a href="#">API Reference</a></li>
+        <li><a href="#">Release Notes</a></li>
+      </ul>
+    </aside>
+  
+ <!-- Main Content Area -->
+<main class="main-content">
+  <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Azure Management Tool - User Guide</h1>
+      <p>Manage Azure resources efficiently using declarative YAML configurations and imperative CLI commands. This guide provides a comprehensive overview of both approaches, empowering users to choose the method that suits their needs best.</p>
+    </section>
+  
+    <section class="docker-swarm">
+      <h2>Key Features</h2>
+      <ul>
+        <li>
+          <strong>Declarative YAML Support:</strong>
+          <p>The declarative approach allows you to define the desired state of your Azure resources in a YAML configuration file. This method is best suited for automation and repeatable deployments, making it ideal for DevOps practices. The tool will parse the YAML, validate it, and execute the specified actions to provision resources as defined.</p>
+          <p><strong>Example Use Case:</strong> You can define an entire infrastructure setup, including Virtual Machines, Virtual Networks, and Storage Accounts, in a single YAML file and deploy it with a single command.</p>
+        </li>
+        <li>
+          <strong>Imperative CLI Commands:</strong>
+          <p>The imperative approach enables you to interact with Azure resources directly via CLI commands. This is ideal for ad-hoc operations, such as creating or deleting individual resources quickly, without the need to create a configuration file. Each command corresponds to a specific Azure resource operation.</p>
+          <p><strong>Example Use Case:</strong> You can create a Virtual Machine or a DNS Zone interactively by specifying parameters in a single command, making it suitable for quick changes or testing.</p>
+        </li>
+      </ul>
+  
+      <h2>Declarative YAML Approach</h2>
+      <h3>Overview</h3>
+      <p>The declarative approach uses YAML files to describe the desired state of Azure resources. This ensures consistency, repeatability, and scalability for managing cloud infrastructure.</p>
+  
+      <h3>Workflow</h3>
+      <ol>
+        <li>Create a YAML configuration file defining the Azure resources.</li>
+        <li>Run the `dob azure screenplay` command to execute the YAML file.</li>
+        <li>The tool validates the configuration, performs linting checks, and provisions the resources as specified in the YAML file.</li>
+      </ol>
+  
+      <h3>Example YAML Configurations</h3>
+      <h4>Virtual Machine (VM)</h4>
+      <pre><code class="language-yaml">
+  resources:
+    virtual_machines:
+      - name: "my-vm"
+        region: "eastus"
+        size: "Standard_D2s_v3"
+        image:
+          publisher: "MicrosoftWindowsServer"
+          offer: "WindowsServer"
+          sku: "2019-Datacenter"
+          version: "latest"
+        resource_group: "dev-resources"
+        nic_id: "/subscriptions/<id>/resourceGroups/dev-resources/providers/Microsoft.Network/networkInterfaces/my-nic"
+        os_type: "Windows"
+        admin_username: "azureuser"
+        admin_password: "StrongP@ssw0rd"
+        tags:
+          - key: "environment"
+            value: "production"
+      </code></pre>
+  
+      <h4>DNS Zone</h4>
+      <pre><code class="language-yaml">
+  resources:
+    dns_zones:
+      - name: "my-dns-zone.com"
+        region: "global"
+        resource_group: "dev-resources"
+        tags:
+          - key: "environment"
+            value: "production"
+          - key: "project"
+            value: "azure-automation"
+      </code></pre>
+  
+      <h4>Command to Execute YAML</h4>
+      <pre><code class="language-bash">
+  dob azure screenplay /path/to/configuration.yaml
+      </code></pre>
+  
+      <h3>Advantages</h3>
+      <ul>
+        <li>Consistency: Ensures a repeatable and predictable resource deployment process.</li>
+        <li>Scalability: Allows defining multiple resources in one configuration file.</li>
+        <li>Automation: Ideal for use in CI/CD pipelines.</li>
+      </ul>
+  
+      <h2>Imperative CLI Commands</h2>
+      <h3>Overview</h3>
+      <p>The imperative CLI commands allow users to manage Azure resources directly using the command line. This approach is quick and efficient for one-time or ad-hoc resource management tasks.</p>
+  
+      <h3>General Syntax</h3>
+      <pre><code class="language-bash">
+  dob azure <command> [OPTIONS]
+      </code></pre>
+      <p><strong>Example:</strong> To create a Virtual Machine, you would use the following command:</p>
+      <pre><code class="language-bash">
+  dob azure create-vm \
+    --name my-vm \
+    --region eastus \
+    --size Standard_D2s_v3 \
+    --image MicrosoftWindowsServer:WindowsServer:2019-Datacenter:latest \
+    --resource-group dev-resources \
+    --nic-id "/subscriptions/<id>/resourceGroups/dev-resources/providers/Microsoft.Network/networkInterfaces/my-nic" \
+    --os-type Windows \
+    --admin-username azureuser \
+    --admin-password "StrongP@ssw0rd" \
+    --tags "environment=production,project=myproject"
+      </code></pre>
+  
+      <h3>Supported Commands</h3>
+      <h4>1. Virtual Machines (VMs)</h4>
+      <h5>Create a Virtual Machine</h5>
+      <pre><code class="language-bash">
+  dob azure create-vm \
+    --name <vm-name> \
+    --region <region> \
+    --size <vm-size> \
+    --image <publisher:offer:sku:version> \
+    --resource-group <resource-group> \
+    --nic-id <nic-id> \
+    --os-type <os-type> \
+    --admin-username <username> \
+    --admin-password <password> \
+    --tags "key=value,key=value"
+      </code></pre>
+  
+      <h4>2. Subnet</h4>
+      <h5>Create Subnet</h5>
+      <pre><code class="language-bash">
+  dob azure create-subnet \
+    --vnet-name <vnet-name> \
+    --subnet-name <subnet-name> \
+    --resource-group <resource-group> \
+    --address-prefix <address-prefix>
+      </code></pre>
+  
+      <h4>3. Virtual Network (VNet)</h4>
+      <h5>Create VNet</h5>
+      <pre><code class="language-bash">
+  dob azure create-vnet \
+    --name <vnet-name> \
+    --region <region> \
+    --resource-group <resource-group> \
+    --address-prefixes <address-prefixes> \
+    --tags "key=value,key=value"
+      </code></pre>
+  
+      <h4>4. DNS Zone</h4>
+      <h5>Create DNS Zone</h5>
+      <pre><code class="language-bash">
+  dob azure create-dns-zone \
+    --name <dns-zone-name> \
+    --resource-group <resource-group> \
+    --region <region> \
+    --tags "key=value,key=value"
+      </code></pre>
+  
+      <h3>Advantages</h3>
+      <ul>
+        <li>Speed: Allows quick and direct resource creation.</li>
+        <li>Flexibility: Perfect for ad-hoc or one-off tasks.</li>
+        <li>Interactive: Tailored for on-the-fly operations.</li>
+      </ul>
+  
+      <h2>Conclusion</h2>
+      <p>Whether you prefer the structured approach of declarative YAML or the quick, flexible nature of imperative CLI commands, the Azure Management Tool empowers you to manage resources efficiently and effectively. Use this guide to streamline your Azure management processes.</p>
+    </section>
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'Home.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+  </script>
+</body>
+</html>

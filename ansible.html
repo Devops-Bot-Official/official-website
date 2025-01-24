@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Ansible</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <nav class="nav-links">
+      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="docs.html" class="nav-link">Docs</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="About.html" class="nav-link">About</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
+
+  <!-- Sidebar (optional) -->
+    <!-- Sidebar (optional) -->
+    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+      <div class="search-bar">
+        <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
+        <button onclick="performSidebarSearch()">Search</button>
+      </div>
+      <ul>
+        <li><a href="officialwebsite.html">Introduction</a></li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Getting Started</a>
+          <ul class="nested">
+            <li><a href="installation.html">Installation</a></li>
+            <li><a href="uninstall.html">Uninstall</a></li>
+            <li><a href="#">Requirements</a></li>
+            <li><a href="#">Best Practices</a></li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Functions</a>
+              <ul class="nested">
+                <li><a href="webhook.html">Webhook</a></li>
+                <li><a href="persona.html">Persona</a></li>
+                <li><a href="infracred.html">Infrascrid</a></li>
+                <li><a href="vault.html">Vault</a></li>
+                <li><a href="plugins.html">Plugins</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+              <ul class="nested">
+                <li><a href="#">Host CLI</a></li>
+                <li><a href="#">Remote CLI</a></li>
+                <li><a href="#">UI</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Features</a>
+          <ul class="nested">
+            <li>
+              <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+              <ul class="nested">
+                <li><a href="infracircle.html">InfraCycle</a></li>
+                <li><a href="dobp.html">DOBProxy</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Provisioning</a>
+              <ul class="nested">
+                <li><a href="screenplay.html">Screenplay</a></li>
+              </ul>
+            </li>                             
+            <li>
+              <a href="#" onclick="toggleNested(event)">Configuration</a>
+              <ul class="nested">
+                <li><a href="infraset.html">InfraSet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Providers</a>
+          <ul class="nested">
+            <li>
+              <a href="#" onclick="toggleNested(event)">AWS</a>
+              <ul class="nested">
+                <li><a href="aws.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Azure</a>
+              <ul class="nested">
+                <li><a href="azure.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">GCP</a>
+              <ul class="nested">
+                <li><a href="gcp.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+          <ul class="nested">
+            <li><a href="ansible.html">Ansible</a></li>
+            <li><a href="Kubernetes.html">Kubernetes</a></li>
+            <li><a href="dockerswarm.html">Docker Swarm</a></li>
+            <li><a href="jenkins.html">Jenkins</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Use Cases</a></li>
+        <li><a href="#">API Reference</a></li>
+        <li><a href="#">Release Notes</a></li>
+      </ul>
+    </aside>
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Ansible</h1>
+      <p>Automated provisioning and configuration of Ansible controllers and workers.</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>Commands: dob ansible config, dob ansible attach-worker</h2>
+      <p>This feature introduces automated provisioning and configuration of Ansible controllers and workers, including both manager and worker nodes. The setup involves creating EC2 instances, configuring Ansible, and managing inventory files.</p>
+      
+      <h3>Key Highlights:</h3>
+      <ol>
+        <li><strong>Ansible Commands Group</strong>
+          <ul>
+            <li><strong>Command Group:</strong> ansible</li>
+            <li><strong>Description:</strong> Introduces a command group for managing and configuring Ansible controllers and workers in a DevOps environment using YAML-based configuration files.</li>
+            <li><strong>Supported Commands:</strong>
+              <ul>
+                <li><strong>Setup Ansible Controller</strong>
+                  <ul>
+                    <li><strong>Command:</strong> dob ansible config --file-path &lt;path&gt;</li>
+                    <li><strong>Description:</strong> Provisions a new Ansible controller instance on AWS, configures SSH access, installs Ansible, and prepares the ansible.cfg and inventory file. Supports custom configuration via YAML.</li>
+                  </ul>
+                </li>
+                <li><strong>Attach New Workers</strong>
+                  <ul>
+                    <li><strong>Command:</strong> dob ansible attach-worker --file-path &lt;path&gt;</li>
+                    <li><strong>Description:</strong> Attaches new worker nodes to an existing Ansible controller. Automatically provisions new instances, distributes SSH keys, configures inventory, and performs a connectivity check using the ansible ping module.</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3>Key Features:</h3>
+      <ul>
+        <li><strong>YAML-Driven Configuration</strong>
+          <ul>
+            <li>Allows users to specify controller and worker configurations, including:</li>
+            <li>AMI ID</li>
+            <li>Instance type</li>
+            <li>Security group</li>
+            <li>Key pair name</li>
+            <li>Inventory path</li>
+            <li>Custom Ansible configurations</li>
+          </ul>
+        </li>
+        <li><strong>Automated Ansible Installation</strong>
+          <ul>
+            <li>Detects the operating system and installs the correct Ansible version and dependencies on the controller.</li>
+          </ul>
+        </li>
+        <li><strong>Dynamic SSH Key Management</strong>
+          <ul>
+            <li>Automatically generates and distributes SSH keys to ensure secure communication between the controller and workers.</li>
+          </ul>
+        </li>
+        <li><strong>Inventory Management</strong>
+          <ul>
+            <li>Dynamically creates and updates the inventory file on the controller with new worker nodes.</li>
+          </ul>
+        </li>
+        <li><strong>Error Handling and Validation</strong>
+          <ul>
+            <li>Comprehensive error handling for instance provisioning, SSH key distribution, and command execution.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>Example YAML Configuration:</h3>
+      <pre><code class="language-yaml">
+controller:
+  name: ansible-controller
+  instance_type: t2.medium
+  key_name: my-ssh-key
+  security_group: my-security-group
+workers:
+  name: ansible-worker
+  instance_type: t2.small
+  key_name: my-ssh-key
+  security_group: my-security-group
+  count: 3
+      </code></pre>
+
+      <h3>Example Usage:</h3>
+      <pre><code class="language-bash">
+dob ansible config --file-path /path/to/config.yaml
+dob ansible attach-worker --file-path /path/to/new-workers-config.yaml
+      </code></pre>
+    </section>
+
+    <!-- Additional Sections -->
+  </main>
+
+
+    <footer class="footer">
+      <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+    </footer>
+  
+    <!-- JavaScript Files -->
+    <script src="scripts/main.js"></script>
+    <script>
+      function toggleNested(event) {
+        event.preventDefault();
+        const parent = event.target.parentElement;
+        parent.classList.toggle('active');
+      }
+  
+      function performSearch() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const links = document.querySelectorAll('.nav-links a, .sidebar a');
+  
+        links.forEach(link => {
+          if (link.textContent.toLowerCase().includes(query)) {
+            link.style.display = 'block';
+          } else {
+            link.style.display = 'none';
+          }
+        });
+      }
+  
+      function navigateHome() {
+        window.location.href = 'Home.html';
+      }
+  
+      function navigateOfficialWebsite() {
+        window.location.href = 'officialwebsite.html';
+      }
+    </script>
+  </body>
+  </html>
+  

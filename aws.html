@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | AWS Command</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <nav class="nav-links">
+      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="docs.html" class="nav-link">Docs</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="About.html" class="nav-link">About</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
+
+  <!-- Sidebar (optional) -->
+    <!-- Sidebar (optional) -->
+    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+      <div class="search-bar">
+        <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
+        <button onclick="performSidebarSearch()">Search</button>
+      </div>
+      <ul>
+        <li><a href="officialwebsite.html">Introduction</a></li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Getting Started</a>
+          <ul class="nested">
+            <li><a href="installation.html">Installation</a></li>
+            <li><a href="uninstall.html">Uninstall</a></li>
+            <li><a href="#">Requirements</a></li>
+            <li><a href="#">Best Practices</a></li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Functions</a>
+              <ul class="nested">
+                <li><a href="webhook.html">Webhook</a></li>
+                <li><a href="persona.html">Persona</a></li>
+                <li><a href="infracred.html">Infrascrid</a></li>
+                <li><a href="vault.html">Vault</a></li>
+                <li><a href="plugins.html">Plugins</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+              <ul class="nested">
+                <li><a href="#">Host CLI</a></li>
+                <li><a href="#">Remote CLI</a></li>
+                <li><a href="#">UI</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Features</a>
+          <ul class="nested">
+            <li>
+              <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+              <ul class="nested">
+                <li><a href="infracircle.html">InfraCycle</a></li>
+                <li><a href="dobp.html">DOBProxy</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Provisioning</a>
+              <ul class="nested">
+                <li><a href="screenplay.html">Screenplay</a></li>
+              </ul>
+            </li>                             
+            <li>
+              <a href="#" onclick="toggleNested(event)">Configuration</a>
+              <ul class="nested">
+                <li><a href="infraset.html">InfraSet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Providers</a>
+          <ul class="nested">
+            <li>
+              <a href="#" onclick="toggleNested(event)">AWS</a>
+              <ul class="nested">
+                <li><a href="aws.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Azure</a>
+              <ul class="nested">
+                <li><a href="azure.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">GCP</a>
+              <ul class="nested">
+                <li><a href="gcp.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+          <ul class="nested">
+            <li><a href="ansible.html">Ansible</a></li>
+            <li><a href="Kubernetes.html">Kubernetes</a></li>
+            <li><a href="dockerswarm.html">Docker Swarm</a></li>
+            <li><a href="jenkins.html">Jenkins</a></li>
+          </ul>
+        </li>
+        <li><a href="#">Use Cases</a></li>
+        <li><a href="#">API Reference</a></li>
+        <li><a href="#">Release Notes</a></li>
+      </ul>
+    </aside>
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>AWS Command</h1>
+      <p>Enhancements in DevOps Automation Tool</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>Overview</h2>
+      <p>The latest release of the DevOps automation tool introduces a comprehensive set of AWS commands to facilitate cloud infrastructure management directly from the CLI. This update provides DevOps teams with powerful capabilities for creating, managing, and deleting AWS resources across various services, including EC2, VPC, EKS, RDS, S3, IAM, and CodePipeline. Each command is designed with robust error handling, proper validation, and optional parameter support for fine-tuning operations.</p>
+
+      <h2>New Features and Commands</h2>
+      <h3>1. EC2 Management</h3>
+      <ul>
+        <li><strong>Create EC2 Instance (create-ec2-instance)</strong>
+          <ul>
+            <li><strong>Description:</strong> Allows users to launch a new EC2 instance with specified configurations such as instance type, AMI ID, key pair, security groups, and subnet.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--region:</code> Specify the AWS region.</li>
+                <li><code>--instance-type:</code> Define the EC2 instance type (e.g., t2.micro, m5.large).</li>
+                <li><code>--ami-id:</code> Provide the AMI ID for the instance.</li>
+                <li><code>--key-name:</code> Name of the key pair for SSH access.</li>
+                <li><code>--security-group-ids:</code> One or more security groups.</li>
+                <li><code>--subnet-id:</code> (Optional) Subnet ID for instance placement.</li>
+                <li><code>--associate-public-ip:</code> (Optional) Automatically assign a public IP to the instance.</li>
+              </ul>
+            </li>
+            <li><strong>Example Usage:</strong>
+              <pre><code class="language-bash">aws create-ec2-instance --region us-east-1 --instance-type t2.micro --ami-id ami-0abcdef1234567890 --key-name MyKeyPair --security-group-ids sg-0123456789abcdef0 --subnet-id subnet-01234567</code></pre>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Terminate EC2 Instance (terminate-ec2-instance)</strong>
+          <ul>
+            <li><strong>Description:</strong> Terminates an existing EC2 instance.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--region:</code> Specify the AWS region.</li>
+                <li><code>--instance-id:</code> ID of the instance to terminate.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Stop/Start EC2 Instance (stop-ec2-instance, start-ec2-instance)</strong>
+          <ul>
+            <li><strong>Description:</strong> Commands to stop or start an EC2 instance.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--region:</code> Specify the AWS region.</li>
+                <li><code>--instance-id:</code> ID of the instance to stop/start.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Modify EC2 Attributes (modify-ec2-attributes)</strong>
+          <ul>
+            <li><strong>Description:</strong> Modify attributes of an existing EC2 instance, such as instance type and security groups.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--region:</code> Specify the AWS region.</li>
+                <li><code>--instance-id:</code> ID of the instance to modify.</li>
+                <li><code>--instance-type:</code> (Optional) New instance type.</li>
+                <li><code>--security-group-ids:</code> (Optional) New security group IDs.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>2. VPC and Networking</h3>
+      <ul>
+        <li><strong>Create Subnet (subnet)</strong>
+          <ul>
+            <li><strong>Description:</strong> Creates a new subnet within an existing VPC.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--region:</code> Specify the AWS region.</li>
+                <li><code>--vpc-id:</code> ID of the VPC.</li>
+                <li><code>--cidr-block:</code> CIDR block for the subnet.</li>
+                <li><code>--availability-zone:</code> Specify the availability zone.</li>
+                <li><code>--tags:</code> (Optional) Tags for the subnet.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Create Internet Gateway (internet-gateway)</strong>
+          <ul>
+            <li><strong>Description:</strong> Creates an internet gateway and attaches it to a specified VPC.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--region:</code> Specify the AWS region.</li>
+                <li><code>--vpc-id:</code> ID of the VPC.</li>
+                <li><code>--tags:</code> (Optional) Tags for the internet gateway.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Create Route Table (create-route-table)</strong>
+          <ul>
+            <li><strong>Description:</strong> Creates a new route table and adds routes to it.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--vpc-id:</code> ID of the VPC.</li>
+                <li><code>--region:</code> Specify the AWS region.</li>
+                <li><code>--routes:</code> (Optional) List of routes in the format DESTINATION_CIDR_BLOCK GATEWAY_ID.</li>
+                <li><code>--tags:</code> (Optional) Tags for the route table.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>3. Load Balancer and Target Group</h3>
+      <ul>
+        <li><strong>Create Target Group (target-group)</strong>
+          <ul>
+            <li><strong>Description:</strong> Creates a new target group for use with a load balancer.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--region:</code> Specify the AWS region.</li>
+                <li><code>--name:</code> Name of the target group.</li>
+                <li><code>--vpc-id:</code> ID of the VPC.</li>
+                <li><code>--protocol:</code> (Optional) Protocol for the target group (default: HTTP).</li>
+                <li><code>--port:</code> (Optional) Port for the target group (default: 80).</li>
+                <li><code>--tags:</code> (Optional) Tags for the target group.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Create Listener (create-listener)</strong>
+          <ul>
+            <li><strong>Description:</strong> Creates a listener for a load balancer.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--region:</code> Specify the AWS region.</li>
+                <li><code>--load-balancer-arn:</code> ARN of the load balancer.</li>
+                <li><code>--protocol:</code> Protocol for the listener (e.g., HTTP, HTTPS).</li>
+                <li><code>--port:</code> Port for the listener.</li>
+                <li><code>--target-group-arn:</code> (Optional) ARN of the target group.</li>
+                <li><code>--ssl-certificate-arn:</code> (Optional) ARN of the SSL certificate (required for HTTPS).</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>4. IAM Management</h3>
+      <ul>
+        <li><strong>Create IAM User/Role/Group (create-iam-user, create-iam-role, create-iam-group)</strong>
+          <ul>
+            <li><strong>Description:</strong> Commands to create IAM users, roles, and groups with optional tags.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--user-name, --role-name, --group-name:</code> Name of the IAM entity.</li>
+                <li><code>--tags:</code> (Optional) Tags for the IAM entity.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Attach Role Policy (attach-role-policy)</strong>
+          <ul>
+            <li><strong>Description:</strong> Attaches a policy to an IAM role.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--role-name:</code> Name of the IAM role.</li>
+                <li><code>--policy-arn:</code> ARN of the policy.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Add User to Group (add-user-to-group)</strong>
+          <ul>
+            <li><strong>Description:</strong> Adds an IAM user to a specified group.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--user-name:</code> Name of the IAM user.</li>
+                <li><code>--group-name:</code> Name of the IAM group.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>5. S3 Bucket Management</h3>
+      <ul>
+        <li><strong>Create S3 Bucket (create-s3-bucket)</strong>
+          <ul>
+            <li><strong>Description:</strong> Creates a new S3 bucket with optional versioning, logging, and encryption.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--bucket-name:</code> Name of the S3 bucket.</li>
+                <li><code>--region:</code> AWS region.</li>
+                <li><code>--versioning:</code> (Optional) Enable versioning.</li>
+                <li><code>--tags:</code> (Optional) Tags for the bucket.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><strong>Delete S3 Bucket (delete-s3-bucket)</strong>
+          <ul>
+            <li><strong>Description:</strong> Deletes an S3 bucket and optionally its contents.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--bucket-name:</code> Name of the S3 bucket.</li>
+                <li><code>--force:</code> (Optional) Force deletion of bucket contents.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>6. EKS Cluster Management</h3>
+      <ul>
+        <li><strong>Create EKS Cluster (create-eks-cluster)</strong>
+          <ul>
+            <li><strong>Description:</strong> Creates a new EKS cluster with specified version, subnets, and security groups.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--cluster-name:</code> Name of the EKS cluster.</li>
+                <li><code>--region:</code> AWS region.</li>
+                <li><code>--subnets:</code> Subnet IDs.</li>
+                <li><code>--security-group-ids:</code> Security group IDs.</li>
+                <li><code>--version:</code> Kubernetes version (default: 1.25).</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h3>7. CodePipeline Management</h3>
+      <ul>
+        <li><strong>Create CodePipeline (create-codepipeline)</strong>
+          <ul>
+            <li><strong>Description:</strong> Creates a new CodePipeline with specified stages and artifact store.</li>
+            <li><strong>Options:</strong>
+              <ul>
+                <li><code>--pipeline-name:</code> Name of the pipeline.</li>
+                <li><code>--role-arn:</code> IAM role ARN for the pipeline.</li>
+                <li><code>--artifact-store-type:</code> Type of artifact store (e.g., S3).</li>
+                <li><code>--stages:</code> JSON formatted list of pipeline stages.</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <h2>Error Handling and Logging</h2>
+      <p>All commands include robust error handling using boto3 exceptions (ClientError, NoCredentialsError, etc.). Errors are logged and displayed in a user-friendly manner with appropriate messages. Successful operations are confirmed with relevant IDs or ARNs.</p>
+
+      <h2>Security</h2>
+      <p>The tool ensures secure handling of AWS credentials by leveraging environment variables or configuration files for authentication. Commands requiring sensitive information, such as IAM roles or key pairs, prompt users to follow AWS best practices.</p>
+    </section>
+
+    <!-- Additional Sections -->
+  </main>
+  
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'Home.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+  </script>
+</body>
+</html>
