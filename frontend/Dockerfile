@@ -10,8 +10,6 @@ RUN rm -rf ./*
 # Copy all your frontend files (HTML, CSS, JS, images, etc.) to the container
 COPY . /usr/share/nginx/html
 
-COPY nginx.conf /etc/nginx/nginx.conf
-
 # Expose port 80 for serving the application
 EXPOSE 80
 
