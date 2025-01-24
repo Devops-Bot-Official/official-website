@@ -15,16 +15,13 @@ services:
 
   frontend:
     build:
-      context: .
-      dockerfile: frontend/Dockerfile
-    volumes:
-      - ./frontend:/frontend
+      context: ./frontend
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
-    environment:
-      - NODE_ENV=development
-    command: npm start
-
+      - "8080:80"
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    restart: always
 volumes:
   backend_data:
   frontend_data:
