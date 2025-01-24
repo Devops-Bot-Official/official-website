@@ -52,5 +52,7 @@ def add_post():
     return jsonify(new_post.to_dict()), 201
 
 if __name__ == '__main__':
-    db.create_all()
+    # Use app context to initialize the database
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)

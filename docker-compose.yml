@@ -3,8 +3,8 @@ version: "3.8"
 services:
   backend:
     build:
-      context: .
-      dockerfile: backend/Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     volumes:
       - ./backend:/app
     ports:
@@ -22,7 +22,4 @@ services:
     volumes:
       - ./frontend:/usr/share/nginx/html
     restart: always
-volumes:
-  backend_data:
-  frontend_data:
 
