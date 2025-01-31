@@ -30,9 +30,22 @@
   }
   
   .logo {
-    font-size: 24px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
     font-weight: bold;
-  }
+}
+
+.logo-img {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    margin-right: 10px; /* Spacing between logo and text */
+}
+
+.logo-text {
+    font-size: 20px;
+}
   
   .nav-links a {
     color: white;

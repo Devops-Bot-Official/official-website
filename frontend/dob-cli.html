@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps-Bot | Docker Swarm</title>
+  <title>DevOps-Bot | DOB-CLI</title>
   <link rel="stylesheet" href="styles/installation.css">
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
@@ -145,94 +145,93 @@
       </ul>
     </aside>
   
-  <!-- Main Content Area -->
-  <main class="main-content">
-    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
-      <h1>Docker Swarm</h1>
-      <p>Automated provisioning and configuration of Docker Swarm clusters.</p>
-    </section>
-
-    <section class="docker-swarm">
-      <h2>Commands: swarm config, swarm attach-worker</h2>
-      <p>This feature introduces automated provisioning and configuration of Docker Swarm clusters, including both manager and worker nodes. The setup involves creating EC2 instances, initializing Docker Swarm, and joining worker nodes to the cluster.</p>
+    <main class="main-content">
+        <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+          <h1>DOB-CLI - User Guide</h1>
+          <p>Use the DOB-CLI to remotely execute tasks on the DevOps-Bot host server with ease. This guide provides step-by-step instructions to install, configure, and test the DOB-CLI.</p>
+        </section>
       
-      <h3>Key Highlights:</h3>
-      <ol>
-        <li><strong>Swarm Configuration Command</strong>
+        <section class="docker-swarm">
+          <h2>User Guide: DOB-CLI</h2>
+          <p>The DOB-CLI enables users to manage and execute tasks on a DevOps-Bot host server remotely. To use the CLI, you need a **persona credential**, which is part of the RBAC (Role-Based Access Control) functionality.</p>
+      
+          <h3>Pre-requisites</h3>
+          <h4>Ensure the Following Are Installed:</h4>
           <ul>
-            <li><strong>Command:</strong> dob swarm config</li>
-            <li><strong>Functionality:</strong>
-              <ul>
-                <li>Reads a YAML configuration file specifying manager and worker nodes.</li>
-                <li>Automatically provisions EC2 instances for the Swarm cluster.</li>
-                <li>Initializes the manager node and retrieves the join token.</li>
-                <li>Joins worker nodes to the cluster using the manager's token.</li>
-                <li>Saves the join token locally for future use.</li>
-              </ul>
-            </li>
-            <li><strong>Error Handling:</strong>
-              <ul>
-                <li>Handles missing or invalid configuration files.</li>
-                <li>Provides detailed error messages if EC2 provisioning or Docker Swarm initialization fails.</li>
-              </ul>
-            </li>
+            <li>Git</li>
+            <li>Python 3</li>
+            <li>Pip (Python Package Installer)</li>
           </ul>
-        </li>
-        <li><strong>Attach New Worker Nodes</strong>
+      
+          <h3>Installation Steps</h3>
+          <ol>
+            <li>Update your package list:</li>
+            <pre><code class="language-bash">apt-get update</code></pre>
+      
+            <li>Install Git:</li>
+            <pre><code class="language-bash">apt install git</code></pre>
+      
+            <li>Install Pip:</li>
+            <pre><code class="language-bash">apt install python3-pip</code></pre>
+      
+            <li>Clone the DOB-CLI repository:</li>
+            <pre><code class="language-bash">git clone https://github.com/Devops-Bot-Official/dob-cli.git</code></pre>
+      
+            <li>Navigate to the repository folder:</li>
+            <pre><code class="language-bash">cd dob-cli</code></pre>
+      
+            <li>Install the DOB-CLI package:</li>
+            <pre><code class="language-bash">pip install dob_cli-0.1-py3-none-any.whl</code></pre>
+      
+            <li>Verify installation by running:</li>
+            <pre><code class="language-bash">dob --help</code></pre>
+          </ol>
+      
+          <h3>Configuration Steps</h3>
+          <p>To configure DOB-CLI, you need the following:</p>
           <ul>
-            <li><strong>Command:</strong> dob swarm attach-worker</li>
-            <li><strong>Functionality:</strong>
-              <ul>
-                <li>Allows attaching additional worker nodes to an existing Swarm cluster.</li>
-                <li>Fetches the manager IP from the hosts file.</li>
-                <li>Joins the new worker nodes using the existing manager's join token.</li>
-              </ul>
-            </li>
-            <li><strong>Error Handling:</strong>
-              <ul>
-                <li>Ensures that the manager node is properly detected before attempting to attach workers.</li>
-                <li>Provides clear feedback in case of failures during the join process.</li>
-              </ul>
-            </li>
+            <li>A **persona name**</li>
+            <li>A **persona token**</li>
+            <li>A **private key file**</li>
+            <li>The **host endpoint** of the DevOps-Bot server</li>
           </ul>
-        </li>
-        <li><strong>Swarm Task Execution</strong>
+      
+          <h4>Steps:</h4>
+          <ol>
+            <li>Create a private key file:</li>
+            <pre><code class="language-bash">vim david_private.pem</code></pre>
+            <p>Add your private key contents to the file and save.</p>
+      
+            <li>Run the following command to configure the CLI:</li>
+            <pre><code class="language-bash">
+dob config --persona-name david --token 827a89a7-8c36-416b-8e44-e7f78960618f --private-key-path david_private.pem --host-endpoint http://IP:4102
+            </code></pre>
+            <p>Replace the values with your own persona name, token, private key path, and host endpoint.</p>
+          </ol>
+      
+          <h3>Testing the Configuration</h3>
+          <h4>Run a Sample Proxy Command:</h4>
+          <p>To test the configuration, execute the following command:</p>
+          <pre><code class="language-bash">dob run generate-webhook-secret</code></pre>
+          <p>If configured correctly, you’ll see a confirmation message, and a webhook secret will be generated successfully.</p>
+      
+          <h3>Notes</h3>
           <ul>
-            <li><strong>Functionality:</strong>
-              <ul>
-                <li>Defines default tasks for both manager and worker nodes.</li>
-                <li>Executes tasks with retry logic to handle transient errors.</li>
-                <li>Supports custom tasks by modifying the task definitions.</li>
-              </ul>
-            </li>
+            <li>Ensure that your persona token is valid and has the required permissions.</li>
+            <li>Keep your private key file secure and do not share it with anyone.</li>
+            <li>If you face any issues, recheck the configuration command and ensure the host endpoint is accessible.</li>
           </ul>
-        </li>
-      </ol>
-
-      <h3>Example YAML Configuration:</h3>
-      <pre><code class="language-yaml">
-manager:
-  name: swarm-manager
-  instance_type: t2.medium
-  key_name: my-ssh-key
-  security_group: my-security-group
-workers:
-  name: swarm-worker
-  instance_type: t2.small
-  key_name: my-ssh-key
-  security_group: my-security-group
-  count: 3
-      </code></pre>
-
-      <h3>Example Usage:</h3>
-      <pre><code class="language-bash">
-dob swarm config --file-path /path/to/config.yaml
-dob swarm attach-worker --file-path /path/to/new-workers-config.yaml
-      </code></pre>
-    </section>
-
-    <!-- Additional Sections -->
-  </main>
+        </section>
+        <br>
+        <section class="installation-photo">
+            <h3>Installation Steps PDF Reference for DOB-CLI</h3>
+            <p>For detailed installation steps, please refer to the PDF documentation:</p>
+            <br>
+            <object data="styles/assets/images/dob-cli.pdf" type="application/pdf" width="100%" height="600px">
+              <p>Your browser does not support PDFs. <a href="styles/assets/images/dob-cli.pdf" target="_blank">Download the PDF</a>.</p>
+            </object>
+          </section>          
+      </main>
   
     <footer class="footer">
         <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>

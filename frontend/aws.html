@@ -55,9 +55,9 @@
             <li>
               <a href="#" onclick="toggleNested(event)">User Interfaces</a>
               <ul class="nested">
-                <li><a href="#">Host CLI</a></li>
-                <li><a href="#">Remote CLI</a></li>
-                <li><a href="#">UI</a></li>
+                <li><a href="dob-host-cli.html">Host CLI</a></li>
+                <li><a href="dob-cli.html">Remote CLI</a></li>
+                <li><a href="ui.html">UI</a></li>
               </ul>
             </li>
           </ul>
@@ -150,6 +150,64 @@
     <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
       <h1>AWS Command</h1>
       <p>Enhancements in DevOps Automation Tool</p>
+    </section>
+
+    <section class="docker-swarm">
+      <h2>User Guide: Configuring AWS in DevOps-Bot</h2>
+      <p>This guide will walk you through configuring AWS credentials for use with DevOps-Bot. Follow the steps below to initialize and configure AWS for the tool.</p>
+      <ol>
+        <li><strong>Install DevOps-Bot:</strong>
+          <p>Before configuring AWS, ensure DevOps-Bot is installed on your system. Follow the relevant installation guide for your operating system or container environment.</p>
+        </li>
+        <li><strong>Initialize DevOps-Bot:</strong>
+          <p>After installing DevOps-Bot, initialize the tool to set up its required files. This will create the necessary configuration files and directories.</p>
+          <pre><code class="language-bash">dob brood --init</code></pre>
+          <p>Output: This command will initialize the tool and prepare all required files in the default directory.</p>
+        </li>
+        <li><strong>Log in to the AWS Console:</strong>
+          <p>Log in to your AWS Management Console and navigate to the IAM (Identity and Access Management) service.</p>
+        </li>
+        <li><strong>Create AWS Access Keys:</strong>
+          <p>Go to IAM > Users in the AWS Console.</p>
+          <p>Select an existing user or create a new user based on your requirements.</p>
+          <p>Assign the necessary permissions to the user based on your intended use of the tool:</p>
+          <ul>
+            <li>For full access: Attach the AdministratorAccess policy.</li>
+            <li>For specific actions: Attach policies like EC2FullAccess, S3FullAccess, etc., depending on your requirements.</li>
+          </ul>
+          <p>Once permissions are set, generate Access Keys for the user:</p>
+          <ul>
+            <li>AWS will provide an Access Key ID and a Secret Access Key.</li>
+            <li>Save these credentials securely as they will be required in the next step.</li>
+          </ul>
+        </li>
+        <li><strong>Configure AWS Credentials in DevOps-Bot:</strong>
+          <p>Use the <code>dob aws config</code> command to configure AWS credentials for DevOps-Bot. This step encrypts and securely stores the credentials for the tool.</p>
+          <pre><code class="language-bash">dob aws config --ak &lt;AWS_ACCESS_KEY_ID&gt; --sk &lt;AWS_SECRET_ACCESS_KEY&gt; --r &lt;AWS_REGION&gt;</code></pre>
+          <p>Example:</p>
+          <pre><code class="language-bash">dob aws config --ak AKIAXYKJR4FJOVTNE5BQ --sk mXD+BrnXV/xsVB6T+IQ+hrTtNZmATFUmc5HAU6j8 --r us-east-1</code></pre>
+        </li>
+        <li><strong>Output of AWS Configuration:</strong>
+          <p>Once the above command is executed successfully, you will see the following output:</p>
+          <pre><code>AWS credentials encrypted and saved locally.
+AWS credentials configured successfully.</code></pre>
+        </li>
+        <li><strong>Verify the Configuration:</strong>
+          <p>To ensure the AWS configuration is working as expected:</p>
+          <ul>
+            <li>Run a sample AWS operation using DevOps-Bot or use the <code>dob</code> command to check for available AWS options.</li>
+            <li>Ensure the configured region and credentials align with your AWS account.</li>
+          </ul>
+        </li>
+      </ol>
+      <h3>Notes:</h3>
+      <ul>
+        <li><strong>Permissions:</strong> Ensure the IAM user has sufficient permissions for your use case. Lack of permissions might lead to failures when using AWS services.</li>
+        <li><strong>Encryption:</strong> The tool encrypts and securely stores your AWS credentials. You don't need to reconfigure unless credentials are rotated or updated.</li>
+        <li><strong>Region:</strong> Choose the AWS region where your resources are located or where you plan to deploy.</li>
+      </ul>
+      <p>End of Guide</p>
+      <p>You have successfully configured AWS credentials in DevOps-Bot. If you encounter any issues, feel free to reach out or refer to the troubleshooting section of the user manual.</p>
     </section>
 
     <section class="docker-swarm">
@@ -398,6 +456,16 @@
       <h2>Security</h2>
       <p>The tool ensures secure handling of AWS credentials by leveraging environment variables or configuration files for authentication. Commands requiring sensitive information, such as IAM roles or key pairs, prompt users to follow AWS best practices.</p>
     </section>
+    <br>
+    <section class="installation-photo">
+      <h3>Installation Steps PDF Reference for AWS configuration</h3>
+      <p>For detailed installation steps, please refer to the PDF documentation:</p>
+      <br>
+      <object data="styles/assets/images/configuration.pdf" type="application/pdf" width="100%" height="600px">
+        <p>Your browser does not support PDFs. <a href="styles/assets/images/configuration.pdf" target="_blank">Download the PDF</a>.</p>
+      </object>
+    </section>  
+
 
     <!-- Additional Sections -->
   </main>

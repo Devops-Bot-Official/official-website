@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps-Bot | Introduction</title>
-  <link rel="stylesheet" href="styles/main.css">
+  <title>DevOps-Bot | DevOps-Bot UI </title>
+  <link rel="stylesheet" href="styles/installation.css">
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
 <body class="official">
@@ -145,60 +145,178 @@
   </aside>
 
   <!-- Main Content Area -->
-  <main class="main-content official">
+  <main class="main-content">
     <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
-      <h1>Welcome to DevOps-Bot</h1>
-      <p>Your all-in-one Infrastructure-as-a-Service tool.</p>
+      <h1>DevOps-Bot UI</h1>
     </section>
 
-    <div class="introduction-container">
-      <section id="introduction" class="introduction">
-        <h2>DevOps-Bot Architecture</h2>
-        <p>DevOps-Bot (DOB) is a multi-task automation tool designed for provisioning, configuration, CI/CD pipelines, and monitoring. It simplifies complex DevOps processes by offering an agentless, modular, and extensible framework with both CLI and UI support. Below is an overview of its architecture and key components:</p>
-        <p><strong>Centralized DOB Server</strong></p>
-        <p>Acts as the core hub, managing all interactions and processes. Handles metric scraping, configuration, provisioning, CI/CD, and task execution.</p>
-        
-        <h3>Key Features and Functions</h3>
-        <ul>
-          <li><strong>Cloud Provisioning:</strong> Uses Cloud API Functions for instance creation. Injects SSH keys into instances during provisioning.</li>
-          <li><strong>Configuration Management:</strong> Managed by the Infraset function. Uses injected SSH keys to connect and execute tasks on remote servers. Supports Bash, SH, and Python scripts.</li>
-          <li><strong>CI/CD (Infracircle):</strong> Responsible for managing pipelines and deploying applications. Utilizes SH scripts for automating CI/CD tasks.</li>
-          <li><strong>Kubernetes Deployment (DKS):</strong> Manages containerized application deployments. Interfaces with Kubernetes clusters.</li>
-          <li><strong>Kubernetes Service (dks - DOB Kubernetes Service):</strong> DOB integrates Kubernetes orchestration using dks (DOB Kubernetes Service). This function allows users to manage Kubernetes clusters and deploy containerized applications, similar to services like AWS Elastic Kubernetes Service (EKS).</li>
-          <li><strong>RBAC (Persona):</strong> Provides token-based authentication for secure task execution. Generates public/private keys and tokens for CLI users.</li>
-          <li><strong>Monitoring (DOBP):</strong> Scrapes metrics from remote servers. Sends data over HTTP/HTTPS to the DOB Server for visualization. Provides graphical monitoring in the UI.</li>
-          <li><strong>Webhooks:</strong> Allows external systems to trigger actions or receive updates.</li>
-        </ul>
-        
-        <h3>User Interfaces</h3>
-        <ul>
-          <li><strong>CLI:</strong> Enables users to execute tasks remotely via token authentication.</li>
-          <li><strong>UI:</strong> Offers a graphical interface for task execution and monitoring.</li>
-        </ul>
-        
-        <h3>Key Interactions</h3>
-        <ul>
-          <li><strong>SSH:</strong> Injected into provisioned instances for secure connections.</li>
-          <li><strong>HTTP/HTTPS:</strong> Used for monitoring data transmission from remote servers to the DOB Server.</li>
-          <li><strong>Cloud APIs:</strong> Facilitate provisioning and management of cloud resources.</li>
-        </ul>
+    <section class="docker-swarm">
+      <h2>User Guide: Using the DevOps-Bot UI</h2>
+      <p>The DevOps-Bot UI provides a graphical interface for managing and automating tasks. The steps to access and use the UI vary depending on how you're running DevOps-Bot. Below is a comprehensive guide to get you started.</p>
 
-        <h3>Summary</h3>
-        <p>DevOps-Bot (DOB) simplifies automation, orchestration, and CI/CD with its agentless architecture, YAML-based configuration, and modular design. Its key components—such as screenplays, modules, plugins, and CI/CD pipelines—provide a unified solution for managing complex DevOps workflows. With support for major cloud providers, Kubernetes integration, real-time monitoring, and extensibility through custom plugins, DOB is a powerful tool for DevOps teams looking to automate infrastructure, deployments, and monitoring at scale.</p>
-      </section>
-    </div>
+      <h3>Running DevOps-Bot in a Container</h3>
+      <h4>Accessing the UI:</h4>
+      <ol>
+        <li>Copy the public IP address of the server or instance where the container is running.</li>
+        <li>Open your browser and navigate to:
+          <pre><code class="language-arduino">http://&lt;PUBLIC_IP&gt;:4102</code></pre>
+          <p>Replace <code>&lt;PUBLIC_IP&gt;</code> with the actual public IP address or domain of your container.</p>
+          <p>If you're using a domain, replace <code>&lt;PUBLIC_IP&gt;</code> with your domain name.</p>
+        </li>
+      </ol>
+      <p>For more information about setting up and running DevOps-Bot in a container, refer to the installation guide: <a href="installation.html">Container Installation Guide</a>.</p>
 
-    <section class="features">
-      <!-- Key Features Content Here -->
+      <h3>Running DevOps-Bot on Linux</h3>
+      <h4>Steps to Install and Access DevOps-Bot UI</h4>
+      <h5>Create an Installation Script</h5>
+      <p>Save the following script as <code>install_devops_bot.sh</code>:</p>
+      <pre><code class="language-bash">
+#!/bin/bash
+
+# Exit immediately if any command fails
+set -e
+
+# Function to display a stage
+function show_stage() {
+  echo -e "\n\033[1;32m>>> $1\033[0m"
+}
+
+# Function to install a package
+function install_package() {
+  if ! command -v "$1" &>/dev/null; then
+    show_stage "Installing $1..."
+    if [ "$PACKAGE_MANAGER" == "apt-get" ]; then
+      apt-get install -y "$2"
+    elif [ "$PACKAGE_MANAGER" == "yum" ] || [ "$PACKAGE_MANAGER" == "dnf" ]; then
+      $PACKAGE_MANAGER install -y "$2"
+    else
+      echo "Unsupported package manager."
+      exit 1
+    fi
+  else
+    echo "$1 is already installed."
+  fi
+}
+
+# Step 1: Detect the operating system and package manager
+show_stage "Checking operating system..."
+if [ -f "/etc/debian_version" ]; then
+  PACKAGE_MANAGER="apt-get"
+  update_command="apt-get update -y"
+elif [ -f "/etc/os-release" ]; then
+  . /etc/os-release
+  if [[ "$ID" == "amzn" ]]; then
+    # Amazon Linux
+    PACKAGE_MANAGER="yum"
+    update_command="yum update -y"
+  elif [[ "$ID_LIKE" == *"rhel"* ]] || [[ "$ID" == "centos" ]] || [[ "$ID" == "fedora" ]]; then
+    # RHEL-based distributions
+    if command -v dnf &>/dev/null; then
+      PACKAGE_MANAGER="dnf"
+      update_command="dnf update -y"
+    else
+      PACKAGE_MANAGER="yum"
+      update_command="yum update -y"
+    fi
+  else
+    echo "Unsupported operating system."
+    exit 1
+  fi
+else
+  echo "Unsupported operating system."
+  exit 1
+fi
+
+# Step 2: Update and install prerequisites
+show_stage "Updating package list and installing prerequisites..."
+eval "$update_command"
+install_package "wget" "wget"
+install_package "pip3" "python3-pip"
+
+# Step 3: Download the .whl file
+WHL_URL="https://raw.githubusercontent.com/Devops-Bot-Official/DOB-Installation-Package/master/devops_bot-0.1-py3-none-any.whl"
+WHL_FILE="devops_bot-0.1-py3-none-any.whl"
+
+show_stage "Downloading the package..."
+wget -q "$WHL_URL" -O "$WHL_FILE"
+
+# Step 4: Install the package
+show_stage "Installing the package..."
+pip3 install "$WHL_FILE"
+
+# Step 5: Install Flask-SocketIO (if needed)
+show_stage "Installing Flask-SocketIO..."
+pip3 install flask_socketio
+
+# Step 6: Clean up
+show_stage "Cleaning up..."
+rm -f "$WHL_FILE"
+
+# Final message
+show_stage "Installation complete!"
+      </code></pre>
+
+      <h5>Run the Installation Script</h5>
+      <pre><code class="language-bash">
+chmod +x install_devops_bot.sh
+./install_devops_bot.sh
+      </code></pre>
+
+      <h5>Access the UI</h5>
+      <p>Start the service:</p>
+      <pre><code class="language-bash">systemctl start devops-bot</code></pre>
+      <p>Navigate to your browser and open:</p>
+      <pre><code class="language-arduino">http://&lt;YOUR_SERVER_IP&gt;:4102</code></pre>
+
+      <h4>UI Registration and Login</h4>
+      <h5>Registration:</h5>
+      <ol>
+        <li>On the UI homepage, navigate to the Registration Page.</li>
+        <li>Fill in the required fields:
+          <ul>
+            <li>Name</li>
+            <li>Username</li>
+            <li>Password</li>
+            <li>Email</li>
+          </ul>
+        </li>
+        <li>Submit the registration form.</li>
+      </ol>
+
+      <h5>Login:</h5>
+      <ol>
+        <li>Return to the Login Page and enter your registered username and password.</li>
+        <li>When prompted for a token:
+          <ul>
+            <li>Go to the CLI and run the following command:</li>
+            <pre><code class="language-bash">dob generate-token --username &lt;your_username&gt;</code></pre>
+            <li>Copy the generated Base64 token and paste it into the token field on the login page.</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h5>Successful Login:</h5>
+      <p>After providing the token, you will be logged into the DevOps-Bot UI.</p>
+
+      <h4>More Information</h4>
+      <ul>
+        <li><strong>Tutorials:</strong> For detailed tutorials about using the UI features, refer to the DevOps-Bot Documentation.</li>
+        <li><strong>Troubleshooting:</strong> If you encounter issues, ensure prerequisites like Flask-SocketIO are installed.</li>
+      </ul>
+      <p>This guide ensures that users on any platform (container or Linux-based systems) can set up and use the DevOps-Bot UI seamlessly.</p>
     </section>
-
+    <br>
+    <section class="installation-photo">
+      <h3>Installation Steps PDF Reference for Devops-Bot UI</h3>
+      <p>For detailed installation steps, please refer to the PDF documentation:</p>
+      <br>
+      <object data="styles/assets/images/ui-doc.pdf" type="application/pdf" width="100%" height="600px">
+        <p>Your browser does not support PDFs. <a href="styles/assets/images/ui-doc.pdf" target="_blank">Download the PDF</a>.</p>
+      </object>
+    </section>  
     <!-- Additional Sections -->
   </main>
-  <!-- Add GIF Link Here -->
-  <section class="video" style="text-align: center; margin-top: 20px;">
-    <h2>Watch the DevOpss Overview</h2>
-    <img src="styles/assets/images/DEVOPS-BOT (1).gif" alt="InfraCycle Overview" width="760" height="600">
-  </section>
+  
   <footer class="footer">
     <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
   </footer>
@@ -225,51 +343,8 @@
       });
     }
 
-    function performSidebarSearch() {
-      const query = document.getElementById('sidebar-search-input').value.toLowerCase();
-      const links = document.querySelectorAll('.sidebar a');
-
-      links.forEach(link => {
-        if (link.textContent.toLowerCase().includes(query)) {
-          link.style.display = 'block';
-        } else {
-          link.style.display = 'none';
-        }
-      });
-    }
-
-    function showSuggestions() {
-      const query = document.getElementById('sidebar-search-input').value.toLowerCase();
-      const links = document.querySelectorAll('.sidebar a');
-      const suggestions = document.getElementById('suggestions');
-      suggestions.innerHTML = '';
-
-      if (query === '') {
-        suggestions.style.display = 'none';
-        return;
-      }
-
-      suggestions.style.display = 'block';
-
-      links.forEach(link => {
-        if (link.textContent.toLowerCase().includes(query)) {
-          const suggestion = document.createElement('div');
-          suggestion.textContent = link.textContent;
-          suggestion.classList.add('suggestion-item');
-          suggestion.onclick = () => {
-            link.scrollIntoView();
-            link.style.backgroundColor = '#f0f0f0';
-            setTimeout(() => {
-              link.style.backgroundColor = '';
-            }, 2000);
-          };
-          suggestions.appendChild(suggestion);
-        }
-      });
-    }
-
     function navigateHome() {
-      window.location.href = 'index.html';
+      window.location.href = 'Home.html';
     }
 
     function navigateOfficialWebsite() {

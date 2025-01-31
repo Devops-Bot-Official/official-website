@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps-Bot | Docker Swarm</title>
+  <title>DevOps-Bot | DOB-HOST-CLI</title>
   <link rel="stylesheet" href="styles/installation.css">
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
@@ -147,93 +147,105 @@
   
   <!-- Main Content Area -->
   <main class="main-content">
-    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
-      <h1>Docker Swarm</h1>
-      <p>Automated provisioning and configuration of Docker Swarm clusters.</p>
-    </section>
-
-    <section class="docker-swarm">
-      <h2>Commands: swarm config, swarm attach-worker</h2>
-      <p>This feature introduces automated provisioning and configuration of Docker Swarm clusters, including both manager and worker nodes. The setup involves creating EC2 instances, initializing Docker Swarm, and joining worker nodes to the cluster.</p>
-      
-      <h3>Key Highlights:</h3>
-      <ol>
-        <li><strong>Swarm Configuration Command</strong>
-          <ul>
-            <li><strong>Command:</strong> dob swarm config</li>
-            <li><strong>Functionality:</strong>
-              <ul>
-                <li>Reads a YAML configuration file specifying manager and worker nodes.</li>
-                <li>Automatically provisions EC2 instances for the Swarm cluster.</li>
-                <li>Initializes the manager node and retrieves the join token.</li>
-                <li>Joins worker nodes to the cluster using the manager's token.</li>
-                <li>Saves the join token locally for future use.</li>
-              </ul>
-            </li>
-            <li><strong>Error Handling:</strong>
-              <ul>
-                <li>Handles missing or invalid configuration files.</li>
-                <li>Provides detailed error messages if EC2 provisioning or Docker Swarm initialization fails.</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li><strong>Attach New Worker Nodes</strong>
-          <ul>
-            <li><strong>Command:</strong> dob swarm attach-worker</li>
-            <li><strong>Functionality:</strong>
-              <ul>
-                <li>Allows attaching additional worker nodes to an existing Swarm cluster.</li>
-                <li>Fetches the manager IP from the hosts file.</li>
-                <li>Joins the new worker nodes using the existing manager's join token.</li>
-              </ul>
-            </li>
-            <li><strong>Error Handling:</strong>
-              <ul>
-                <li>Ensures that the manager node is properly detected before attempting to attach workers.</li>
-                <li>Provides clear feedback in case of failures during the join process.</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li><strong>Swarm Task Execution</strong>
-          <ul>
-            <li><strong>Functionality:</strong>
-              <ul>
-                <li>Defines default tasks for both manager and worker nodes.</li>
-                <li>Executes tasks with retry logic to handle transient errors.</li>
-                <li>Supports custom tasks by modifying the task definitions.</li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ol>
-
-      <h3>Example YAML Configuration:</h3>
-      <pre><code class="language-yaml">
-manager:
-  name: swarm-manager
-  instance_type: t2.medium
-  key_name: my-ssh-key
-  security_group: my-security-group
-workers:
-  name: swarm-worker
-  instance_type: t2.small
-  key_name: my-ssh-key
-  security_group: my-security-group
-  count: 3
-      </code></pre>
-
-      <h3>Example Usage:</h3>
-      <pre><code class="language-bash">
-dob swarm config --file-path /path/to/config.yaml
-dob swarm attach-worker --file-path /path/to/new-workers-config.yaml
-      </code></pre>
-    </section>
-
-    <!-- Additional Sections -->
-  </main>
-  
+      <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+        <h1>DOB Host CLI - User Guide</h1>
+        <p>The DOB Host CLI is a powerful command-line interface that allows users to execute and manage tasks on the DevOps-Bot host server. This guide provides an overview of the CLI, its commands, and how to navigate its features effectively.</p>
+      </section>
+    
+      <section class="docker-swarm">
+        <h2>Overview of DOB Host CLI</h2>
+        <p>The DOB Host CLI is a feature-rich tool designed for remote task execution and infrastructure management. It supports a variety of cloud providers, orchestration tools, and automation frameworks. Follow the guide below to get started.</p>
+    
+        <h3>Pre-requisites</h3>
+        <h4>Ensure DevOps-Bot is Installed:</h4>
+        <p>Before using the CLI, ensure that the DevOps-Bot (DOB) is installed on your system. For detailed installation instructions, refer to the <a href="install.html">DevOps-Bot Installation Guide</a>.</p>
+    
+        <h3>Basic Commands</h3>
+        <p>After installing DevOps-Bot, you can check the version, available commands, and their options using the following commands:</p>
+        <ul>
+          <li>Check the version of DevOps-Bot:</li>
+          <pre><code class="language-bash">dob --version</code></pre>
+          <p>Example output:</p>
+          <pre><code>
+    devops-bot, version 0.1
+    Python Version: 3.9.21
+    Operating System: Linux 5.14.0-229.el9.x86_64
+          </code></pre>
+    
+          <li>List available commands and options:</li>
+          <pre><code class="language-bash">dob --help</code></pre>
+          <p>Example output:</p>
+          <pre><code>
+    Usage: dob [OPTIONS] COMMAND [ARGS]...
+    
+    Options:
+      --v, --version  Show version of the devops-bot tool.
+      --debug         Enable debug mode to show full error tracebacks.
+      --help          Show this message and exit.
+    
+    Commands:
+      activation               Activate context for Kubernetes or Docker...
+      aws                      Commands to manage AWS resources.
+      azure                    Commands to manage Azure resources.
+      gcp                      Commands to manage GCP resources.
+      generate-token           Generate a token for a user.
+      run-ui                   Run the UI for the screenplay.
+      ...
+          </code></pre>
+        </ul>
+    
+        <h3>Common Use Case: Managing AWS Resources</h3>
+        <p>For managing AWS resources, use the following commands:</p>
+        <ul>
+          <li>View available AWS commands:</li>
+          <pre><code class="language-bash">dob aws --help</code></pre>
+          <p>Example output:</p>
+          <pre><code>
+    Usage: dob aws [OPTIONS] COMMAND [ARGS]...
+    
+    Commands:
+      add-user-to-group         Add a user to an IAM group.
+      create-ec2-instance       Create an EC2 instance.
+      create-s3-bucket          Create an S3 bucket.
+      describe-ec2-instances    Describe EC2 instances.
+      upload-s3-file            Upload a file to an S3 bucket.
+      ...
+          </code></pre>
+    
+          <li>Example: Create an S3 bucket:</li>
+          <pre><code class="language-bash">dob aws create-s3-bucket --name my-s3-bucket --region us-east-1</code></pre>
+    
+          <li>Example: Describe EC2 instances:</li>
+          <pre><code class="language-bash">dob aws describe-ec2-instances</code></pre>
+        </ul>
+    
+        <h3>Outputs and Variables</h3>
+        <p>You can view or export output variables from tasks using the `outputs` command:</p>
+        <ul>
+          <li>View output variables:</li>
+          <pre><code class="language-bash">dob aws outputs</code></pre>
+    
+          <li>Export output variables to a file:</li>
+          <pre><code class="language-bash">dob aws outputs --export-file /path/to/output.json</code></pre>
+    
+          <li>Import output variables from a file:</li>
+          <pre><code class="language-bash">dob aws outputs --import-file /path/to/output.json</code></pre>
+        </ul>
+    
+        <h3>Debugging and Help</h3>
+        <p>Enable debug mode to view detailed error messages:</p>
+        <pre><code class="language-bash">dob --debug</code></pre>
+        <p>Get help for specific commands:</p>
+        <pre><code class="language-bash">dob <command> --help</code></pre>
+    
+        <h3>Notes</h3>
+        <ul>
+          <li>Ensure you have the appropriate permissions and credentials for the tasks you want to execute.</li>
+          <li>Refer to the detailed documentation for each command using the `--help` option.</li>
+          <li>Debug mode can be useful for troubleshooting issues during execution.</li>
+        </ul>
+      </section>
+    </main>
     <footer class="footer">
         <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
       </footer>

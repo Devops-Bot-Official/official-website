@@ -26,132 +26,264 @@
   </header>
 
   <!-- Sidebar (optional) -->
-    <!-- Sidebar (optional) -->
-    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
-      <div class="search-bar">
-        <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
-        <div id="suggestions" class="suggestions"></div>
-        <button onclick="performSidebarSearch()">Search</button>
-      </div>
-      <ul>
-        <li><a href="officialwebsite.html">Introduction</a></li>
-        <li>
-          <a href="#" onclick="toggleNested(event)">Getting Started</a>
-          <ul class="nested">
-            <li><a href="installation.html">Installation</a></li>
-            <li><a href="uninstall.html">Uninstall</a></li>
-            <li><a href="#">Requirements</a></li>
-            <li><a href="#">Best Practices</a></li>
-            <li>
-              <a href="#" onclick="toggleNested(event)">Functions</a>
-              <ul class="nested">
-                <li><a href="webhook.html">Webhook</a></li>
-                <li><a href="persona.html">Persona</a></li>
-                <li><a href="infracred.html">Infrascrid</a></li>
-                <li><a href="vault.html">Vault</a></li>
-                <li><a href="plugins.html">Plugins</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleNested(event)">User Interfaces</a>
-              <ul class="nested">
-                <li><a href="#">Host CLI</a></li>
-                <li><a href="#">Remote CLI</a></li>
-                <li><a href="#">UI</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" onclick="toggleNested(event)">Features</a>
-          <ul class="nested">
-            <li>
-              <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
-              <ul class="nested">
-                <li><a href="infracircle.html">InfraCycle</a></li>
-                <li><a href="dobp.html">DOBProxy</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleNested(event)">Provisioning</a>
-              <ul class="nested">
-                <li><a href="screenplay.html">Screenplay</a></li>
-              </ul>
-            </li>                             
-            <li>
-              <a href="#" onclick="toggleNested(event)">Configuration</a>
-              <ul class="nested">
-                <li><a href="infraset.html">InfraSet</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" onclick="toggleNested(event)">Providers</a>
-          <ul class="nested">
-            <li>
-              <a href="#" onclick="toggleNested(event)">AWS</a>
-              <ul class="nested">
-                <li><a href="aws.html">Configuration</a></li>
-                <li>
-                  <a href="#" onclick="toggleNested(event)">Commands</a>
-                  <ul class="nested">
-                    <li><a href="#">Imperative</a></li>
-                    <li><a href="#">Declarative</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleNested(event)">Azure</a>
-              <ul class="nested">
-                <li><a href="azure.html">Configuration</a></li>
-                <li>
-                  <a href="#" onclick="toggleNested(event)">Commands</a>
-                  <ul class="nested">
-                    <li><a href="#">Imperative</a></li>
-                    <li><a href="#">Declarative</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleNested(event)">GCP</a>
-              <ul class="nested">
-                <li><a href="gcp.html">Configuration</a></li>
-                <li>
-                  <a href="#" onclick="toggleNested(event)">Commands</a>
-                  <ul class="nested">
-                    <li><a href="#">Imperative</a></li>
-                    <li><a href="#">Declarative</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
-          <ul class="nested">
-            <li><a href="ansible.html">Ansible</a></li>
-            <li><a href="Kubernetes.html">Kubernetes</a></li>
-            <li><a href="dockerswarm.html">Docker Swarm</a></li>
-            <li><a href="jenkins.html">Jenkins</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Use Cases</a></li>
-        <li><a href="#">API Reference</a></li>
-        <li><a href="#">Release Notes</a></li>
-      </ul>
-    </aside>
-  
- <!-- Main Content Area -->
-<main class="main-content">
-  <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <div class="search-bar">
+      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+      <div id="suggestions" class="suggestions"></div>
+      <button onclick="performSidebarSearch()">Search</button>
+    </div>
+    <ul>
+      <li><a href="officialwebsite.html">Introduction</a></li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+        <ul class="nested">
+          <li><a href="installation.html">Installation</a></li>
+          <li><a href="uninstall.html">Uninstall</a></li>
+          <li><a href="#">Requirements</a></li>
+          <li><a href="#">Best Practices</a></li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Functions</a>
+            <ul class="nested">
+              <li><a href="webhook.html">Webhook</a></li>
+              <li><a href="persona.html">Persona</a></li>
+              <li><a href="infracred.html">Infrascrid</a></li>
+              <li><a href="vault.html">Vault</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+            <ul class="nested">
+              <li><a href="dob-host-cli.html">Host CLI</a></li>
+              <li><a href="dob-cli.html">Remote CLI</a></li>
+              <li><a href="ui.html">UI</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Features</a>
+        <ul class="nested">
+          <li>
+            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+            <ul class="nested">
+              <li><a href="infracircle.html">InfraCycle</a></li>
+              <li><a href="dobp.html">DOBProxy</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Provisioning</a>
+            <ul class="nested">
+              <li><a href="screenplay.html">Screenplay</a></li>
+            </ul>
+          </li>                             
+          <li>
+            <a href="#" onclick="toggleNested(event)">Configuration</a>
+            <ul class="nested">
+              <li><a href="infraset.html">InfraSet</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Providers</a>
+        <ul class="nested">
+          <li>
+            <a href="#" onclick="toggleNested(event)">AWS</a>
+            <ul class="nested">
+              <li><a href="aws.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Azure</a>
+            <ul class="nested">
+              <li><a href="azure.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">GCP</a>
+            <ul class="nested">
+              <li><a href="gcp.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+        <ul class="nested">
+          <li><a href="ansible.html">Ansible</a></li>
+          <li><a href="Kubernetes.html">Kubernetes</a></li>
+          <li><a href="dockerswarm.html">Docker Swarm</a></li>
+          <li><a href="jenkins.html">Jenkins</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Use Cases</a></li>
+      <li><a href="#">API Reference</a></li>
+      <li><a href="#">Release Notes</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
       <h1>Azure Management Tool - User Guide</h1>
       <p>Manage Azure resources efficiently using declarative YAML configurations and imperative CLI commands. This guide provides a comprehensive overview of both approaches, empowering users to choose the method that suits their needs best.</p>
     </section>
   
+    <section class="docker-swarm">
+      <h2>User Guide: Azure Configuration with DevOps-Bot</h2>
+      <p>This guide walks you through the process of configuring DevOps-Bot to work with Azure. Follow the steps below to ensure a successful configuration.</p>
+  
+      <h3>Pre-requisites</h3>
+      <h4>Ensure DevOps-Bot is Installed:</h4>
+      <p>Before proceeding, make sure that DevOps-Bot (dobe) is installed on your instance. Refer to the <a href="installation.html">DevOps-Bot Installation Guide</a> for detailed installation instructions.</p>
+  
+      <h4>Azure Instance:</h4>
+      <p>Verify that you have an Azure instance created and accessible.</p>
+  
+      <h3>Step 1: Generate Azure Credentials</h3>
+      <h4>Log into Azure Portal:</h4>
+      <p>Go to <a href="https://portal.azure.com/">Azure Portal</a>. Navigate to the <strong>Azure Active Directory</strong> section.</p>
+  
+      <h4>Create a Service Principal:</h4>
+      <ol>
+        <li>Go to <strong>App registrations</strong> > <strong>New registration</strong>.</li>
+        <li>Provide the following details:
+          <ul>
+            <li><strong>Name:</strong> Enter a descriptive name (e.g., DevOps-Bot).</li>
+            <li><strong>Supported Account Types:</strong> Select an appropriate option based on your use case.</li>
+          </ul>
+        </li>
+        <li>Click <strong>Register</strong>.</li>
+      </ol>
+  
+      <h4>Generate Client Secret:</h4>
+      <ol>
+        <li>After registration, go to the <strong>Certificates & Secrets</strong> tab.</li>
+        <li>Click <strong>New Client Secret</strong>, provide a description, and set an expiration date.</li>
+        <li>Save the generated secret value (you won’t be able to view it again).</li>
+      </ol>
+  
+      <h4>Assign Role Permissions:</h4>
+      <ol>
+        <li>Go to <strong>Subscriptions</strong> and select the subscription where you want DevOps-Bot to operate.</li>
+        <li>Click <strong>Access Control (IAM)</strong> > <strong>Add Role Assignment</strong>.</li>
+        <li>Assign appropriate roles (e.g., <strong>Contributor</strong>) to the service principal you created.</li>
+      </ol>
+  
+      <h4>Download Credentials:</h4>
+      <p>Navigate to the <strong>Overview</strong> tab of your application registration. Save the following details:</p>
+      <ul>
+        <li>Application (Client) ID</li>
+        <li>Directory (Tenant) ID</li>
+        <li>Client Secret (from Step 3)</li>
+      </ul>
+      <p>Combine these details into a JSON file in the following format:</p>
+      <pre><code class="language-json">
+  {
+    "clientId": "YOUR_CLIENT_ID",
+    "tenantId": "YOUR_TENANT_ID",
+    "clientSecret": "YOUR_CLIENT_SECRET",
+    "subscriptionId": "YOUR_SUBSCRIPTION_ID"
+  }
+      </code></pre>
+  
+      <h3>Step 2: Configure Azure in DevOps-Bot</h3>
+      <h4>Transfer the JSON File to Your Instance:</h4>
+      <p>Copy the JSON file with Azure credentials to your instance where DevOps-Bot is installed.</p>
+  
+      <h4>Initialize DevOps-Bot:</h4>
+      <p>Run the following command to initialize the tool and create necessary files:</p>
+      <pre><code class="language-bash">dob brood --init</code></pre>
+  
+      <h4>Configure Azure Credentials:</h4>
+      <p>Use the <code>dob azure config</code> command to configure Azure with the JSON file:</p>
+      <pre><code class="language-bash">dob azure config --file-path &lt;path_to_json_file&gt;</code></pre>
+      <p>Example:</p>
+      <pre><code class="language-bash">dob azure config --file-path /root/azure_credentials.json</code></pre>
+      <p>If the credentials are valid, you’ll see the following messages:</p>
+      <pre><code>Azure credentials saved successfully.
+  Azure credentials configured successfully.</code></pre>
+  
+      <h3>Step 3: Test Azure Configuration</h3>
+      <h4>Create a YAML Configuration File:</h4>
+      <p>Create a file named <code>subnet.yaml</code> with the following content:</p>
+      <pre><code class="language-yaml">
+  resources:
+    subnets:
+      - name: my-subnet-2
+        region: eastus
+        resource_group: dev-resources
+        vnet_name: my-vnet
+        address_prefix: 10.0.1.0/24
+        tags:
+          - key: environment
+            value: development
+          - key: project
+            value: azure-automation
+      </code></pre>
+  
+      <h4>Run the Configuration File:</h4>
+      <p>Use the <code>dob azure screenplay</code> command to execute the configuration:</p>
+      <pre><code class="language-bash">dob azure screenplay subnet.yaml</code></pre>
+  
+      <h4>Review and Confirm:</h4>
+      <p>The tool will validate and lint the YAML file. A final review of actions will be displayed. For example:</p>
+      <pre><code class="language-sql">
+  +----+----------------+---------------------------------------------------------------------------------------------------+
+  |    | Category       | Value                                                                                             |
+  +====+================+===================================================================================================+
+  | +  | Subnet         | Subnet 1                                                                                          |
+  +----+----------------+---------------------------------------------------------------------------------------------------+
+  | +  | Name           | my-subnet-2                                                                                       |
+  +----+----------------+---------------------------------------------------------------------------------------------------+
+  | +  | Region         | eastus                                                                                            |
+  +----+----------------+---------------------------------------------------------------------------------------------------+
+  | +  | Address Prefix | 10.0.1.0/24                                                                                       |
+  +----+----------------+---------------------------------------------------------------------------------------------------+
+  | +  | VNet Name      | my-vnet                                                                                           |
+  +----+----------------+---------------------------------------------------------------------------------------------------+
+  | +  | Resource Group | dev-resources                                                                                     |
+  +----+----------------+---------------------------------------------------------------------------------------------------+
+  | +  | Tags           | [{'key': 'environment', 'value': 'development'}, {'key': 'project', 'value': 'azure-automation'}] |
+  +----+----------------+---------------------------------------------------------------------------------------------------+
+      </code></pre>
+      <p>When prompted, type <code>Y</code> to confirm and proceed.</p>
+  
+      <h4>Successful Execution:</h4>
+      <p>The tool will create the specified resources in Azure and save the execution state:</p>
+      <pre><code>Subnet 'my-subnet-2' created successfully with ID: /subscriptions/.......
+  Execution complete. State saved to: /etc/devops-bot/state_files/&lt;execution_file&gt;.yml</code></pre>
+  
+      <h3>Notes</h3>
+      <ul>
+        <li>Ensure the service principal has adequate permissions for the tasks you want to execute.</li>
+        <li>Use proper tags and configuration files to ensure efficient resource management.</li>
+      </ul>
+  
+      <p>This guide provides the necessary steps to configure and test Azure integration in DevOps-Bot. For further details, check the official <a href="<link_to_documentation>">DevOps-Bot Documentation</a>.</p>
+    </section>
     <section class="docker-swarm">
       <h2>Key Features</h2>
       <ul>
@@ -308,6 +440,15 @@
       <h2>Conclusion</h2>
       <p>Whether you prefer the structured approach of declarative YAML or the quick, flexible nature of imperative CLI commands, the Azure Management Tool empowers you to manage resources efficiently and effectively. Use this guide to streamline your Azure management processes.</p>
     </section>
+    <br>
+    <section class="installation-photo">
+      <h3>Installation Steps PDF Reference for Azure configuration</h3>
+      <p>For detailed installation steps, please refer to the PDF documentation:</p>
+      <br>
+      <object data="styles/assets/images/azure.pdf" type="application/pdf" width="100%" height="600px">
+        <p>Your browser does not support PDFs. <a href="styles/assets/images/azure.pdf" target="_blank">Download the PDF</a>.</p>
+      </object>
+    </section>     
   </main>
   
   <footer class="footer">

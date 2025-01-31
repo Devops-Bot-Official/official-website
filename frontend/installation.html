@@ -26,208 +26,340 @@
   </header>
 
   <!-- Sidebar (optional) -->
-    <!-- Sidebar (optional) -->
-    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
-      <div class="search-bar">
-        <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
-        <div id="suggestions" class="suggestions"></div>
-        <button onclick="performSidebarSearch()">Search</button>
-      </div>
-      <ul>
-        <li><a href="officialwebsite.html">Introduction</a></li>
-        <li>
-          <a href="#" onclick="toggleNested(event)">Getting Started</a>
-          <ul class="nested">
-            <li><a href="installation.html">Installation</a></li>
-            <li><a href="uninstall.html">Uninstall</a></li>
-            <li><a href="#">Requirements</a></li>
-            <li><a href="#">Best Practices</a></li>
-            <li>
-              <a href="#" onclick="toggleNested(event)">Functions</a>
-              <ul class="nested">
-                <li><a href="webhook.html">Webhook</a></li>
-                <li><a href="persona.html">Persona</a></li>
-                <li><a href="infracred.html">Infrascrid</a></li>
-                <li><a href="vault.html">Vault</a></li>
-                <li><a href="plugins.html">Plugins</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleNested(event)">User Interfaces</a>
-              <ul class="nested">
-                <li><a href="#">Host CLI</a></li>
-                <li><a href="#">Remote CLI</a></li>
-                <li><a href="#">UI</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" onclick="toggleNested(event)">Features</a>
-          <ul class="nested">
-            <li>
-              <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
-              <ul class="nested">
-                <li><a href="infracircle.html">InfraCycle</a></li>
-                <li><a href="dobp.html">DOBProxy</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleNested(event)">Provisioning</a>
-              <ul class="nested">
-                <li><a href="screenplay.html">Screenplay</a></li>
-              </ul>
-            </li>                             
-            <li>
-              <a href="#" onclick="toggleNested(event)">Configuration</a>
-              <ul class="nested">
-                <li><a href="infraset.html">InfraSet</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" onclick="toggleNested(event)">Providers</a>
-          <ul class="nested">
-            <li>
-              <a href="#" onclick="toggleNested(event)">AWS</a>
-              <ul class="nested">
-                <li><a href="aws.html">Configuration</a></li>
-                <li>
-                  <a href="#" onclick="toggleNested(event)">Commands</a>
-                  <ul class="nested">
-                    <li><a href="#">Imperative</a></li>
-                    <li><a href="#">Declarative</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleNested(event)">Azure</a>
-              <ul class="nested">
-                <li><a href="azure.html">Configuration</a></li>
-                <li>
-                  <a href="#" onclick="toggleNested(event)">Commands</a>
-                  <ul class="nested">
-                    <li><a href="#">Imperative</a></li>
-                    <li><a href="#">Declarative</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a href="#" onclick="toggleNested(event)">GCP</a>
-              <ul class="nested">
-                <li><a href="gcp.html">Configuration</a></li>
-                <li>
-                  <a href="#" onclick="toggleNested(event)">Commands</a>
-                  <ul class="nested">
-                    <li><a href="#">Imperative</a></li>
-                    <li><a href="#">Declarative</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
-          <ul class="nested">
-            <li><a href="ansible.html">Ansible</a></li>
-            <li><a href="Kubernetes.html">Kubernetes</a></li>
-            <li><a href="dockerswarm.html">Docker Swarm</a></li>
-            <li><a href="jenkins.html">Jenkins</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Use Cases</a></li>
-        <li><a href="#">API Reference</a></li>
-        <li><a href="#">Release Notes</a></li>
-      </ul>
-    </aside>
-  
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
-        <h1>DevOps Bot Installation</h1>
-      </section>
-  
-      <section class="installation">
-        <h2>Installation</h2>
-        <h3>Steps to Install</h3>
-        <p>There are three options for installing DevOps Bot:</p>
-        <ol>
-          <li><strong>Manual Installation:</strong>
-            <p>Follow the steps below to manually install DevOps Bot:</p>
-            <ol>
-              <li>Update your package list:
-                <pre><code class="language-bash">sudo apt-get update</code></pre>
-              </li>
-              <li>Install prerequisites:
-                <pre><code class="language-bash">sudo apt-get install -y wget python3-pip</code></pre>
-              </li>
-              <li>Download the DevOps Bot package:
-                <pre><code class="language-bash">wget https://raw.githubusercontent.com/Devops-Bot-Official/DOB-Installation-Package/master/devops_bot-0.1-py3-none-any.whl</code></pre>
-              </li>
-              <li>Install the package using pip:
-                <pre><code class="language-bash">pip3 install devops_bot-0.1-py3-none-any.whl</code></pre>
-              </li>
-              <li>Clean up the downloaded file:
-                <pre><code class="language-bash">rm devops_bot-0.1-py3-none-any.whl</code></pre>
-              </li>
-            </ol>
+  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <div class="search-bar">
+      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+      <div id="suggestions" class="suggestions"></div>
+      <button onclick="performSidebarSearch()">Search</button>
+    </div>
+    <ul>
+      <li><a href="officialwebsite.html">Introduction</a></li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+        <ul class="nested">
+          <li><a href="installation.html">Installation</a></li>
+          <li><a href="uninstall.html">Uninstall</a></li>
+          <li><a href="#">Requirements</a></li>
+          <li><a href="#">Best Practices</a></li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Functions</a>
+            <ul class="nested">
+              <li><a href="webhook.html">Webhook</a></li>
+              <li><a href="persona.html">Persona</a></li>
+              <li><a href="infracred.html">Infrascrid</a></li>
+              <li><a href="vault.html">Vault</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+            </ul>
           </li>
-          <li><strong>Installation from GitHub:</strong>
-            <p>Copy the installation script from the official GitHub repository, give it permission, and execute it:</p>
-            <pre><code class="language-bash">wget https://raw.githubusercontent.com/Devops-Bot-Official/DOB-Installation-Package/master/install_devops_bot.sh
-  chmod +x install_devops_bot.sh
-  ./install_devops_bot.sh</code></pre>
+          <li>
+            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+            <ul class="nested">
+              <li><a href="dob-cli.html">Host CLI</a></li>
+              <li><a href="dob-cli.html">Remote CLI</a></li>
+              <li><a href="ui.html">UI</a></li>
+            </ul>
           </li>
-          <li><strong>Running in a Container:</strong>
-            <p>Details about running DevOps Bot in a container will be provided later.</p>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Features</a>
+        <ul class="nested">
+          <li>
+            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+            <ul class="nested">
+              <li><a href="infracircle.html">InfraCycle</a></li>
+              <li><a href="dobp.html">DOBProxy</a></li>
+            </ul>
           </li>
-        </ol>
-        <h3>Watch the Installation Video</h3>
-        <p>Watch the video below to see the installation process in action:</p>
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/ABdQUoeyQec" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </section>
-  
-      <!-- Additional Sections -->
-    </main>
-  
-    <footer class="footer">
-        <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
-      </footer>
-    
-      <!-- JavaScript Files -->
-      <script src="scripts/main.js"></script>
-      <script>
-        function toggleNested(event) {
-          event.preventDefault();
-          const parent = event.target.parentElement;
-          parent.classList.toggle('active');
+          <li>
+            <a href="#" onclick="toggleNested(event)">Provisioning</a>
+            <ul class="nested">
+              <li><a href="screenplay.html">Screenplay</a></li>
+            </ul>
+          </li>                             
+          <li>
+            <a href="#" onclick="toggleNested(event)">Configuration</a>
+            <ul class="nested">
+              <li><a href="infraset.html">InfraSet</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Providers</a>
+        <ul class="nested">
+          <li>
+            <a href="#" onclick="toggleNested(event)">AWS</a>
+            <ul class="nested">
+              <li><a href="aws.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Azure</a>
+            <ul class="nested">
+              <li><a href="azure.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">GCP</a>
+            <ul class="nested">
+              <li><a href="gcp.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+        <ul class="nested">
+          <li><a href="ansible.html">Ansible</a></li>
+          <li><a href="Kubernetes.html">Kubernetes</a></li>
+          <li><a href="dockerswarm.html">Docker Swarm</a></li>
+          <li><a href="jenkins.html">Jenkins</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Use Cases</a></li>
+      <li><a href="#">API Reference</a></li>
+      <li><a href="#">Release Notes</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>DevOps Bot Installation</h1>
+    </section>
+
+    <section class="installation">
+      <h2>Installation</h2>
+      <h3>User Guide: How to Install DOB on Ubuntu 22.04</h3>
+      <p>Follow these steps to install DOB on an Ubuntu 22.04 system:</p>
+      <ol>
+        <li><strong>Update the Package List:</strong>
+          <p>Update the package list to ensure you have the latest versions of all repositories:</p>
+          <pre><code class="language-bash">sudo apt-get update</code></pre>
+        </li>
+        <li><strong>Install Required Dependencies:</strong>
+          <p>Install Python pip and Git:</p>
+          <pre><code class="language-bash">sudo apt install -y python3-pip git</code></pre>
+        </li>
+        <li><strong>Clone the DOB Installation Package:</strong>
+          <p>Clone the official DOB Installation Package repository from GitHub:</p>
+          <pre><code class="language-bash">git clone https://github.com/Devops-Bot-Official/DOB-Installation-Package.git</code></pre>
+        </li>
+        <li><strong>Navigate to the Installation Directory:</strong>
+          <p>Move into the directory where the installation package is located:</p>
+          <pre><code class="language-bash">cd DOB-Installation-Package</code></pre>
+        </li>
+        <li><strong>Install the DOB Package:</strong>
+          <p>Use pip to install the devops-bot package:</p>
+          <pre><code class="language-bash">pip install devops_bot-0.1-py3-none-any.whl</code></pre>
+        </li>
+        <li><strong>Verify the Installation:</strong>
+          <p>Run the following command to verify the installation and view the available commands:</p>
+          <pre><code class="language-bash">dob --help</code></pre>
+        </li>
+      </ol>
+      <h3>Troubleshooting</h3>
+      <p><strong>Command Not Found:</strong></p>
+      <p>If you get <code>Command 'dob' not found</code>, ensure <code>/usr/local/bin</code> is in your PATH:</p>
+      <pre><code class="language-bash">export PATH=$PATH:/usr/local/bin
+echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
+source ~/.bashrc</code></pre>
+      <p><strong>Permission Issues:</strong></p>
+      <p>Use <code>sudo</code> with commands if you encounter permission issues during the installation.</p>
+      <p><strong>Dependencies Missing:</strong></p>
+      <p>Install additional dependencies using:</p>
+      <pre><code class="language-bash">pip install --upgrade flask_socketio oauthlib requests_oauthlib</code></pre>
+      <p>Once the installation is complete, you're ready to start using DOB.</p>
+    </section>
+
+    <section class="installation">
+      <h3>User Guide: How to Install DOB on CentOS/Amazon Linux </h3>
+      <p>Follow these steps to install DOB on an CentOS/Amazon Linux system:</p>
+      <ol>
+        <li><strong>Update the System:</strong>
+          <p>Update the system's package list to ensure all installed packages are up-to-date:</p>
+          <pre><code class="language-bash">sudo yum update -y</code></pre>
+        </li>
+        <li><strong>Install Required Dependencies:</strong>
+          <p>Install Python pip and Git:</p>
+          <pre><code class="language-bash">sudo yum install -y python3-pip git</code></pre>
+        </li>
+        <li><strong>Clone the DOB Installation Package:</strong>
+          <p>Clone the official DOB Installation Package repository from GitHub:</p>
+          <pre><code class="language-bash">git clone https://github.com/Devops-Bot-Official/DOB-Installation-Package.git</code></pre>
+        </li>
+        <li><strong>Navigate to the Installation Directory:</strong>
+          <p>Move into the directory where the installation package is located:</p>
+          <pre><code class="language-bash">cd DOB-Installation-Package</code></pre>
+        </li>
+        <li><strong>Install the DOB Package:</strong>
+          <p>Run the following command to install the DOB package:</p>
+          <pre><code class="language-bash">pip install devops_bot-0.1-py3-none-any.whl</code></pre>
+        </li>
+        <li><strong>Resolve requests Dependency Issue:</strong>
+          <p>If you encounter an issue with the requests library, remove the preinstalled python3-requests package using:</p>
+          <pre><code class="language-bash">sudo rpm -e --nodeps python3-requests</code></pre>
+        </li>
+        <li><strong>Reinstall the DOB Package:</strong>
+          <p>After resolving the dependency issue, reinstall the DOB package:</p>
+          <pre><code class="language-bash">pip install devops_bot-0.1-py3-none-any.whl</code></pre>
+        </li>
+        <li><strong>Verify the Installation:</strong>
+          <p>Run the following command to verify the installation and view the available commands:</p>
+          <pre><code class="language-bash">dob --help</code></pre>
+        </li>
+      </ol>
+      <h3>Troubleshooting</h3>
+      <p><strong>Command Not Found:</strong></p>
+      <p>If you get <code>Command 'dob' not found</code>, ensure <code>/usr/local/bin</code> is in your PATH:</p>
+      <pre><code class="language-bash">export PATH=$PATH:/usr/local/bin
+echo 'export PATH=$PATH:/usr/local/bin' >> ~/.bashrc
+source ~/.bashrc</code></pre>
+      <p><strong>Dependencies Missing:</strong></p>
+      <p>Install additional dependencies using:</p>
+      <pre><code class="language-bash">pip install --upgrade flask_socketio oauthlib requests_oauthlib</code></pre>
+      <p><strong>Permission Issues:</strong></p>
+      <p>Use <code>sudo</code> with commands if you encounter permission issues during the installation.</p>
+      <p>With this, DOB should be successfully installed on Amazon Linux 2023.</p>
+    </section>
+
+    <section class="installation">
+      <h3>User Guide: Installing and Running dob in a Docker Container</h3>
+      <p>This guide will walk you through installing and running dob (DevOps Bot) inside a Docker container. Follow the steps below to set up and use the tool:</p>
+      <ol>
+        <li><strong>Update the Package Index:</strong>
+          <p>Update the system's package list to ensure you have the latest versions of available packages.</p>
+          <pre><code class="language-bash">apt-get update</code></pre>
+        </li>
+        <li><strong>Install Docker:</strong>
+          <p>Install Docker on your system. Docker allows you to run containers for the dob tool.</p>
+          <pre><code class="language-bash">apt install docker.io</code></pre>
+        </li>
+        <li><strong>Check Running Containers:</strong>
+          <p>Check if Docker is running properly and list all existing containers (if any).</p>
+          <pre><code class="language-bash">docker ps -a</code></pre>
+        </li>
+        <li><strong>Pull and Run the DevOps Bot Container:</strong>
+          <p>Run the devops-bot container. This will pull the latest image from the devopsbotofficial/devops-bot Docker repository if it’s not already downloaded. The container will expose port 4102 for the tool's UI.</p>
+          <pre><code class="language-bash">docker run -itd --name devops-bot -p 4102:4102 devopsbotofficial/devops-bot:latest</code></pre>
+          <ul>
+            <li><code>-itd</code>: Runs the container in interactive mode and detached in the background.</li>
+            <li><code>--name devops-bot</code>: Names the container devops-bot for easy reference.</li>
+            <li><code>-p 4102:4102</code>: Maps port 4102 of the container to port 4102 of the host system.</li>
+          </ul>
+        </li>
+        <li><strong>Verify the Running Container:</strong>
+          <p>Check if the container is running properly.</p>
+          <pre><code class="language-bash">docker ps -a</code></pre>
+          <p>Look for a container named <code>devops-bot</code> in the list. Ensure its status is <code>Up</code>.</p>
+        </li>
+        <li><strong>Access the Container's Shell:</strong>
+          <p>To interact with the container directly, execute the following command to open a shell session inside the running container:</p>
+          <pre><code class="language-bash">docker exec -it devops-bot /bin/bash</code></pre>
+        </li>
+        <li><strong>Verify dob Installation:</strong>
+          <p>Once inside the container, run the following command to confirm that dob is installed and functioning:</p>
+          <pre><code class="language-bash">dob --help</code></pre>
+          <p>You should see the dob command's help menu displayed, confirming that the tool is installed and ready for use.</p>
+        </li>
+      </ol>
+      <h3>Additional Notes:</h3>
+      <p><strong>Stopping the Container:</strong> To stop the devops-bot container, use:</p>
+      <pre><code class="language-bash">docker stop devops-bot</code></pre>
+      <p><strong>Restarting the Container:</strong> To restart the container, use:</p>
+      <pre><code class="language-bash">docker start devops-bot</code></pre>
+      <p><strong>Removing the Container:</strong> To remove the container when no longer needed:</p>
+      <pre><code class="language-bash">docker rm -f devops-bot</code></pre>
+      <p><strong>Access the UI:</strong> If your dob tool includes a UI, it should be accessible at <code>http://&lt;your-server-ip&gt;:4102</code>.</p>
+      <p>End of Guide</p>
+      <p>You have successfully installed and run the dob tool in a Docker container.</p>
+    </section>
+    <br>
+    <section class="installation-photo">
+      <h3>Installation Steps PDF Reference for Ubuntu 22.04</h3>
+      <p>For detailed installation steps, please refer to the PDF documentation:</p>
+      <br>
+      <object data="styles/assets/images/ubuntu-22.04.pdf" type="application/pdf" width="100%" height="600px">
+        <p>Your browser does not support PDFs. <a href="styles/assets/images/ubuntu-22.04.pdf" target="_blank">Download the PDF</a>.</p>
+      </object>
+    </section>
+    <br>
+    <section class="installation-photo">
+      <h3>Installation Steps PDF Reference for Amazon Linux 2023</h3>
+      <p>For detailed installation steps, please refer to the PDF documentation:</p>
+      <br>
+      <object data="styles/assets/images/amazon-linux-2023.pdf" type="application/pdf" width="100%" height="600px">
+        <p>Your browser does not support PDFs. <a href="styles/assets/images/amazon-linux-2023.pdf" target="_blank">Download the PDF</a>.</p>
+      </object>
+    </section>
+    <br>
+    <section class="installation-photo">
+      <h3>Installation Steps PDF Reference for Docker Container</h3>
+      <p>For detailed installation steps, please refer to the PDF documentation:</p>
+      <br>
+      <object data="styles/assets/images/docker.pdf" type="application/pdf" width="100%" height="600px">
+        <p>Your browser does not support PDFs. <a href="styles/assets/images/docker.pdf" target="_blank">Download the PDF</a>.</p>
+      </object>
+    </section>    
+
+    <!-- Additional Sections -->
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
         }
-    
-        function performSearch() {
-          const query = document.getElementById('search-input').value.toLowerCase();
-          const links = document.querySelectorAll('.nav-links a, .sidebar a');
-    
-          links.forEach(link => {
-            if (link.textContent.toLowerCase().includes(query)) {
-              link.style.display = 'block';
-            } else {
-              link.style.display = 'none';
-            }
-          });
-        }
-    
-        function navigateHome() {
-          window.location.href = 'index.html';
-        }
-    
-        function navigateOfficialWebsite() {
-          window.location.href = 'officialwebsite.html';
-        }
-      </script>
-    </body>
-    </html>
-    
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'index.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+  </script>
+</body>
+</html>

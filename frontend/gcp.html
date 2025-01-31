@@ -55,9 +55,9 @@
             <li>
               <a href="#" onclick="toggleNested(event)">User Interfaces</a>
               <ul class="nested">
-                <li><a href="#">Host CLI</a></li>
-                <li><a href="#">Remote CLI</a></li>
-                <li><a href="#">UI</a></li>
+                <li><a href="dob-host-cli.html">Host CLI</a></li>
+                <li><a href="dob-cli.html">Remote CLI</a></li>
+                <li><a href="ui.html">UI</a></li>
               </ul>
             </li>
           </ul>
@@ -146,11 +146,131 @@
     </aside>
   
   <!-- Main Content Area -->
-  <main class="main-content">
-    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
-      <h1>GCP Management Tool - User Guide</h1>
-      <p>This guide explains how to use the GCP screenplay command to automate and manage GCP resources such as VM instances, disks, and tasks on remote instances. The command supports both YAML-based configurations and direct CLI execution.</p>
-    </section>
+  <body>
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+            <h1>GCP Management Tool - User Guide</h1>
+            <p>Manage GCP resources efficiently using declarative YAML configurations and imperative CLI commands. This guide provides a comprehensive overview of the process.</p>
+        </section>
+
+        <section class="docker-swarm">
+            <h2>User Guide: GCP Configuration with DevOps-Bot</h2>
+            <p>This guide walks you through the process of configuring DevOps-Bot to work with Google Cloud Platform (GCP). Follow the steps below to ensure a successful configuration.</p>
+
+            <h3>Pre-requisites</h3>
+            <h4>Ensure DevOps-Bot is Installed:</h4>
+            <p>Before proceeding, make sure that DevOps-Bot (dobe) is installed on your instance. Refer to the <a href="installation.html">DevOps-Bot Installation Guide</a> for detailed installation instructions.</p>
+            <h4>GCP Project:</h4>
+            <p>Verify that you have a GCP project created and accessible.</p>
+
+            <h3>Step 1: Generate GCP Credentials</h3>
+            <h4>Log into GCP Console:</h4>
+            <p>Go to the Google Cloud Console. Navigate to the IAM & Admin section.</p>
+
+            <h4>Create a Service Account:</h4>
+            <ol>
+                <li>Go to IAM & Admin > Service Accounts.</li>
+                <li>Click "Create Service Account."</li>
+                <li>Provide the following details:
+                    <ul>
+                        <li>Name: Enter a descriptive name (e.g., DevOps-Bot).</li>
+                        <li>Description: Provide a brief description (optional).</li>
+                    </ul>
+                </li>
+                <li>Click "Create and Continue."</li>
+            </ol>
+
+            <h4>Assign Roles:</h4>
+            <ol>
+                <li>On the next screen, assign appropriate roles (e.g., Editor or Custom Role based on your requirements).</li>
+                <li>Click "Continue" and "Done."</li>
+            </ol>
+
+            <h4>Generate and Download JSON Key:</h4>
+            <ol>
+                <li>Go to the Service Accounts list and find the account you created.</li>
+                <li>Click the three-dot menu and select "Manage Keys."</li>
+                <li>Click "Add Key" > "Create New Key" and select JSON format.</li>
+                <li>Download the JSON file to your local machine.</li>
+            </ol>
+
+            <h3>Step 2: Configure GCP in DevOps-Bot</h3>
+            <h4>Transfer the JSON File to Your Instance:</h4>
+            <p>Copy the JSON file with GCP credentials to your instance where DevOps-Bot is installed.</p>
+
+            <h4>Initialize DevOps-Bot:</h4>
+            <p>Run the following command to initialize the tool and create necessary files:</p>
+            <pre><code class="language-bash">dob brood --init</code></pre>
+
+            <h4>Configure GCP Credentials:</h4>
+            <p>Use the <code>dob gcp config</code> command to configure GCP with the JSON file:</p>
+            <pre><code class="language-bash">dob gcp config --file-path &lt;path_to_json_file&gt;</code></pre>
+            <p>Example:</p>
+            <pre><code class="language-bash">dob gcp config --file-path /root/gcp_credentials.json</code></pre>
+            <p>If the credentials are valid, you’ll see the following messages:</p>
+            <pre><code>GCP credentials encrypted and saved locally.
+GCP credentials configured successfully. You can delete the original JSON file for security.</code></pre>
+
+            <h3>Step 3: Test GCP Configuration</h3>
+            <h4>Create a YAML Configuration File:</h4>
+            <p>Create a file named <code>compute_instance.yaml</code> with the following content:</p>
+            <pre><code class="language-yaml">
+resources:
+  compute_instances:
+    - name: test-compute-instance-1
+      machine_type: n1-standard-1
+      zone: us-central1-a
+      image: projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts
+      network: default
+      tags:
+        - web-server
+      labels:
+        env: test
+            </code></pre>
+
+            <h4>Run the Configuration File:</h4>
+            <p>Use the <code>dob gcp screenplay</code> command to execute the configuration:</p>
+            <pre><code class="language-bash">dob gcp screenplay compute_instance.yaml</code></pre>
+
+            <h4>Review and Confirm:</h4>
+            <p>The tool will validate and lint the YAML file. A final review of actions will be displayed. For example:</p>
+            <pre><code class="language-sql">
++----+------------------+---------------------------------------------------------------+
+|    | Category         | Value                                                         |
++====+==================+===============================================================+
+| +  | Compute Instance | Instance 1                                                    |
++----+------------------+---------------------------------------------------------------+
+| +  | Instance Name    | test-compute-instance-1                                       |
++----+------------------+---------------------------------------------------------------+
+| +  | Machine Type     | n1-standard-1                                                 |
++----+------------------+---------------------------------------------------------------+
+| +  | Zone             | us-central1-a                                                 |
++----+------------------+---------------------------------------------------------------+
+| +  | Image            | projects/ubuntu-os-cloud/global/images/family/ubuntu-2004-lts |
++----+------------------+---------------------------------------------------------------+
+| +  | Tags             | ['web-server']                                                |
++----+------------------+---------------------------------------------------------------+
+| +  | Network          | default                                                       |
++----+------------------+---------------------------------------------------------------+
+| +  | Labels           | {'env': 'test'}                                               |
++----+------------------+---------------------------------------------------------------+
+            </code></pre>
+            <p>When prompted, type <code>Y</code> to confirm and proceed.</p>
+
+            <h4>Successful Execution:</h4>
+            <p>The tool will create the specified resources in GCP and save the execution state:</p>
+            <pre><code>Compute Instance 'test-compute-instance-1' created successfully.
+SSH key injected into instance 'test-compute-instance-1'.
+Instance 'test-compute-instance-1' created with internal IP 10.128.15.230
+Execution state saved to: /etc/devops-bot/state_files/&lt;execution_file&gt;.yml</code></pre>
+
+            <h4>Notes:</h4>
+            <ul>
+                <li>Ensure that the service account has adequate permissions for the tasks you want to execute.</li>
+                <li>Use proper tags and configuration files to ensure efficient resource management.</li>
+            </ul>
+        </section>
 
     <section class="docker-swarm">
       <h2>Key Features</h2>
@@ -347,6 +467,15 @@ dob gcp screenplay /path/to/config.yaml --create-remote --add-remote
         <li>Combine declarative YAML and imperative commands for robust resource management.</li>
       </ul>
     </section>
+    <br>
+    <section class="installation-photo">
+      <h3>Installation Steps PDF Reference for GCP Configuration</h3>
+      <p>For detailed installation steps, please refer to the PDF documentation:</p>
+      <br>
+      <object data="styles/assets/images/gcp.pdf" type="application/pdf" width="100%" height="600px">
+        <p>Your browser does not support PDFs. <a href="styles/assets/images/gcp.pdf" target="_blank">Download the PDF</a>.</p>
+      </object>
+    </section>    
   </main>
   
   <footer class="footer">
