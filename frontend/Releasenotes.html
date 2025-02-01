@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Release Notes</title>
+  <link rel="stylesheet" href="styles/releasenotes.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <nav class="nav-links">
+      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="docs.html" class="nav-link">Docs</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="About.html" class="nav-link">About</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
+
+  <!-- Sidebar (optional) -->
+  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <div class="search-bar">
+      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+      <div id="suggestions" class="suggestions"></div>
+      <button onclick="performSidebarSearch()">Search</button>
+    </div>
+    <ul>
+      <li><a href="officialwebsite.html">Introduction</a></li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+        <ul class="nested">
+          <li><a href="installation.html">Installation</a></li>
+          <li><a href="uninstall.html">Uninstall</a></li>
+          <li><a href="#">Requirements</a></li>
+          <li><a href="#">Best Practices</a></li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Functions</a>
+            <ul class="nested">
+              <li><a href="webhook.html">Webhook</a></li>
+              <li><a href="persona.html">Persona</a></li>
+              <li><a href="infracred.html">Infrascrid</a></li>
+              <li><a href="vault.html">Vault</a></li>
+              <li><a href="plugins.html">Plugins</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+            <ul class="nested">
+              <li><a href="#">Host CLI</a></li>
+              <li><a href="#">Remote CLI</a></li>
+              <li><a href="#">UI</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Features</a>
+        <ul class="nested">
+          <li>
+            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+            <ul class="nested">
+              <li><a href="infracircle.html">InfraCycle</a></li>
+              <li><a href="dobp.html">DOBProxy</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Provisioning</a>
+            <ul class="nested">
+              <li><a href="screenplay.html">Screenplay</a></li>
+            </ul>
+          </li>                             
+          <li>
+            <a href="#" onclick="toggleNested(event)">Configuration</a>
+            <ul class="nested">
+              <li><a href="infraset.html">InfraSet</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Providers</a>
+        <ul class="nested">
+          <li>
+            <a href="#" onclick="toggleNested(event)">AWS</a>
+            <ul class="nested">
+              <li><a href="aws.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">Azure</a>
+            <ul class="nested">
+              <li><a href="azure.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" onclick="toggleNested(event)">GCP</a>
+            <ul class="nested">
+              <li><a href="gcp.html">Configuration</a></li>
+              <li>
+                <a href="#" onclick="toggleNested(event)">Commands</a>
+                <ul class="nested">
+                  <li><a href="#">Imperative</a></li>
+                  <li><a href="#">Declarative</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+        <ul class="nested">
+          <li><a href="ansible.html">Ansible</a></li>
+          <li><a href="Kubernetes.html">Kubernetes</a></li>
+          <li><a href="dockerswarm.html">Docker Swarm</a></li>
+          <li><a href="jenkins.html">Jenkins</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Use Cases</a></li>
+      <li><a href="#">API Reference</a></li>
+      <li><a href="Releasenotes.html">Release Notes</a></li>
+    </ul>
+  </aside>
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>Release Notes for DevOps-Bot CLI Tool - Version 0.1</h1>
+    </section>
+
+    <section class="release-notes">
+      <h2 style="text-align: center;">Release Date: January 10, 2025</h2>
+      <h3 style="text-align: center;">Welcome to DevOps-Bot CLI Tool!</h3>
+      <p>We’re thrilled to announce the <strong>first official release</strong> of the <strong>DevOps-Bot CLI Tool (dob)</strong>! This release marks a significant milestone in our mission to simplify and automate DevOps workflows. Whether you're managing cloud infrastructure, automating tasks, or deploying applications, <strong>dob</strong> is here to make your life easier.</p>
+
+      <h3 style="margin-top: 20px;">What’s New in Version 0.1?</h3>
+      <p>This release introduces a robust set of features designed to streamline your DevOps processes. Here’s what you can expect:</p>
+
+      <h4 style="margin-top: 20px;">1. Version Display and Debug Mode</h4>
+      <ul>
+        <li><strong>Command:</strong> <code>dob --version</code></li>
+        <li>Get detailed version information, including the dob version, Python version, and OS details.</li>
+        <li><strong>Command:</strong> <code>dob --debug</code></li>
+        <li>Enable debug mode for detailed error tracebacks, making troubleshooting a breeze.</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">2. Run Pipeline UI</h4>
+      <ul>
+        <li><strong>Command:</strong> <code>dob run-ui</code></li>
+        <li>Launch the <strong>Pipeline UI</strong> on your preferred port (default: 4102). Perfect for visualizing and managing your pipelines.</li>
+        <li><strong>Example:</strong> <code>dob run-ui --port 8080</code> starts the UI on port 8080.</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">3. Generate Webhook Secret</h4>
+      <ul>
+        <li><strong>Command:</strong> <code>dob generate-webhook-secret</code></li>
+        <li>Securely generate a 64-character webhook secret and store it in <code>webhook_secret.json</code>. Your secrets are safe with us!</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">4. File Structure Initialization</h4>
+      <ul>
+        <li><strong>Command:</strong> <code>dob brood --init</code></li>
+        <li>Initialize the required file structure for your DevOps workflows. This command creates essential <code>.dob</code> files and a default configuration file (<code>pigeon.dob</code>) with templates for email, AWS SNS, Slack, and Twilio configurations.</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">5. Check Node Connectivity</h4>
+      <ul>
+        <li><strong>Command:</strong> <code>dob check-nodes &lt;identifier&gt; -u &lt;username&gt;</code></li>
+        <li>Quickly check if you can connect to a remote node via SSH.</li>
+        <li><strong>Example:</strong> <code>dob check-nodes node123 -u admin</code> tests connectivity to <code>node123</code> using the username <code>admin</code>.</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">6. AWS Configuration Management</h4>
+      <ul>
+        <li><strong>Command:</strong> <code>dob aws config --ak &lt;access_key&gt; --sk &lt;secret_key&gt; --r &lt;region&gt;</code></li>
+        <li>Easily configure AWS credentials for the dob tool.</li>
+        <li><strong>Example:</strong> <code>dob aws config --ak ABCDEFGHIJKLMNOP --sk 123456789@abcdefghij --r us-west-2</code> stores your AWS credentials securely.</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">7. Configure SSH Access</h4>
+      <ul>
+        <li><strong>Command:</strong> <code>dob aws configure-ssh -i &lt;ip_address&gt; -u &lt;username&gt; &lt;ssh_key_path&gt; -id &lt;identifier&gt;</code></li>
+        <li>Configure SSH access on remote instances with ease. This command enables password and public key authentication and saves the host entry for future use.</li>
+        <li><strong>Example:</strong> <code>dob aws configure-ssh -i 192.168.1.100 -u ubuntu ~/.ssh/id_rsa.pub -id my-node</code> sets up SSH access for the user <code>ubuntu</code> on the instance with IP <code>192.168.1.100</code>.</li>
+      </ul>
+
+      <h3 style="margin-top: 20px;">Key Improvements</h3>
+      <ul>
+        <li><strong>Robust Error Handling:</strong> We’ve built comprehensive error handling into the tool. Errors are displayed with user-friendly messages, and in debug mode, you’ll get detailed tracebacks for advanced troubleshooting.</li>
+        <li><strong>Secure Credential Storage:</strong> Your AWS credentials and webhook secrets are stored securely with restricted file permissions, ensuring unauthorized access is prevented.</li>
+      </ul>
+
+      <h3 style="margin-top: 20px;">Known Issues</h3>
+      <p>We’re committed to transparency, and while we’ve worked hard to make this release as stable as possible, there are a few known issues:</p>
+      <ul>
+        <li><strong>Pipeline UI Dependency:</strong> The <code>run-ui</code> command depends on the Flask framework and the correct structure of UI files. Make sure Flask is installed and <code>app.py</code> is present in the <code>ui</code> directory.</li>
+        <li><strong>SSH Configuration Limitations:</strong> The <code>configure-ssh</code> command assumes a standard Linux environment with <code>systemctl</code> support. If you’re using a non-standard distribution, you may need to make manual adjustments.</li>
+      </ul>
+
+      <h3 style="margin-top: 20px;">Enhanced Build and Deployment Process</h3>
+      <p>We’ve supercharged the build and deployment process! Now you can trigger complex builds directly from the command line using a YAML configuration file. This feature provides flexibility for both local and remote environments.</p>
+
+      <h4 style="margin-top: 20px;">Key Options:</h4>
+      <ul>
+        <li><code>--file-path</code>: Specify the local path to the YAML configuration file.</li>
+        <li><code>--environment / -e</code>: Define the environment (e.g., dev, test, prod) for the build.</li>
+        <li><code>--remote-config / --rc</code>: Fetch configurations from a remote URL.</li>
+        <li><code>--set / -s</code>: Override variables directly from the command line in the format <code>key=value</code>.</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">Core Functionalities:</h4>
+      <ol>
+        <li><strong>Local and Remote Configuration Support:</strong> Fetch configurations from both local files and remote URLs.</li>
+        <li><strong>Environment-Specific Overrides:</strong> Tailor builds for different stages (development, testing, production).</li>
+        <li><strong>Sensitive Variable Handling:</strong> Securely handle sensitive variables with options to show or hide them during execution.</li>
+        <li><strong>Comprehensive Build Stages Execution:</strong> Supports multiple build stages, including setup, testing, Maven/Gradle builds, Docker builds, and Kubernetes deployment.</li>
+      </ol>
+
+      <h3 style="margin-top: 20px;">Exciting New Features</h3>
+      <h4>1. External Approval Workflow</h4>
+      <ul>
+        <li><strong>Function:</strong> <code>request_external_approval</code></li>
+        <li>Need approval before proceeding with critical tasks? This feature lets you request approval via email, ensuring you have the green light before moving forward.</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">2. Kubernetes Credential Setup</h4>
+      <ul>
+        <li><strong>Function:</strong> <code>run_k8s_credential_setup</code></li>
+        <li>Automate the creation of Kubernetes credentials, including ServiceAccounts, Roles, RoleBindings, and Secrets. Kubernetes deployments just got easier!</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">3. File Transfer Support</h4>
+      <ul>
+        <li><strong>Function:</strong> <code>transfer_file</code></li>
+        <li>Securely transfer files or directories to remote servers using SCP. Automation has never been this smooth.</li>
+      </ul>
+
+      <h4 style="margin-top: 20px;">4. Git Integration</h4>
+      <ul>
+        <li><strong>Function:</strong> <code>commit_and_push_changes</code></li>
+        <li>Automate your Git operations! Commit and push changes to remote repositories using SSH or Personal Access Token (PAT) authentication.</li>
+      </ul>
+
+      <h3 style="margin-top: 20px;">Dependency Management Enhancements</h3>
+      <ul>
+        <li><strong>OWASP Dependency-Check Integration:</strong> Automatically detect vulnerabilities in your project dependencies.</li>
+        <li><strong>SonarQube Analysis:</strong> Perform static code analysis with configurable server URLs, project keys, and authentication tokens.</li>
+      </ul>
+
+      <h3 style="margin-top: 20px;">Additional Features</h3>
+      <ul>
+        <li><strong>SonarQube CLI Installation:</strong> Automate the installation of the SonarQube CLI on remote servers.</li>
+        <li><strong>Trivy Security Scanning:</strong> Add support for automated vulnerability scanning using Trivy.</li>
+        <li><strong>TestNG and JUnit Testing Automation:</strong> Run TestNG and JUnit tests automatically on remote servers.</li>
+        <li><strong>Rust/Cargo, Ruby/Bundler, and Go Modules Build Automation:</strong> Build and test projects using Rust, Ruby, and Go with ease.</li>
+      </ul>
+
+      <h3 style="margin-top: 20px;">Performance Improvements</h3>
+      <ul>
+        <li><strong>Parallel Job Execution:</strong> We’ve improved parallel job execution using Python’s <code>ThreadPoolExecutor</code>, making your builds faster and more efficient.</li>
+        <li><strong>Real-Time Output Handling:</strong> Get real-time feedback during task execution, so you always know what’s happening.</li>
+      </ul>
+
+      <h3 style="margin-top: 20px;">What’s Next?</h3>
+      <p>We’re already working on the next set of features and improvements, including:</p>
+      <ul>
+        <li><strong>Parallel Deletion:</strong> Speed up resource cleanup with parallel deletion for independent resources.</li>
+        <li><strong>Retry Mechanisms:</strong> Automatically retry failed operations with exponential backoff for transient AWS API errors.</li>
+        <li><strong>State Backup:</strong> Introduce a state backup feature to allow safe restoration or retries in case of failure.</li>
+      </ul>
+
+      <h3 style="margin-top: 20px;">Get Started Today!</h3>
+      <p>Ready to take your DevOps workflows to the next level? Download the <strong>DevOps-Bot CLI Tool</strong> and start automating today!</p>
+      <ul>
+        <li><strong>Start Pipeline UI:</strong> <code>dob run-ui --port 8080</code></li>
+        <li><strong>Generate Webhook Secret:</strong> <code>dob generate-webhook-secret</code></li>
+        <li><strong>Initialize File Structure:</strong> <code>dob brood --init</code></li>
+        <li><strong>Check Node Connectivity:</strong> <code>dob check-nodes node123 -u admin</code></li>
+        <li><strong>Configure AWS Credentials:</strong> <code>dob aws config --ak ABCDEFGHIJKLMNOP --sk 123456789@abcdefghij --r us-west-2</code></li>
+      </ul>
+
+      <h3 style="margin-top: 20px;">Thank You!</h3>
+      <p>A huge thank you to everyone who has supported us on this journey. We’re just getting started, and we can’t wait to see what you build with <strong>dob</strong>! If you have any feedback or run into any issues, please don’t hesitate to reach out.</p>
+      <p>Let’s build the future of DevOps together!</p>
+
+      <p style="text-align: center; margin-top: 30px; font-size: 38px;"><strong>The DevOps-Bot Team</strong><br><em>Simplifying DevOps, One Command at a Time.</em></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+  </footer>
+
+  <!-- JavaScript Files -->
+  <script src="scripts/main.js"></script>
+  <script>
+    function toggleNested(event) {
+      event.preventDefault();
+      const parent = event.target.parentElement;
+      parent.classList.toggle('active');
+    }
+
+    function performSearch() {
+      const query = document.getElementById('search-input').value.toLowerCase();
+      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+
+      links.forEach(link => {
+        if (link.textContent.toLowerCase().includes(query)) {
+          link.style.display = 'block';
+        } else {
+          link.style.display = 'none';
+        }
+      });
+    }
+
+    function navigateHome() {
+      window.location.href = 'index.html';
+    }
+
+    function navigateOfficialWebsite() {
+      window.location.href = 'officialwebsite.html';
+    }
+  </script>
+</body>
+</html>
