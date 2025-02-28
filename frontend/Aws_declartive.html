@@ -152,6 +152,7 @@
       <p>Declartive Files For AWS ScreenPlay</p>
     </section>
 
+    <!-- 1 -->
     <!-- User Configuration YAML Documentation -->
     <section class="docker-swarm">
       <h1>User Configuration YAML Documentation</h1>
@@ -163,13 +164,13 @@
       
       <h2>YAML Structure Breakdown</h2>
       <pre><code>users:
-  - identifier: "server-01"
+    - identifier: "server-01"
     username: "testuser"
     password: "securepassword123"  # Optional, can be generated if not provided
     permissions: "sudo"  # Optional user group assignment
     create_user_ssh_key: true  # Whether to generate an SSH key for the user
     category: "production"  # Optional, specify category for host lookup
-</code></pre>
+    </code></pre>
       
       <h2>Explanation of Fields</h2>
       
@@ -238,276 +239,1090 @@
       <h2>Conclusion</h2>
       <p>This YAML configuration simplifies user provisioning, enforces security policies, and ensures consistency across systems. It is ideal for DevOps workflows and automated server setups.</p>
     </section>
-
-    <!-- DynamoDB Table Configuration YAML Documentation -->
+    <!-- 2 -->
+    <!-- DynamoDB Table Configuration Documentation -->
     <section class="docker-swarm">
-      <h1>DynamoDB Table Configuration YAML Documentation</h1>
+      <h1>DynamoDB Table Configuration Documentation</h1>
       <h2>Overview</h2>
-      <p>This YAML file defines the configuration for creating and managing Amazon DynamoDB tables. It specifies table properties such as name, region, schema, billing mode, and tagging.</p>
-      
-      <h2>YAML Structure Breakdown</h2>
-      <pre><code>dynamodb_tables:
-  - name: "TestTable"
-    region: "us-east-1"
-    attribute_definitions:
-      - AttributeName: "id"
-        AttributeType: "S"
-    key_schema:
-      - AttributeName: "id"
-        KeyType: "HASH"
-    billing_mode: "PAY_PER_REQUEST"  # Options: PAY_PER_REQUEST or PROVISIONED
-    provisioned_throughput:
-      ReadCapacityUnits: 5  # Required only if billing_mode is PROVISIONED
-      WriteCapacityUnits: 5
-    tags:
-      - Key: "Environment"
-        Value: "Test"
-      - Key: "Project"
-        Value: "DevOps-Bot"
-</code></pre>
-      
-      <h2>Explanation of Fields</h2>
-      
+      <p>This YAML configuration defines a DynamoDB table setup for deployment. It specifies table attributes, key schema, billing mode, and tagging information.</p>
+
+      <h2>Configuration Breakdown</h2>
+
       <h3>dynamodb_tables</h3>
       <ul>
-        <li>A list containing multiple DynamoDB table definitions.</li>
-        <li>Each table is defined using <code>-</code> under <code>dynamodb_tables</code>.</li>
+          <li>A list of DynamoDB tables to be created.</li>
+          <li>Each entry in the list represents a table with the following attributes:</li>
       </ul>
-      
-      <h3>name</h3>
+
+      <h3>Table Properties</h3>
       <ul>
-        <li>Specifies the name of the DynamoDB table.</li>
-        <li>Example: <code>"TestTable"</code>.</li>
+          <li><strong>name</strong>: The name of the DynamoDB table (e.g., <code>TestTable</code>).</li>
+          <li><strong>region</strong>: AWS region where the table will be created (e.g., <code>us-east-1</code>).</li>
       </ul>
-      
-      <h3>region</h3>
+
+      <h3>Attribute Definitions</h3>
       <ul>
-        <li>Defines the AWS region where the table will be created.</li>
-        <li>Example: <code>"us-east-1"</code>.</li>
-      </ul>
-      
-      <h3>attribute_definitions</h3>
-      <ul>
-        <li>Specifies the attributes of the table and their data types.</li>
-        <li>Example:
+          <li><strong>attribute_definitions</strong>: Specifies the attributes for the table, including:</li>
           <ul>
-            <li><code>AttributeName: "id"</code> → Defines the attribute name as <code>id</code>.</li>
-            <li><code>AttributeType: "S"</code> → Specifies the attribute type (<code>S</code> for String, <code>N</code> for Number, <code>B</code> for Binary).</li>
+              <li><strong>AttributeName</strong>: Name of the attribute (e.g., <code>id</code>).</li>
+              <li><strong>AttributeType</strong>: Data type of the attribute (<code>S</code> for String, <code>N</code> for Number, <code>B</code> for Binary).</li>
           </ul>
-        </li>
       </ul>
-      
-      <h3>key_schema</h3>
+
+      <h3>Key Schema</h3>
       <ul>
-        <li>Defines the primary key structure of the table.</li>
-        <li>Example:
+          <li><strong>key_schema</strong>: Defines how the table's primary key is structured.</li>
           <ul>
-            <li><code>AttributeName: "id"</code> → The key attribute.</li>
-            <li><code>KeyType: "HASH"</code> → Specifies the partition key (HASH key) for DynamoDB.</li>
+              <li><strong>AttributeName</strong>: Name of the primary key attribute (e.g., <code>id</code>).</li>
+              <li><strong>KeyType</strong>: Type of key (<code>HASH</code> for partition key, <code>RANGE</code> for sort key if applicable).</li>
           </ul>
-        </li>
       </ul>
-      
-      <h3>billing_mode</h3>
+
+      <h3>Billing Mode</h3>
       <ul>
-        <li>Defines the billing mode for the table.</li>
-        <li>Options:
+          <li><strong>billing_mode</strong>: Determines how read and write capacity is managed.</li>
           <ul>
-            <li><code>PAY_PER_REQUEST</code> → Charges based on usage (recommended for unpredictable workloads).</li>
-            <li><code>PROVISIONED</code> → Requires specifying <code>ReadCapacityUnits</code> and <code>WriteCapacityUnits</code>.</li>
+              <li><strong>PAY_PER_REQUEST</strong>: On-demand mode where AWS charges per request.</li>
+              <li><strong>PROVISIONED</strong>: Fixed read/write capacity mode requiring manual throughput settings.</li>
           </ul>
-        </li>
       </ul>
-      
-      <h3>provisioned_throughput (Required only if <code>billing_mode</code> is <code>PROVISIONED</code>)</h3>
+
+      <h3>Provisioned Throughput (Only for PROVISIONED mode)</h3>
       <ul>
-        <li>Specifies read and write capacity units.</li>
-        <li>Example:
+          <li><strong>provisioned_throughput</strong>: Specifies capacity settings when using <code>PROVISIONED</code> mode.</li>
           <ul>
-            <li><code>ReadCapacityUnits: 5</code> → Allocates 5 read units.</li>
-            <li><code>WriteCapacityUnits: 5</code> → Allocates 5 write units.</li>
+              <li><strong>ReadCapacityUnits</strong>: Number of read capacity units (e.g., <code>5</code>).</li>
+              <li><strong>WriteCapacityUnits</strong>: Number of write capacity units (e.g., <code>5</code>).</li>
           </ul>
-        </li>
       </ul>
-      
-      <h3>tags</h3>
+
+      <h3>Tags</h3>
       <ul>
-        <li>Adds metadata tags to the DynamoDB table.</li>
-        <li>Example:
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
           <ul>
-            <li><code>Key: "Environment"</code>, <code>Value: "Test"</code> → Identifies the environment.</li>
-            <li><code>Key: "Project"</code>, <code>Value: "DevOps-Bot"</code> → Associates the table with a project.</li>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Environment</code>, <code>Project</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>Test</code>, <code>DevOps-Bot</code>).</li>
           </ul>
-        </li>
       </ul>
-      
-      <h2>Example Use Cases</h2>
-      <ul>
-        <li><strong>Infrastructure as Code (IaC)</strong>: Used in Terraform or AWS CloudFormation for automating DynamoDB provisioning.</li>
-        <li><strong>Cost Management</strong>: Selecting <code>PAY_PER_REQUEST</code> helps in cost optimization for unpredictable workloads.</li>
-        <li><strong>Security & Organization</strong>: Using tags enables tracking and managing AWS resources efficiently.</li>
-      </ul>
-      
-      <h2>Best Practices</h2>
-      <ol>
-        <li><strong>Choose Billing Mode Wisely</strong>: Use <code>PAY_PER_REQUEST</code> for unpredictable workloads and <code>PROVISIONED</code> for stable, high-traffic tables.</li>
-        <li><strong>Define Keys Properly</strong>: Always define an efficient primary key to avoid hot partitions.</li>
-        <li><strong>Use Tags for Organization</strong>: Categorize tables for cost tracking and access control.</li>
-        <li><strong>Optimize Provisioned Throughput</strong>: If using <code>PROVISIONED</code>, monitor and adjust read/write capacity as needed.</li>
-      </ol>
-      
-      <h2>Conclusion</h2>
-      <p>This YAML configuration provides a structured approach to defining and deploying DynamoDB tables efficiently. It is particularly useful for DevOps automation and managing cloud infrastructure effectively.</p>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration creates a DynamoDB table named <code>TestTable</code> in the <code>us-east-1</code> region with an <code>id</code> attribute as the partition key. It uses the <code>PAY_PER_REQUEST</code> billing mode and includes relevant environment and project tags.</p>
     </section>
-
-    <!-- AWS CodeBuild Project Configuration YAML Documentation -->
+    <!-- 3 -->
+    <!-- CodeBuild Project Configuration Documentation -->
     <section class="docker-swarm">
-      <h1>AWS CodeBuild Project Configuration YAML Documentation</h1>
+      <h1>CodeBuild Project Configuration Documentation</h1>
       <h2>Overview</h2>
-      <p>This YAML file defines the configuration for setting up AWS CodeBuild projects. It specifies project properties such as source repository, environment settings, IAM role, build artifacts, and tagging.</p>
-      
-      <h2>YAML Structure Breakdown</h2>
-      <pre><code>codebuild_projects:
-  - name: "MyCodeBuildProject"
-    region: "us-east-1"
-    source:
-      type: "GITHUB"
-      location: "https://github.com/myrepo/myproject.git"
-    environment:
-      type: "LINUX_CONTAINER"
-      image: "aws/codebuild/standard:5.0"
-      computeType: "BUILD_GENERAL1_SMALL"
-      environmentVariables:
-        - name: "ENV_VAR1"
-          value: "value1"
-        - name: "ENV_VAR2"
-          value: "value2"
-    service_role: "arn:aws:iam::123456789012:role/CodeBuildServiceRole"
-    artifacts:
-      type: "S3"
-      location: "my-codebuild-bucket"
-    tags:
-      - Key: "Environment"
-        Value: "Development"
-      - Key: "Project"
-        Value: "DevOps-Bot"
+      <p>This YAML configuration defines an AWS CodeBuild project setup. It specifies the project name, environment settings, source repository, and artifact storage.</p>
 
-codebuild_builds:
-  - project_name: "MyCodeBuildProject"
-    region: "us-east-1"
-    source_version: "main"  # Optional: Branch, tag, or commit
-    environment_variables:
-      - name: "BUILD_ENV"
-        value: "production"
-      - name: "DEBUG_MODE"
-        value: "false"
-    execution_id: "execution-12345"
-</code></pre>
-      
-      <h2>Explanation of Fields</h2>
-      
+      <h2>Configuration Breakdown</h2>
+
       <h3>codebuild_projects</h3>
       <ul>
-        <li>A list containing multiple AWS CodeBuild project definitions.</li>
-        <li>Each project is defined using <code>-</code> under <code>codebuild_projects</code>.</li>
+          <li>A list of AWS CodeBuild projects.</li>
+          <li>Each entry represents a project with the following attributes:</li>
       </ul>
-      
-      <h3>name</h3>
+
+      <h3>Project Properties</h3>
       <ul>
-        <li>Specifies the name of the CodeBuild project.</li>
-        <li>Example: <code>"MyCodeBuildProject"</code>.</li>
+          <li><strong>name</strong>: The name of the CodeBuild project (e.g., <code>MyCodeBuildProject</code>).</li>
+          <li><strong>region</strong>: AWS region where the project will be created (e.g., <code>us-east-1</code>).</li>
       </ul>
-      
-      <h3>region</h3>
+
+      <h3>Source Configuration</h3>
       <ul>
-        <li>Defines the AWS region where the build project will be created.</li>
-        <li>Example: <code>"us-east-1"</code>.</li>
-      </ul>
-      
-      <h3>source</h3>
-      <ul>
-        <li>Specifies the source code repository for the build.</li>
-        <li>Example:
+          <li><strong>source</strong>: Defines the source repository for the build.</li>
           <ul>
-            <li><code>type: "GITHUB"</code> → Indicates that the source is hosted on GitHub.</li>
-            <li><code>location: "https://github.com/myrepo/myproject.git"</code> → URL of the repository.</li>
+              <li><strong>type</strong>: Source provider (e.g., <code>GITHUB</code>).</li>
+              <li><strong>location</strong>: Repository URL (e.g., <code>https://github.com/myrepo/myproject.git</code>).</li>
           </ul>
-        </li>
       </ul>
-      
-      <h3>environment</h3>
+
+      <h3>Build Environment</h3>
       <ul>
-        <li>Defines the build environment properties.</li>
-        <li>Example:
+          <li><strong>environment</strong>: Specifies the build environment settings.</li>
           <ul>
-            <li><code>type: "LINUX_CONTAINER"</code> → Uses a Linux-based build container.</li>
-            <li><code>image: "aws/codebuild/standard:5.0"</code> → Specifies the CodeBuild image version.</li>
-            <li><code>computeType: "BUILD_GENERAL1_SMALL"</code> → Defines the compute resource type.</li>
-            <li><code>environmentVariables</code> → List of environment variables available to the build process.</li>
+              <li><strong>type</strong>: The environment type (e.g., <code>LINUX_CONTAINER</code>).</li>
+              <li><strong>image</strong>: The build image to use (e.g., <code>aws/codebuild/standard:5.0</code>).</li>
+              <li><strong>computeType</strong>: Defines the compute resources (e.g., <code>BUILD_GENERAL1_SMALL</code>).</li>
+              <li><strong>environmentVariables</strong>: List of environment variables for the build.</li>
+              <ul>
+                  <li><strong>name</strong>: Variable name (e.g., <code>ENV_VAR1</code>).</li>
+                  <li><strong>value</strong>: Corresponding value (e.g., <code>value1</code>).</li>
+              </ul>
           </ul>
-        </li>
       </ul>
-      
-      <h3>service_role</h3>
+
+      <h3>IAM Role</h3>
       <ul>
-        <li>Specifies the AWS IAM role ARN that CodeBuild will assume to run builds.</li>
-        <li>Example: <code>"arn:aws:iam::123456789012:role/CodeBuildServiceRole"</code>.</li>
+          <li><strong>service_role</strong>: IAM role ARN assigned to the CodeBuild project (e.g., <code>arn:aws:iam::123456789012:role/CodeBuildServiceRole</code>).</li>
       </ul>
-      
-      <h3>artifacts</h3>
+
+      <h3>Artifacts</h3>
       <ul>
-        <li>Defines the output artifacts storage location.</li>
-        <li>Example:
+          <li><strong>artifacts</strong>: Defines where the build artifacts will be stored.</li>
           <ul>
-            <li><code>type: "S3"</code> → Stores build artifacts in an S3 bucket.</li>
-            <li><code>location: "my-codebuild-bucket"</code> → Specifies the target S3 bucket.</li>
+              <li><strong>type</strong>: Storage type (e.g., <code>S3</code>).</li>
+              <li><strong>location</strong>: S3 bucket name for storing artifacts (e.g., <code>my-codebuild-bucket</code>).</li>
           </ul>
-        </li>
       </ul>
-      
-      <h3>tags</h3>
+
+      <h3>Tags</h3>
       <ul>
-        <li>Adds metadata tags to the CodeBuild project.</li>
-        <li>Example:
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
           <ul>
-            <li><code>Key: "Environment"</code>, <code>Value: "Development"</code> → Identifies the environment.</li>
-            <li><code>Key: "Project"</code>, <code>Value: "DevOps-Bot"</code> → Associates the build with a project.</li>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Environment</code>, <code>Project</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>Development</code>, <code>DevOps-Bot</code>).</li>
           </ul>
-        </li>
       </ul>
-      
+
+      <h2>Example Use Case</h2>
+      <p>This configuration creates an AWS CodeBuild project named <code>MyCodeBuildProject</code> in the <code>us-east-1</code> region. It pulls the source code from GitHub, builds it in a Linux container using AWS CodeBuild's standard image, and stores the resulting artifacts in an S3 bucket. The project is tagged for environment tracking.</p>
+    </section>
+
+    <!-- 4 -->
+    <!--CodeBuild Build Execution Documentation-->
+    <section class="docker-swarm">
+      <h1>CodeBuild Build Execution Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines the execution details for an AWS CodeBuild build process. It includes project name, source version, environment variables, and execution tracking.</p>
+
+      <h2>Configuration Breakdown</h2>
+
       <h3>codebuild_builds</h3>
       <ul>
-        <li>A list of build executions for an AWS CodeBuild project.</li>
-        <li>Example fields:
-          <ul>
-            <li><code>project_name</code>: Specifies the project associated with this build execution.</li>
-            <li><code>region</code>: Defines the AWS region for the build execution.</li>
-            <li><code>source_version</code>: (Optional) The branch, tag, or commit used for the build.</li>
-            <li><code>environment_variables</code>: List of key-value pairs passed to the build execution.</li>
-            <li><code>execution_id</code>: A unique identifier for the build execution.</li>
-          </ul>
-        </li>
+          <li>A list of CodeBuild build executions.</li>
+          <li>Each entry represents a build execution with the following attributes:</li>
       </ul>
-      
-      <h2>Example Use Cases</h2>
+
+      <h3>Build Execution Properties</h3>
       <ul>
-        <li><strong>Continuous Integration (CI)</strong>: Automate builds from a GitHub repository with AWS CodeBuild.</li>
-        <li><strong>Infrastructure as Code (IaC)</strong>: Use this YAML in AWS CloudFormation or Terraform to provision build environments.</li>
-        <li><strong>Environment Management</strong>: Define and manage build environments with variables and permissions.</li>
+          <li><strong>project_name</strong>: The name of the AWS CodeBuild project to execute (e.g., <code>MyCodeBuildProject</code>).</li>
+          <li><strong>region</strong>: AWS region where the build execution will run (e.g., <code>us-east-1</code>).</li>
+          <li><strong>source_version</strong>: The branch, tag, or commit hash to build (optional, default is the latest source revision, e.g., <code>main</code>).</li>
       </ul>
-      
-      <h2>Best Practices</h2>
-      <ol>
-        <li><strong>Use IAM Best Practices</strong>: Ensure the <code>service_role</code> has the least privileges necessary for the build.</li>
-        <li><strong>Optimize Compute Resources</strong>: Choose an appropriate <code>computeType</code> based on build resource requirements.</li>
-        <li><strong>Leverage Environment Variables</strong>: Use <code>environmentVariables</code> for dynamic configurations.</li>
-        <li><strong>Secure Artifacts</strong>: Store sensitive build outputs in restricted S3 buckets.</li>
-      </ol>
-      
-      <h2>Conclusion</h2>
-      <p>This YAML configuration provides a structured approach to defining and managing AWS CodeBuild projects. It is useful for DevOps automation, CI/CD pipelines, and cloud infrastructure management.</p>
+
+      <h3>Environment Variables</h3>
+      <ul>
+          <li><strong>environment_variables</strong>: A list of environment variables passed to the build process.</li>
+          <ul>
+              <li><strong>name</strong>: Variable name (e.g., <code>BUILD_ENV</code>).</li>
+              <li><strong>value</strong>: Corresponding value (e.g., <code>production</code>).</li>
+          </ul>
+      </ul>
+
+      <h3>Execution Tracking</h3>
+      <ul>
+          <li><strong>execution_id</strong>: Unique identifier for the build execution (e.g., <code>execution-12345</code>). Useful for tracking and logging purposes.</li>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration triggers a build execution for the <code>MyCodeBuildProject</code> project in the <code>us-east-1</code> region, using the <code>main</code> branch as the source version. It sets environment variables such as <code>BUILD_ENV=production</code> and <code>DEBUG_MODE=false</code>, and tracks the execution using <code>execution-12345</code>.</p>
     </section>
+
+    <!-- 5 -->
+    <!-- NAT Gateway Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>NAT Gateway Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS NAT Gateway setup. It specifies the NAT Gateway name, region, associated subnet, Elastic IP allocation, and resource tags.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>nat_gateways</h3>
+      <ul>
+          <li>A list of AWS NAT Gateways.</li>
+          <li>Each entry represents a NAT Gateway with the following attributes:</li>
+      </ul>
+
+      <h3>NAT Gateway Properties</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the NAT Gateway (e.g., <code>MyNatGateway</code>).</li>
+          <li><strong>region</strong>: AWS region where the NAT Gateway will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>subnet_id</strong>: The ID of the subnet in which the NAT Gateway will be launched (e.g., <code>subnet-12345678</code>).</li>
+          <li><strong>allocation_id</strong>: The Elastic IP allocation ID to associate with the NAT Gateway (e.g., <code>eipalloc-87654321</code>).</li>
+      </ul>
+
+      <h3>Tags</h3>
+      <ul>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyNatGateway</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a NAT Gateway named <code>MyNatGateway</code> in the <code>us-east-1</code> region, assigning it to the specified subnet and Elastic IP. The resource is tagged for easy identification and management within a production environment.</p>
+    </section>
+    <!-- 6 -->
+    <!-- Target Group Registration Documentation -->
+    <section class="docker-swarm">
+      <h1>Target Group Registration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines the registration of EC2 instances to an AWS Elastic Load Balancing (ELB) Target Group.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Target Group Registrations</h3>
+      <ul>
+          <li>A list of EC2 instances to be registered with a specific target group.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>target_group_arn</strong>: The Amazon Resource Name (ARN) of the target group (e.g., <code>arn:aws:elasticloadbalancing:us-east-1:123456789012:targetgroup/my-target-group/abcdef123456</code>).</li>
+          <li><strong>region</strong>: AWS region where the target group exists (e.g., <code>us-east-1</code>).</li>
+          <li><strong>targets</strong>: A list of EC2 instance IDs to be registered in the target group (e.g., <code>i-0123456789abcdef0</code>, <code>i-0fedcba9876543210</code>).</li>
+          <li><strong>execution_id</strong>: Unique identifier for tracking the registration process (e.g., <code>execution-12345</code>).</li>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration ensures that specified EC2 instances are registered with the given target group in the AWS region <code>us-east-1</code>, enabling load balancing for the registered instances.</p>
+    </section>
+
+    <!-- 7 -->
+    <!-- Internet Gateway Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Internet Gateway Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Internet Gateway setup, which enables communication between a VPC and the internet.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Internet Gateways</h3>
+      <ul>
+          <li>A list of Internet Gateways associated with VPCs.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Internet Gateway (e.g., <code>MyInternetGateway</code>).</li>
+          <li><strong>region</strong>: AWS region where the Internet Gateway will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>vpc_id</strong>: The ID of the VPC to associate with the Internet Gateway (e.g., <code>vpc-12345678</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.
+              <ul>
+                  <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+                  <li><strong>Value</strong>: Corresponding value (e.g., <code>MyInternetGateway</code>, <code>Production</code>).</li>
+              </ul>
+          </li>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions an Internet Gateway named <code>MyInternetGateway</code> in the AWS region <code>us-east-1</code>, associates it with a specified VPC, and applies metadata tags for identification and environment tracking.</p>
+    </section>
+
+    <!-- 8 -->
+    <!-- VPC Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>VPC Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Virtual Private Cloud (VPC) setup, specifying networking settings and resource tagging.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>VPC Configuration</h3>
+      <ul>
+          <li>A list of VPCs with defined attributes.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>vpc_name</strong>: The name of the VPC (e.g., <code>MyVPC</code>).</li>
+          <li><strong>region</strong>: AWS region where the VPC will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>cidr_block</strong>: The IP range allocated to the VPC (e.g., <code>10.0.0.0/16</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.
+              <ul>
+                  <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+                  <li><strong>Value</strong>: Corresponding value (e.g., <code>MyVPC</code>, <code>Production</code>).</li>
+              </ul>
+          </li>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a VPC named <code>MyVPC</code> in the AWS region <code>us-east-1</code>, assigns it a CIDR block of <code>10.0.0.0/16</code>, and applies metadata tags for identification and environment tracking.</p>
+    </section>
+    <!-- 9 -->
+    <!-- Target Group Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Target Group Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Target Group setup for Elastic Load Balancing, specifying parameters such as protocol, port, and health checks.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Target Groups</h3>
+      <ul>
+          <li>A list of target groups associated with a specific VPC and load balancer settings.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Target Group (e.g., <code>MyTargetGroup</code>).</li>
+          <li><strong>region</strong>: AWS region where the Target Group will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>vpc_id</strong>: The ID of the VPC associated with the Target Group (e.g., <code>vpc-12345678</code>).</li>
+          <li><strong>protocol</strong>: The protocol used for routing traffic (e.g., <code>HTTP</code>).</li>
+          <li><strong>port</strong>: The port on which the Target Group receives traffic (e.g., <code>80</code>).</li>
+          <li><strong>target_type</strong>: The type of targets registered with the Target Group (e.g., <code>instance</code>).</li>
+          <li><strong>health_check_protocol</strong>: Protocol for health checks (e.g., <code>HTTP</code>).</li>
+          <li><strong>health_check_port</strong>: The port used for health checks (<code>traffic-port</code> or a specific port).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Target Group named <code>MyTargetGroup</code> in the AWS region <code>us-east-1</code>, associated with a VPC, listening on port <code>80</code>, and using <code>HTTP</code> for both traffic and health checks.</p>
+    </section>
+
+    <!-- 10 -->
+    <!-- Load Balancer Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Load Balancer Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Load Balancer setup, specifying attributes such as subnets, security groups, and load balancer type.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Load Balancers</h3>
+      <ul>
+          <li>A list of load balancers with associated networking and security settings.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Load Balancer (e.g., <code>MyLoadBalancer</code>).</li>
+          <li><strong>region</strong>: AWS region where the Load Balancer will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>subnets</strong>: A list of subnet IDs where the Load Balancer will be deployed.</li>
+          <li><strong>security_groups</strong>: A list of security group IDs associated with the Load Balancer.</li>
+          <li><strong>scheme</strong>: Defines whether the Load Balancer is publicly accessible (<code>internet-facing</code>) or private (<code>internal</code>).</li>
+          <li><strong>type</strong>: The type of Load Balancer (e.g., <code>application</code>).</li>
+          <li><strong>ip_address_type</strong>: The IP address type used (<code>ipv4</code> or <code>dualstack</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions an <code>internet-facing</code> application Load Balancer named <code>MyLoadBalancer</code> in the AWS region <code>us-east-1</code>, associated with specific subnets and security groups, and supporting <code>ipv4</code> addresses.</p>
+    </section>
+
+    <!-- 11 -->
+    <!-- Listener Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Listener Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Load Balancer Listener setup, specifying attributes such as protocol, port, actions, and SSL settings.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Listeners</h3>
+      <ul>
+          <li>A list of listeners associated with a specific Load Balancer.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Listener (e.g., <code>MyListener</code>).</li>
+          <li><strong>region</strong>: AWS region where the Listener will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>load_balancer_arn</strong>: The Amazon Resource Name (ARN) of the Load Balancer.</li>
+          <li><strong>protocol</strong>: The protocol used for the Listener (e.g., <code>HTTPS</code>).</li>
+          <li><strong>port</strong>: The port on which the Listener operates (e.g., <code>443</code> for HTTPS, <code>80</code> for HTTP).</li>
+          <li><strong>action_type</strong>: The action taken when a request matches the Listener (e.g., <code>forward</code>).</li>
+          <li><strong>target_group_arn</strong>: The ARN of the Target Group to forward traffic to.</li>
+          <li><strong>ssl_certificate_arn</strong>: The ARN of the SSL certificate for HTTPS/TLS listeners.</li>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Listener named <code>MyListener</code> in the AWS region <code>us-east-1</code>, attached to a Load Balancer, listening on port <code>443</code> using <code>HTTPS</code>, and forwarding traffic to a specified Target Group with SSL enabled.</p>
+    </section>
+
+    <!-- 12 -->
+    <!-- RDS Subnet Group Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>RDS Subnet Group Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS RDS Subnet Group setup, specifying attributes such as region, description, associated subnets, and tags.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>RDS Subnet Groups</h3>
+      <ul>
+          <li>A list of RDS subnet groups that define which subnets are available for RDS database instances.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the RDS Subnet Group (e.g., <code>MyRDSSubnetGroup</code>).</li>
+          <li><strong>region</strong>: AWS region where the subnet group will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>description</strong>: A brief description of the subnet group.</li>
+          <li><strong>subnets</strong>: A list of subnet IDs included in the subnet group.</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions an RDS Subnet Group named <code>MyRDSSubnetGroup</code> in the AWS region <code>us-east-1</code>, associating it with specified subnets for database instances.</p>
+    </section>
+    <!-- 13 -->
+    <!-- Subnet Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Subnet Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Subnet setup, specifying attributes such as region, VPC association, CIDR block, availability zone, dependencies, and tags.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Subnets</h3>
+      <ul>
+          <li>A list of subnets associated with a specific VPC.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Subnet (e.g., <code>MySubnet</code>).</li>
+          <li><strong>region</strong>: AWS region where the subnet will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>vpc_id</strong>: The ID of the VPC to which this subnet belongs (e.g., <code>vpc-12345678</code>).</li>
+          <li><strong>cidr_block</strong>: The CIDR block assigned to the subnet (e.g., <code>10.0.1.0/24</code>).</li>
+          <li><strong>availability_zone</strong>: The AWS availability zone where the subnet is located (e.g., <code>us-east-1a</code>).</li>
+          <li><strong>depends_on</strong>: Optional dependencies (e.g., VPC creation) to ensure resources are provisioned in the correct order.</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a subnet named <code>MySubnet</code> in the AWS region <code>us-east-1</code>, associated with a specified VPC, using a <code>10.0.1.0/24</code> CIDR block within the <code>us-east-1a</code> availability zone.</p>
+    </section>
+    <!-- 14 -->
+    <!-- EKS Node Group Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>EKS Node Group Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS EKS Node Group setup, specifying attributes such as region, cluster association, IAM role, subnets, scaling configuration, instance types, and tags.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>EKS Node Groups</h3>
+      <ul>
+          <li>A list of EKS node groups associated with an EKS cluster.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Node Group (e.g., <code>MyNodeGroup</code>).</li>
+          <li><strong>region</strong>: AWS region where the node group will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>clusterName</strong>: The name of the EKS cluster to which this node group belongs (e.g., <code>MyEKSCluster</code>).</li>
+          <li><strong>nodeRole</strong>: The ARN of the IAM role assigned to the node group (e.g., <code>arn:aws:iam::123456789012:role/EKSNodeGroupRole</code>).</li>
+          <li><strong>subnets</strong>: A list of subnet IDs where the node group instances will be launched (e.g., <code>subnet-12345678</code>, <code>subnet-87654321</code>).</li>
+          <li><strong>scalingConfig</strong>: The scaling configuration of the node group.</li>
+          <ul>
+              <li><strong>minSize</strong>: Minimum number of nodes (e.g., <code>2</code>).</li>
+              <li><strong>maxSize</strong>: Maximum number of nodes (e.g., <code>5</code>).</li>
+              <li><strong>desiredSize</strong>: Desired number of nodes at creation (e.g., <code>3</code>).</li>
+          </ul>
+          <li><strong>instanceTypes</strong>: A list of EC2 instance types used for the node group (e.g., <code>t3.medium</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions an EKS Node Group named <code>MyNodeGroup</code> in the AWS region <code>us-east-1</code>, associated with an EKS cluster named <code>MyEKSCluster</code>, using a <code>t3.medium</code> instance type and autoscaling between <code>2</code> and <code>5</code> nodes.</p>
+    </section>
+    <!-- 15 -->
+    <!-- EKS Cluster Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>EKS Cluster Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS EKS Cluster setup, specifying attributes such as region, Kubernetes version, IAM role, VPC configuration, subnets, security groups, and access settings.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>EKS Clusters</h3>
+      <ul>
+          <li>A list of EKS clusters with associated networking and security settings.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the EKS Cluster (e.g., <code>MyEKSCluster</code>).</li>
+          <li><strong>region</strong>: AWS region where the cluster will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>version</strong>: The Kubernetes version for the cluster (e.g., <code>1.24</code>).</li>
+          <li><strong>role_arn</strong>: The ARN of the IAM role assigned to the EKS cluster (e.g., <code>arn:aws:iam::123456789012:role/EKSClusterRole</code>).</li>
+          <li><strong>resources_vpc_config</strong>: VPC configuration for the cluster.</li>
+          <ul>
+              <li><strong>subnetIds</strong>: A list of subnet IDs where the cluster resources will be deployed (e.g., <code>subnet-12345678</code>, <code>subnet-87654321</code>).</li>
+              <li><strong>securityGroupIds</strong>: A list of security group IDs associated with the cluster (e.g., <code>sg-abcdefgh</code>).</li>
+              <li><strong>endpointPublicAccess</strong>: Boolean value indicating whether the Kubernetes API server is publicly accessible (<code>true</code> or <code>false</code>).</li>
+              <li><strong>endpointPrivateAccess</strong>: Boolean value indicating whether the Kubernetes API server is privately accessible (<code>true</code> or <code>false</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions an EKS Cluster named <code>MyEKSCluster</code> in the AWS region <code>us-east-1</code>, using Kubernetes version <code>1.24</code>. It assigns a specific IAM role, deploys resources in designated subnets with security groups, and configures public API access.</p>
+    </section>
+    <!-- 16 -->
+    <!-- Elastic IP Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Elastic IP Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Elastic IP setup, specifying attributes such as region, domain, associated instance, and tags.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Elastic IPs</h3>
+      <ul>
+          <li>A list of Elastic IPs with their configurations.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name assigned to the Elastic IP (e.g., <code>MyElasticIP</code>).</li>
+          <li><strong>region</strong>: AWS region where the Elastic IP will be allocated (e.g., <code>us-east-1</code>).</li>
+          <li><strong>domain</strong>: The domain scope of the Elastic IP. Options:</li>
+          <ul>
+              <li><strong>vpc</strong>: Default option for Elastic IPs within a VPC.</li>
+              <li><strong>standard</strong>: Used for EC2-Classic instances.</li>
+          </ul>
+          <li><strong>instance_id</strong>: (Optional) The EC2 instance ID to which the Elastic IP is associated (e.g., <code>i-0123456789abcdef0</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyElasticIP</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions an Elastic IP named <code>MyElasticIP</code> in the AWS region <code>us-east-1</code>, assigned to a specific EC2 instance, using the <code>vpc</code> domain scope.</p>
+    </section>
+    <!-- 17 -->
+    <!-- EC2 Instance Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>EC2 Instance Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS EC2 instance setup, specifying attributes such as region, instance type, AMI ID, security group, key pair, and user data.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>EC2 Instances</h3>
+      <ul>
+          <li>A list of EC2 instances with their configurations.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name assigned to the EC2 instance (e.g., <code>MyEC2Instance</code>).</li>
+          <li><strong>region</strong>: AWS region where the instance will be launched (e.g., <code>us-east-1</code>).</li>
+          <li><strong>instance_type</strong>: The type of EC2 instance (e.g., <code>t3.micro</code>).</li>
+          <li><strong>ami_id</strong>: The Amazon Machine Image (AMI) ID used for launching the instance (e.g., <code>ami-0123456789abcdef0</code>).</li>
+          <li><strong>key_name</strong>: The SSH key pair used for accessing the instance (e.g., <code>my-key-pair</code>).</li>
+          <li><strong>security_group</strong>: The security group ID associated with the instance (e.g., <code>sg-abcdefgh</code>).</li>
+          <li><strong>count</strong>: The number of instances to launch (e.g., <code>2</code>).</li>
+          <li><strong>user_data</strong>: A script that runs when the instance is first launched.</li>
+          <ul>
+              <li>Example:</li>
+          </ul>
+          <pre><code>
+          #!/bin/bash
+          echo "Hello, World!" > /var/www/html/index.html
+          </code></pre>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Name</strong>: Instance name (e.g., <code>MyEC2Instance</code>).</li>
+              <li><strong>Environment</strong>: Environment type (e.g., <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions two EC2 instances named <code>MyEC2Instance</code> in the AWS region <code>us-east-1</code>, using an AMI, SSH key pair, and security group. The user data script creates a simple web page at <code>/var/www/html/index.html</code>.</p>
+    </section>
+    <!-- 18 -->
+    <!-- Security Group Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Security Group Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Security Group setup, specifying attributes such as VPC ID, inbound rules, and tags.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Security Groups</h3>
+      <ul>
+          <li>A list of security groups with associated networking rules and configurations.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name assigned to the security group (e.g., <code>MySecurityGroup</code>).</li>
+          <li><strong>region</strong>: AWS region where the security group will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>vpc_id</strong>: The VPC ID associated with this security group (e.g., <code>vpc-12345678</code>).</li>
+          <li><strong>description</strong>: A brief description of the security group (e.g., <code>Security group for web application</code>).</li>
+          <li><strong>inbound_rules</strong>: A list of inbound traffic rules specifying allowed connections.</li>
+          <ul>
+              <li><strong>protocol</strong>: The network protocol (e.g., <code>tcp</code>).</li>
+              <li><strong>port_range</strong>: The allowed port or range of ports (e.g., <code>80</code>, <code>443</code>, <code>22</code>).</li>
+              <li><strong>cidr_blocks</strong>: The allowed IP range in CIDR notation (e.g., <code>0.0.0.0/0</code> for open access, or <code>192.168.1.0/24</code> for restricted access).</li>
+          </ul>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MySecurityGroup</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a security group named <code>MySecurityGroup</code> in the AWS region <code>us-east-1</code>, associated with a specific VPC. It allows HTTP (port 80) and HTTPS (port 443) access from anywhere, while restricting SSH (port 22) access to a private internal network (<code>192.168.1.0/24</code>).</p>
+    </section>
+    <!-- 19 -->
+    <!-- Route Table Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Route Table Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Route Table setup, specifying the associated VPC, routes, and metadata tags.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Route Tables</h3>
+      <ul>
+          <li>A list of route tables with associated network routing settings.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Route Table (e.g., <code>MyRouteTable</code>).</li>
+          <li><strong>region</strong>: AWS region where the Route Table will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>vpc_id</strong>: The ID of the VPC to which this Route Table belongs (e.g., <code>vpc-12345678</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyRouteTable</code>, <code>Production</code>).</li>
+          </ul>
+          <li><strong>routes</strong>: A list of route configurations for network traffic direction.</li>
+          <ul>
+              <li><strong>destination_cidr_block</strong>: Specifies the CIDR block for the route destination (e.g., <code>0.0.0.0/0</code> for internet access).</li>
+              <li><strong>gateway_id</strong>: The ID of the gateway used for this route (e.g., <code>igw-abcdefgh</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Route Table named <code>MyRouteTable</code> in the AWS region <code>us-east-1</code>, associated with a specific VPC and including a default route for internet access through an Internet Gateway.</p>
+    </section>
+    <!-- 20 -->
+    <!-- S3 Bucket Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>S3 Bucket Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS S3 bucket setup, specifying attributes such as access controls, versioning, and encryption settings.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>S3 Buckets</h3>
+      <ul>
+          <li>A list of S3 buckets with associated settings.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the S3 bucket (e.g., <code>my-s3-bucket</code>).</li>
+          <li><strong>region</strong>: AWS region where the bucket will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>public_access_block</strong>: Boolean flag to block public access (<code>true</code> to block, <code>false</code> to allow public access).</li>
+          <li><strong>versioning</strong>: Boolean flag to enable or disable versioning (<code>true</code> to enable, <code>false</code> to disable).</li>
+          <li><strong>lifecycle_rules</strong>: Defines automatic object management policies.</li>
+          <ul>
+              <li><strong>id</strong>: Unique identifier for the rule (e.g., <code>ExpireOldObjects</code>).</li>
+              <li><strong>prefix</strong>: Applies rule only to objects with this prefix (e.g., <code>logs/</code>).</li>
+              <li><strong>status</strong>: Defines whether the rule is active (<code>Enabled</code> or <code>Disabled</code>).</li>
+              <li><strong>expiration_in_days</strong>: Number of days before objects expire and are automatically deleted (e.g., <code>30</code>).</li>
+          </ul>
+          <li><strong>logging</strong>: Configures logging for the S3 bucket.</li>
+          <ul>
+              <li><strong>TargetBucket</strong>: Name of the S3 bucket where logs are stored (e.g., <code>my-logging-bucket</code>).</li>
+              <li><strong>TargetPrefix</strong>: Prefix used for log file storage (e.g., <code>logs/</code>).</li>
+          </ul>
+          <li><strong>encryption</strong>: Defines encryption settings for the bucket.</li>
+          <ul>
+              <li><strong>SSEAlgorithm</strong>: Server-side encryption algorithm (<code>AES256</code> or <code>aws:kms</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions an S3 bucket named <code>my-s3-bucket</code> in the AWS region <code>us-east-1</code>, with public access blocked, versioning enabled, and a lifecycle rule to automatically delete objects older than 30 days. Logging is enabled, and server-side encryption using AES-256 is applied.</p>
+    </section>
+    <!-- 21 -->
+    <!-- Network Interface Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Network Interface Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Network Interface setup, specifying attributes such as the subnet, security groups, and associated metadata.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Network Interfaces</h3>
+      <ul>
+          <li>A list of network interfaces with associated networking and security settings.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Network Interface (e.g., <code>MyNetworkInterface</code>).</li>
+          <li><strong>region</strong>: AWS region where the Network Interface will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>subnet_id</strong>: The ID of the subnet in which the Network Interface is created (e.g., <code>subnet-12345678</code>).</li>
+          <li><strong>description</strong>: A description of the Network Interface (e.g., <code>Primary network interface for application</code>).</li>
+          <li><strong>groups</strong>: A list of security group IDs associated with the Network Interface (e.g., <code>sg-abcdefgh</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyNetworkInterface</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a network interface named <code>MyNetworkInterface</code> in the AWS region <code>us-east-1</code>, attached to a specified subnet and security groups, with relevant metadata for identification.</p>
+    </section>
+    <!-- 22 -->
+    <!-- SSL Certificate Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>SSL Certificate Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS SSL certificate setup, specifying domain validation methods and alternative domain names.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>SSL Certificates</h3>
+      <ul>
+          <li>A list of SSL certificates with validation methods and associated metadata.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>domain_name</strong>: The primary domain for the SSL certificate (e.g., <code>example.com</code>).</li>
+          <li><strong>region</strong>: AWS region where the certificate will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>validation_method</strong>: The method used for domain validation. Options:</li>
+          <ul>
+              <li><code>DNS</code>: Validate ownership through DNS records.</li>
+              <li><code>EMAIL</code>: Validate ownership through email verification.</li>
+          </ul>
+          <li><strong>subject_alternative_names</strong>: Additional domain names covered by the certificate (e.g., <code>www.example.com</code>, <code>api.example.com</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Environment</code>, <code>Owner</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>Production</code>, <code>DevOps Team</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions an SSL certificate for <code>example.com</code> in the AWS region <code>us-east-1</code>, using DNS validation and covering multiple subdomains.</p>
+    </section>
+    <!-- 23 -->
+    <!-- Transit Gateway Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Transit Gateway Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Transit Gateway, specifying attributes such as ASN, routing options, and associations.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Transit Gateways</h3>
+      <ul>
+          <li>A list of Transit Gateways with their networking and configuration settings.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Transit Gateway (e.g., <code>MyTransitGateway</code>).</li>
+          <li><strong>region</strong>: AWS region where the Transit Gateway will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>description</strong>: A short description of the Transit Gateway (e.g., <code>Primary Transit Gateway for cross-region networking</code>).</li>
+          <li><strong>options</strong>:</li>
+          <ul>
+              <li><strong>AmazonSideAsn</strong>: Autonomous System Number (ASN) for the AWS side of a BGP session (e.g., <code>64512</code>).</li>
+              <li><strong>AutoAcceptSharedAttachments</strong>: Whether to automatically accept shared attachments (<code>enable</code> or <code>disable</code>).</li>
+              <li><strong>DefaultRouteTableAssociation</strong>: Whether to enable default route table association (<code>enable</code> or <code>disable</code>).</li>
+              <li><strong>DefaultRouteTablePropagation</strong>: Whether to enable default route table propagation (<code>enable</code> or <code>disable</code>).</li>
+          </ul>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyTransitGateway</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Transit Gateway named <code>MyTransitGateway</code> in the AWS region <code>us-east-1</code>, with specific routing and association settings for secure and scalable cross-region networking.</p>
+    </section>
+    <!-- 24 -->
+    <!-- Transit Gateway Attachment Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Transit Gateway Attachment Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Transit Gateway Attachment, specifying attributes such as the associated Transit Gateway, VPC, and subnets.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Transit Gateway Attachments</h3>
+      <ul>
+          <li>A list of Transit Gateway Attachments that define how VPCs connect to the Transit Gateway.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Transit Gateway Attachment (e.g., <code>MyTGWAttachment</code>).</li>
+          <li><strong>region</strong>: AWS region where the Transit Gateway Attachment will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>transit_gateway_id</strong>: The ID of the Transit Gateway to which the attachment is connected (e.g., <code>tgw-12345678</code>).</li>
+          <li><strong>resource_id</strong>: The ID of the VPC being attached to the Transit Gateway (e.g., <code>vpc-87654321</code>).</li>
+          <li><strong>subnet_ids</strong>: A list of subnet IDs within the VPC that will be part of this attachment (e.g., <code>subnet-12345678</code>, <code>subnet-87654321</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyTGWAttachment</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Transit Gateway Attachment named <code>MyTGWAttachment</code> in the AWS region <code>us-east-1</code>, connecting the VPC <code>vpc-87654321</code> to the Transit Gateway <code>tgw-12345678</code> using specified subnets.</p>
+    </section>
+    <!-- 25 -->
+    <!-- Transit Gateway Policy Table Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Transit Gateway Policy Table Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Transit Gateway Policy Table setup, specifying attributes such as the Transit Gateway ID and associated tags.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Transit Gateway Policy Tables</h3>
+      <ul>
+          <li>A list of Transit Gateway Policy Tables with associated metadata.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Transit Gateway Policy Table (e.g., <code>MyTGWPolicyTable</code>).</li>
+          <li><strong>region</strong>: AWS region where the Transit Gateway Policy Table will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>transit_gateway_id</strong>: The ID of the Transit Gateway associated with this policy table (e.g., <code>tgw-12345678</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyTGWPolicyTable</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Transit Gateway Policy Table named <code>MyTGWPolicyTable</code> in the AWS region <code>us-east-1</code>, associated with the specified Transit Gateway and tagged for identification.</p>
+    </section>
+    <!-- 26 -->
+    <!-- Transit Gateway Route Table Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Transit Gateway Route Table Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Transit Gateway Route Table, specifying attributes such as associated Transit Gateway and tagging details.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Transit Gateway Route Tables</h3>
+      <ul>
+          <li>A list of Transit Gateway Route Tables with their respective configurations.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Transit Gateway Route Table (e.g., <code>MyTGWRouteTable</code>).</li>
+          <li><strong>region</strong>: AWS region where the Transit Gateway Route Table will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>transit_gateway_id</strong>: The ID of the Transit Gateway to which this route table belongs (e.g., <code>tgw-12345678</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyTGWRouteTable</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Transit Gateway Route Table named <code>MyTGWRouteTable</code> in the AWS region <code>us-east-1</code>, associated with a specific Transit Gateway, and tagged for better resource management.</p>
+    </section>
+    <!-- 27 -->
+    <!-- Transit Gateway Multicast Domain Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Transit Gateway Multicast Domain Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Transit Gateway Multicast Domain setup, specifying attributes such as the region, Transit Gateway ID, and associated tags.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Transit Gateway Multicast Domains</h3>
+      <ul>
+          <li>A list of Transit Gateway Multicast Domains and their respective configurations.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Transit Gateway Multicast Domain (e.g., <code>MyTGWMulticastDomain</code>).</li>
+          <li><strong>region</strong>: AWS region where the Transit Gateway Multicast Domain will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>transit_gateway_id</strong>: The ID of the Transit Gateway associated with the multicast domain (e.g., <code>tgw-12345678</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyTGWMulticastDomain</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Transit Gateway Multicast Domain named <code>MyTGWMulticastDomain</code> in the AWS region <code>us-east-1</code>, associating it with a specified Transit Gateway and applying environment-specific tagging.</p>
+    </section>
+    <!-- 28 -->
+    <!-- Customer Gateway Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Customer Gateway Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Customer Gateway, which facilitates VPN connections between AWS and an on-premises network.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Customer Gateways</h3>
+      <ul>
+          <li>A list of customer gateways with relevant networking and security details.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Customer Gateway (e.g., <code>MyCustomerGateway</code>).</li>
+          <li><strong>region</strong>: AWS region where the Customer Gateway will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>bgp_asn</strong>: The Border Gateway Protocol (BGP) Autonomous System Number (ASN) assigned to the customer gateway device (e.g., <code>65000</code>).</li>
+          <li><strong>ip_address</strong>: The public IP address of the customer gateway device (e.g., <code>203.0.113.1</code>).</li>
+          <li><strong>type</strong>: The type of customer gateway (default is <code>ipsec.1</code>).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyCustomerGateway</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a customer gateway named <code>MyCustomerGateway</code> in the AWS region <code>us-east-1</code>, using BGP ASN <code>65000</code> and a public IP address of <code>203.0.113.1</code> to establish a secure VPN connection to AWS.</p>
+    </section>
+    <!-- 29 -->
+    <!-- Virtual Private Gateway Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Virtual Private Gateway Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This section defines the configuration for an AWS Virtual Private Gateway (VGW), which serves as a VPN concentrator on the Amazon side of a VPN connection.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Virtual Private Gateways</h3>
+      <ul>
+          <li>A list of Virtual Private Gateways (VGWs) with their respective attributes.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Virtual Private Gateway (e.g., <code>MyVPGateway</code>).</li>
+          <li><strong>region</strong>: The AWS region where the VGW is deployed (e.g., <code>us-east-1</code>).</li>
+          <li><strong>amazon_side_asn</strong>: The ASN (Autonomous System Number) assigned by AWS for BGP sessions. Default is <code>64512</code> but can be customized.</li>
+          <li><strong>tags</strong>: Metadata labels for resource organization.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyVPGateway</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Virtual Private Gateway named <code>MyVPGateway</code> in the <code>us-east-1</code> region with the default Amazon ASN <code>64512</code>, tagged for identification within the AWS environment.</p>
+    </section>
+    <!-- 30 -->
+    <!-- VPN Connection Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>VPN Connection Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS VPN Connection setup, specifying attributes such as Customer Gateway, VPN Gateway, and optional Transit Gateway.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>VPN Connections</h3>
+      <ul>
+          <li>A list of VPN connections with their respective properties.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the VPN Connection (e.g., <code>MyVPNConnection</code>).</li>
+          <li><strong>region</strong>: AWS region where the VPN Connection will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>customer_gateway_id</strong>: The ID of the Customer Gateway (e.g., <code>cgw-12345678</code>).</li>
+          <li><strong>vpn_gateway_id</strong>: The ID of the VPN Gateway (if applicable) (e.g., <code>vgw-87654321</code>).</li>
+          <li><strong>transit_gateway_id</strong>: (Optional) The ID of the Transit Gateway, if the VPN is associated with one.</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyVPNConnection</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a VPN Connection named <code>MyVPNConnection</code> in the AWS region <code>us-east-1</code>, connecting a Customer Gateway (<code>cgw-12345678</code>) with a VPN Gateway (<code>vgw-87654321</code>). It includes optional support for a Transit Gateway if needed.</p>
+    </section>
+    <!-- 31 -->
+    <!-- Client VPN Endpoint Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Client VPN Endpoint Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS Client VPN Endpoint setup, specifying attributes such as CIDR blocks, authentication options, and logging details.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Client VPN Endpoints</h3>
+      <ul>
+          <li>A list of Client VPN Endpoints with associated networking and security settings.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Client VPN Endpoint (e.g., <code>MyClientVPN</code>).</li>
+          <li><strong>region</strong>: AWS region where the Client VPN Endpoint will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>client_cidr_block</strong>: The CIDR block from which clients are assigned IP addresses (e.g., <code>10.0.0.0/22</code>).</li>
+          <li><strong>server_certificate_arn</strong>: The ARN of the server certificate used for SSL connections.</li>
+          <li><strong>authentication_options</strong>: Defines authentication methods for client access.</li>
+          <ul>
+              <li><strong>Type</strong>: The authentication type (e.g., <code>certificate-authentication</code>).</li>
+              <li><strong>MutualAuthentication</strong>:</li>
+              <ul>
+                  <li><strong>ClientRootCertificateChainArn</strong>: ARN of the client root certificate for mutual authentication.</li>
+              </ul>
+          </ul>
+          <li><strong>connection_log_options</strong>: Specifies logging options for VPN connection logs.</li>
+          <ul>
+              <li><strong>Enabled</strong>: Whether logging is enabled (<code>true</code> or <code>false</code>).</li>
+              <li><strong>CloudwatchLogGroup</strong>: The CloudWatch Log Group name (e.g., <code>/aws/client-vpn/logs</code>).</li>
+              <li><strong>CloudwatchLogStream</strong>: The CloudWatch Log Stream name (e.g., <code>client-vpn-stream</code>).</li>
+          </ul>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyClientVPN</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Client VPN Endpoint named <code>MyClientVPN</code> in the AWS region <code>us-east-1</code>, with certificate-based authentication, CloudWatch logging enabled, and client IP allocation from the <code>10.0.0.0/22</code> CIDR block.</p>
+    </section>
+    <!-- 32 -->
+    <!-- Lattice Service Configuration Documentation -->
+    <section class="docker-swarm">
+      <h1>Lattice Service Configuration Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML configuration defines an AWS VPC Lattice Service setup, specifying attributes such as authentication type and metadata tagging.</p>
+
+      <h2>Configuration Breakdown</h2>
+
+      <h3>Lattice Services</h3>
+      <ul>
+          <li>A list of Lattice Services with associated networking and authentication settings.</li>
+      </ul>
+
+      <h3>Attributes</h3>
+      <ul>
+          <li><strong>name</strong>: The name of the Lattice Service (e.g., <code>MyLatticeService</code>).</li>
+          <li><strong>region</strong>: AWS region where the Lattice Service will be created (e.g., <code>us-east-1</code>).</li>
+          <li><strong>auth_type</strong>: The authentication type for the service (<code>NONE</code> or other applicable authentication types).</li>
+          <li><strong>tags</strong>: Metadata labels for resource identification.</li>
+          <ul>
+              <li><strong>Key</strong>: Tag key (e.g., <code>Name</code>, <code>Environment</code>).</li>
+              <li><strong>Value</strong>: Corresponding value (e.g., <code>MyLatticeService</code>, <code>Production</code>).</li>
+          </ul>
+      </ul>
+
+      <h2>Example Use Case</h2>
+      <p>This configuration provisions a Lattice Service named <code>MyLatticeService</code> in the AWS region <code>us-east-1</code>, with authentication type set to <code>NONE</code> and tagged for production use.</p>
+    </section>
+
   </main>
   
     <footer class="footer">
