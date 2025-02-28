@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevOps-Bot | Docker Swarm</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <nav class="nav-links">
+      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+      <a href="features.html" class="nav-link">Features</a>
+      <a href="docs.html" class="nav-link">Docs</a>
+      <a href="Community.html" class="nav-link">Community</a>
+      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="About.html" class="nav-link">About</a>
+    </nav>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
+
+  <!-- Sidebar (optional) -->
+    <!-- Sidebar (optional) -->
+    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+      <div class="search-bar">
+        <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
+        <button onclick="performSidebarSearch()">Search</button>
+      </div>
+      <ul>
+        <li><a href="officialwebsite.html">Introduction</a></li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Getting Started</a>
+          <ul class="nested">
+            <li><a href="installation.html">Installation</a></li>
+            <li><a href="uninstall.html">Uninstall</a></li>
+            <li><a href="comingsoon.html">Requirements</a></li>
+            <li><a href="comingsoon.html">Best Practices</a></li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Functions</a>
+              <ul class="nested">
+                <li><a href="webhook.html">Webhook</a></li>
+                <li><a href="persona.html">Persona</a></li>
+                <li><a href="infracred.html">Infrascrid</a></li>
+                <li><a href="vault.html">Vault</a></li>
+                <li><a href="plugins.html">Plugins</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+              <ul class="nested">
+                <li><a href="dob-host-cli.html">Host CLI</a></li>
+                <li><a href="dob-cli.html">Remote CLI</a></li>
+                <li><a href="ui.html">UI</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Features</a>
+          <ul class="nested">
+            <li>
+              <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+              <ul class="nested">
+                <li><a href="infracircle.html">InfraCycle</a></li>
+                <li><a href="dobp.html">DOBProxy</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Provisioning</a>
+              <ul class="nested">
+                <li><a href="screenplay.html">Screenplay</a></li>
+              </ul>
+            </li>                             
+            <li>
+              <a href="#" onclick="toggleNested(event)">Configuration</a>
+              <ul class="nested">
+                <li><a href="infraset.html">InfraSet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Providers</a>
+          <ul class="nested">
+            <li>
+              <a href="#" onclick="toggleNested(event)">AWS</a>
+              <ul class="nested">
+                <li><a href="aws.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="Aws_declartive.html">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Azure</a>
+              <ul class="nested">
+                <li><a href="azure.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">GCP</a>
+              <ul class="nested">
+                <li><a href="gcp.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="#">Imperative</a></li>
+                    <li><a href="#">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+          <ul class="nested">
+            <li><a href="ansible.html">Ansible</a></li>
+            <li><a href="Kubernetes.html">Kubernetes</a></li>
+            <li><a href="dockerswarm.html">Docker Swarm</a></li>
+            <li><a href="jenkins.html">Jenkins</a></li>
+          </ul>
+        </li>
+        <li><a href="comingsoon.html">Use Cases</a></li>
+        <li><a href="comingsoon.html">API Reference</a></li>
+        <li><a href="Releasenotes.html">Release Notes</a></li>
+      </ul>
+    </aside>
+  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+      <h1>AWS Screenplay Declartive</h1>
+      <p>Declartive Files For AWS ScreenPlay</p>
+    </section>
+
+    <!-- User Configuration YAML Documentation -->
+    <section class="docker-swarm">
+      <h1>User Configuration YAML Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML file defines user attributes and configurations for system provisioning and access management. It is primarily used for automating user creation, setting permissions, and enabling secure authentication via SSH.</p>
+      
+      <h2>Structure</h2>
+      <p>The YAML file consists of a list of users, each with specific attributes. Below is a breakdown of each key and its purpose.</p>
+      
+      <h2>YAML Structure Breakdown</h2>
+      <pre><code>users:
+  - identifier: "server-01"
+    username: "testuser"
+    password: "securepassword123"  # Optional, can be generated if not provided
+    permissions: "sudo"  # Optional user group assignment
+    create_user_ssh_key: true  # Whether to generate an SSH key for the user
+    category: "production"  # Optional, specify category for host lookup
+</code></pre>
+      
+      <h2>Explanation of Fields</h2>
+      
+      <h3>users</h3>
+      <ul>
+        <li>A list containing multiple user definitions.</li>
+        <li>Each user entry is defined using <code>-</code> under <code>users</code>.</li>
+      </ul>
+      
+      <h3>identifier</h3>
+      <ul>
+        <li>A unique identifier for the server or user.</li>
+        <li>Typically used to distinguish different user entries.</li>
+      </ul>
+      
+      <h3>username</h3>
+      <ul>
+        <li>Specifies the username that will be created on the system.</li>
+        <li>This is the account name used for logging in.</li>
+      </ul>
+      
+      <h3>password (Optional)</h3>
+      <ul>
+        <li>Defines the user password.</li>
+        <li>If not provided, a password can be automatically generated.</li>
+        <li><strong>Security Note:</strong> Storing plaintext passwords in YAML is not recommended. Consider using environment variables or secrets management tools.</li>
+      </ul>
+      
+      <h3>permissions (Optional)</h3>
+      <ul>
+        <li>Assigns a user group or access level.</li>
+        <li>Example: <code>sudo</code> grants administrative privileges to the user.</li>
+        <li>If omitted, the user will have default system permissions.</li>
+      </ul>
+      
+      <h3>create_user_ssh_key</h3>
+      <ul>
+        <li>A boolean (<code>true</code> or <code>false</code>) indicating whether an SSH key should be generated for the user.</li>
+        <li><code>true</code>: Creates a new SSH key for secure authentication.</li>
+        <li><code>false</code>: No SSH key will be created.</li>
+        <li>Useful for enabling key-based authentication instead of passwords.</li>
+      </ul>
+      
+      <h3>category (Optional)</h3>
+      <ul>
+        <li>Specifies a category or classification for the user.</li>
+        <li>Example: <code>production</code>, <code>staging</code>, or <code>development</code>.</li>
+        <li>Can be used for filtering or role-based access control.</li>
+      </ul>
+      
+      <h2>Example Use Cases</h2>
+      <ul>
+        <li><strong>Automated user provisioning</strong>: This YAML can be used with Ansible, Terraform, or custom scripts to automate user creation.</li>
+        <li><strong>Access control management</strong>: Assign different permission levels and authentication methods.</li>
+        <li><strong>Secure authentication</strong>: Enforce SSH key-based authentication for improved security.</li>
+      </ul>
+      
+      <h2>Best Practices</h2>
+      <ol>
+        <li><strong>Use Secrets Management</strong>: Avoid storing plaintext passwords; use a secrets manager like Vault, AWS Secrets Manager, or environment variables.</li>
+        <li><strong>Restrict Sudo Access</strong>: Grant <code>sudo</code> permissions only when necessary to minimize security risks.</li>
+        <li><strong>Enable Key-Based Authentication</strong>: Set <code>create_user_ssh_key: true</code> for more secure access.</li>
+        <li><strong>Categorize Users Properly</strong>: Use the <code>category</code> field to differentiate production and non-production users.</li>
+      </ol>
+      
+      <h2>Conclusion</h2>
+      <p>This YAML configuration simplifies user provisioning, enforces security policies, and ensures consistency across systems. It is ideal for DevOps workflows and automated server setups.</p>
+    </section>
+
+    <!-- DynamoDB Table Configuration YAML Documentation -->
+    <section class="docker-swarm">
+      <h1>DynamoDB Table Configuration YAML Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML file defines the configuration for creating and managing Amazon DynamoDB tables. It specifies table properties such as name, region, schema, billing mode, and tagging.</p>
+      
+      <h2>YAML Structure Breakdown</h2>
+      <pre><code>dynamodb_tables:
+  - name: "TestTable"
+    region: "us-east-1"
+    attribute_definitions:
+      - AttributeName: "id"
+        AttributeType: "S"
+    key_schema:
+      - AttributeName: "id"
+        KeyType: "HASH"
+    billing_mode: "PAY_PER_REQUEST"  # Options: PAY_PER_REQUEST or PROVISIONED
+    provisioned_throughput:
+      ReadCapacityUnits: 5  # Required only if billing_mode is PROVISIONED
+      WriteCapacityUnits: 5
+    tags:
+      - Key: "Environment"
+        Value: "Test"
+      - Key: "Project"
+        Value: "DevOps-Bot"
+</code></pre>
+      
+      <h2>Explanation of Fields</h2>
+      
+      <h3>dynamodb_tables</h3>
+      <ul>
+        <li>A list containing multiple DynamoDB table definitions.</li>
+        <li>Each table is defined using <code>-</code> under <code>dynamodb_tables</code>.</li>
+      </ul>
+      
+      <h3>name</h3>
+      <ul>
+        <li>Specifies the name of the DynamoDB table.</li>
+        <li>Example: <code>"TestTable"</code>.</li>
+      </ul>
+      
+      <h3>region</h3>
+      <ul>
+        <li>Defines the AWS region where the table will be created.</li>
+        <li>Example: <code>"us-east-1"</code>.</li>
+      </ul>
+      
+      <h3>attribute_definitions</h3>
+      <ul>
+        <li>Specifies the attributes of the table and their data types.</li>
+        <li>Example:
+          <ul>
+            <li><code>AttributeName: "id"</code> → Defines the attribute name as <code>id</code>.</li>
+            <li><code>AttributeType: "S"</code> → Specifies the attribute type (<code>S</code> for String, <code>N</code> for Number, <code>B</code> for Binary).</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>key_schema</h3>
+      <ul>
+        <li>Defines the primary key structure of the table.</li>
+        <li>Example:
+          <ul>
+            <li><code>AttributeName: "id"</code> → The key attribute.</li>
+            <li><code>KeyType: "HASH"</code> → Specifies the partition key (HASH key) for DynamoDB.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>billing_mode</h3>
+      <ul>
+        <li>Defines the billing mode for the table.</li>
+        <li>Options:
+          <ul>
+            <li><code>PAY_PER_REQUEST</code> → Charges based on usage (recommended for unpredictable workloads).</li>
+            <li><code>PROVISIONED</code> → Requires specifying <code>ReadCapacityUnits</code> and <code>WriteCapacityUnits</code>.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>provisioned_throughput (Required only if <code>billing_mode</code> is <code>PROVISIONED</code>)</h3>
+      <ul>
+        <li>Specifies read and write capacity units.</li>
+        <li>Example:
+          <ul>
+            <li><code>ReadCapacityUnits: 5</code> → Allocates 5 read units.</li>
+            <li><code>WriteCapacityUnits: 5</code> → Allocates 5 write units.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>tags</h3>
+      <ul>
+        <li>Adds metadata tags to the DynamoDB table.</li>
+        <li>Example:
+          <ul>
+            <li><code>Key: "Environment"</code>, <code>Value: "Test"</code> → Identifies the environment.</li>
+            <li><code>Key: "Project"</code>, <code>Value: "DevOps-Bot"</code> → Associates the table with a project.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h2>Example Use Cases</h2>
+      <ul>
+        <li><strong>Infrastructure as Code (IaC)</strong>: Used in Terraform or AWS CloudFormation for automating DynamoDB provisioning.</li>
+        <li><strong>Cost Management</strong>: Selecting <code>PAY_PER_REQUEST</code> helps in cost optimization for unpredictable workloads.</li>
+        <li><strong>Security & Organization</strong>: Using tags enables tracking and managing AWS resources efficiently.</li>
+      </ul>
+      
+      <h2>Best Practices</h2>
+      <ol>
+        <li><strong>Choose Billing Mode Wisely</strong>: Use <code>PAY_PER_REQUEST</code> for unpredictable workloads and <code>PROVISIONED</code> for stable, high-traffic tables.</li>
+        <li><strong>Define Keys Properly</strong>: Always define an efficient primary key to avoid hot partitions.</li>
+        <li><strong>Use Tags for Organization</strong>: Categorize tables for cost tracking and access control.</li>
+        <li><strong>Optimize Provisioned Throughput</strong>: If using <code>PROVISIONED</code>, monitor and adjust read/write capacity as needed.</li>
+      </ol>
+      
+      <h2>Conclusion</h2>
+      <p>This YAML configuration provides a structured approach to defining and deploying DynamoDB tables efficiently. It is particularly useful for DevOps automation and managing cloud infrastructure effectively.</p>
+    </section>
+
+    <!-- AWS CodeBuild Project Configuration YAML Documentation -->
+    <section class="docker-swarm">
+      <h1>AWS CodeBuild Project Configuration YAML Documentation</h1>
+      <h2>Overview</h2>
+      <p>This YAML file defines the configuration for setting up AWS CodeBuild projects. It specifies project properties such as source repository, environment settings, IAM role, build artifacts, and tagging.</p>
+      
+      <h2>YAML Structure Breakdown</h2>
+      <pre><code>codebuild_projects:
+  - name: "MyCodeBuildProject"
+    region: "us-east-1"
+    source:
+      type: "GITHUB"
+      location: "https://github.com/myrepo/myproject.git"
+    environment:
+      type: "LINUX_CONTAINER"
+      image: "aws/codebuild/standard:5.0"
+      computeType: "BUILD_GENERAL1_SMALL"
+      environmentVariables:
+        - name: "ENV_VAR1"
+          value: "value1"
+        - name: "ENV_VAR2"
+          value: "value2"
+    service_role: "arn:aws:iam::123456789012:role/CodeBuildServiceRole"
+    artifacts:
+      type: "S3"
+      location: "my-codebuild-bucket"
+    tags:
+      - Key: "Environment"
+        Value: "Development"
+      - Key: "Project"
+        Value: "DevOps-Bot"
+
+codebuild_builds:
+  - project_name: "MyCodeBuildProject"
+    region: "us-east-1"
+    source_version: "main"  # Optional: Branch, tag, or commit
+    environment_variables:
+      - name: "BUILD_ENV"
+        value: "production"
+      - name: "DEBUG_MODE"
+        value: "false"
+    execution_id: "execution-12345"
+</code></pre>
+      
+      <h2>Explanation of Fields</h2>
+      
+      <h3>codebuild_projects</h3>
+      <ul>
+        <li>A list containing multiple AWS CodeBuild project definitions.</li>
+        <li>Each project is defined using <code>-</code> under <code>codebuild_projects</code>.</li>
+      </ul>
+      
+      <h3>name</h3>
+      <ul>
+        <li>Specifies the name of the CodeBuild project.</li>
+        <li>Example: <code>"MyCodeBuildProject"</code>.</li>
+      </ul>
+      
+      <h3>region</h3>
+      <ul>
+        <li>Defines the AWS region where the build project will be created.</li>
+        <li>Example: <code>"us-east-1"</code>.</li>
+      </ul>
+      
+      <h3>source</h3>
+      <ul>
+        <li>Specifies the source code repository for the build.</li>
+        <li>Example:
+          <ul>
+            <li><code>type: "GITHUB"</code> → Indicates that the source is hosted on GitHub.</li>
+            <li><code>location: "https://github.com/myrepo/myproject.git"</code> → URL of the repository.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>environment</h3>
+      <ul>
+        <li>Defines the build environment properties.</li>
+        <li>Example:
+          <ul>
+            <li><code>type: "LINUX_CONTAINER"</code> → Uses a Linux-based build container.</li>
+            <li><code>image: "aws/codebuild/standard:5.0"</code> → Specifies the CodeBuild image version.</li>
+            <li><code>computeType: "BUILD_GENERAL1_SMALL"</code> → Defines the compute resource type.</li>
+            <li><code>environmentVariables</code> → List of environment variables available to the build process.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>service_role</h3>
+      <ul>
+        <li>Specifies the AWS IAM role ARN that CodeBuild will assume to run builds.</li>
+        <li>Example: <code>"arn:aws:iam::123456789012:role/CodeBuildServiceRole"</code>.</li>
+      </ul>
+      
+      <h3>artifacts</h3>
+      <ul>
+        <li>Defines the output artifacts storage location.</li>
+        <li>Example:
+          <ul>
+            <li><code>type: "S3"</code> → Stores build artifacts in an S3 bucket.</li>
+            <li><code>location: "my-codebuild-bucket"</code> → Specifies the target S3 bucket.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>tags</h3>
+      <ul>
+        <li>Adds metadata tags to the CodeBuild project.</li>
+        <li>Example:
+          <ul>
+            <li><code>Key: "Environment"</code>, <code>Value: "Development"</code> → Identifies the environment.</li>
+            <li><code>Key: "Project"</code>, <code>Value: "DevOps-Bot"</code> → Associates the build with a project.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h3>codebuild_builds</h3>
+      <ul>
+        <li>A list of build executions for an AWS CodeBuild project.</li>
+        <li>Example fields:
+          <ul>
+            <li><code>project_name</code>: Specifies the project associated with this build execution.</li>
+            <li><code>region</code>: Defines the AWS region for the build execution.</li>
+            <li><code>source_version</code>: (Optional) The branch, tag, or commit used for the build.</li>
+            <li><code>environment_variables</code>: List of key-value pairs passed to the build execution.</li>
+            <li><code>execution_id</code>: A unique identifier for the build execution.</li>
+          </ul>
+        </li>
+      </ul>
+      
+      <h2>Example Use Cases</h2>
+      <ul>
+        <li><strong>Continuous Integration (CI)</strong>: Automate builds from a GitHub repository with AWS CodeBuild.</li>
+        <li><strong>Infrastructure as Code (IaC)</strong>: Use this YAML in AWS CloudFormation or Terraform to provision build environments.</li>
+        <li><strong>Environment Management</strong>: Define and manage build environments with variables and permissions.</li>
+      </ul>
+      
+      <h2>Best Practices</h2>
+      <ol>
+        <li><strong>Use IAM Best Practices</strong>: Ensure the <code>service_role</code> has the least privileges necessary for the build.</li>
+        <li><strong>Optimize Compute Resources</strong>: Choose an appropriate <code>computeType</code> based on build resource requirements.</li>
+        <li><strong>Leverage Environment Variables</strong>: Use <code>environmentVariables</code> for dynamic configurations.</li>
+        <li><strong>Secure Artifacts</strong>: Store sensitive build outputs in restricted S3 buckets.</li>
+      </ol>
+      
+      <h2>Conclusion</h2>
+      <p>This YAML configuration provides a structured approach to defining and managing AWS CodeBuild projects. It is useful for DevOps automation, CI/CD pipelines, and cloud infrastructure management.</p>
+    </section>
+  </main>
+  
+    <footer class="footer">
+        <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+      </footer>
+    
+      <!-- JavaScript Files -->
+      <script src="scripts/main.js"></script>
+      <script>
+        function toggleNested(event) {
+          event.preventDefault();
+          const parent = event.target.parentElement;
+          parent.classList.toggle('active');
+        }
+    
+        function performSearch() {
+          const query = document.getElementById('search-input').value.toLowerCase();
+          const links = document.querySelectorAll('.nav-links a, .sidebar a');
+    
+          links.forEach(link => {
+            if (link.textContent.toLowerCase().includes(query)) {
+              link.style.display = 'block';
+            } else {
+              link.style.display = 'none';
+            }
+          });
+        }
+    
+        function navigateHome() {
+          window.location.href = 'Home.html';
+        }
+    
+        function navigateOfficialWebsite() {
+          window.location.href = 'officialwebsite.html';
+        }
+      </script>
+    </body>
+    </html>

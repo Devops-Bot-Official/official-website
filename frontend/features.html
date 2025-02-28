@@ -38,6 +38,29 @@
     <!-- Additional Sections -->
   </main>
 
+  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+    <ul>
+      <li><a href="officialwebsite.html">Introduction</a></li>
+      <li>
+        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+        <ul class="nested">
+          <li><a href="installation.html">Installation</a></li>
+          <li><a href="uninstall.html">Uninstall</a></li>
+          <!-- <li><a href="#">Requirements</a></li>
+          <li><a href="#">Best Practices</a></li> -->
+          <li>
+            <a href="#" onclick="toggleNested(event)">Functions</a>
+            <ul class="nested">
+              <!-- ...existing code... -->
+            </ul>
+          </li>
+          <!-- ...existing code... -->
+        </ul>
+      </li>
+      <!-- ...existing code... -->
+    </ul>
+  </aside>
+
   <footer class="footer">
     <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
   </footer>

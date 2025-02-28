@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps-Bot | Uninstall</title>
+  <title>DevOps-Bot | Coming Soon</title>
   <link rel="stylesheet" href="styles/installation.css">
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
@@ -40,7 +40,7 @@
           <ul class="nested">
             <li><a href="installation.html">Installation</a></li>
             <li><a href="uninstall.html">Uninstall</a></li>
-            <li><a href="comingsoon.html">Requirements</a></li>
+          <li><a href="comingsoon.html">Requirements</a></li>
             <li><a href="comingsoon.html">Best Practices</a></li>
             <li>
               <a href="#" onclick="toggleNested(event)">Functions</a>
@@ -139,96 +139,57 @@
             <li><a href="jenkins.html">Jenkins</a></li>
           </ul>
         </li>
-        <li><a href="comingsoon.html">Use Cases</a></li>
-        <li><a href="comingsoon.html">API Reference</a></li>
+        <!-- <li><a href="#"><img src="styles/assets/images/ComingSoon.png">Use Cases</a></li>
+        <li><a href="#"><img src="styles/assets/images/ComingSoon.png">API Reference</a></li> -->
         <li><a href="Releasenotes.html">Release Notes</a></li>
       </ul>
     </aside>
-  
-    <!-- Main Content Area -->
-    <main class="main-content">
-      <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
-        <h1>Steps to Uninstall DevOps Bot</h1>
-      </section>
-  
-      <section class="installation">
-        <h2>Uninstall DevOps Bot</h2>
-        <h3>Steps to Uninstall</h3>
-        <ol>
-          <li><strong>Uninstall the `devops-bot` Package:</strong>
-            <p>Run the following command to uninstall the `devops-bot` package using `pip3`:</p>
-            <pre><code class="language-bash">pip3 uninstall -y devops-bot</code></pre>
-            <p>This command removes the package from your Python environment.</p>
-          </li>
-          <li><strong>Remove Residual Files:</strong>
-            <p>The `devops-bot` package creates additional files and directories during installation and execution. You should clean them up to fully remove the application.</p>
-            <h4>Check the Default Directory</h4>
-            <p>The default directory for the `devops-bot` files is:</p>
-            <pre><code class="language-bash">/etc/devops-bot</code></pre>
-            <h4>Delete the Directory</h4>
-            <p>Run the following command to remove the directory:</p>
-            <pre><code class="language-bash">sudo rm -rf /etc/devops-bot</code></pre>
-            <p>This command permanently deletes all files and configurations related to `devops-bot`.</p>
-          </li>
-          <li><strong>Verify the Cleanup:</strong>
-            <p>To ensure all components are removed:</p>
-            <ol>
-              <li>Check for any remaining files:
-                <pre><code class="language-bash">ls /etc | grep devops-bot</code></pre>
-                <p>If nothing is listed, all files have been successfully removed.</p>
-              </li>
-              <li>Verify `pip3` no longer lists the package:
-                <pre><code class="language-bash">pip3 list | grep devops-bot</code></pre>
-                <p>If nothing is listed, the package has been completely uninstalled.</p>
-              </li>
-            </ol>
-          </li>
-        </ol>
-        <h3>Additional Notes</h3>
-        <p>If the `devops-bot` service was running as a systemd service, ensure it is stopped and removed:</p>
-        <pre><code class="language-bash">sudo systemctl stop devops-bot.service
-  sudo systemctl disable devops-bot.service
-  sudo rm /etc/systemd/system/devops-bot.service
-  sudo systemctl daemon-reload</code></pre>
-        <p>If you encounter issues during the uninstallation process, ensure you have the necessary permissions (use `sudo` if required).</p>
-      </section>
-  
-      <!-- Additional Sections -->
-    </main>
-  
+  <!-- Main Content Area -->
+  <main class="main-content">
+    <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+        <link rel="stylesheet" href="styles/comingsoon.css"> 
+        <body>
+            <div class="bgimg">
+            </div>
+        </body>
+    <!-- Additional Sections -->
+  </main>
+
+
     <footer class="footer">
-        <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
-      </footer>
-    
-      <!-- JavaScript Files -->
-      <script src="scripts/main.js"></script>
-      <script>
-        function toggleNested(event) {
-          event.preventDefault();
-          const parent = event.target.parentElement;
-          parent.classList.toggle('active');
-        }
-    
-        function performSearch() {
-          const query = document.getElementById('search-input').value.toLowerCase();
-          const links = document.querySelectorAll('.nav-links a, .sidebar a');
-    
-          links.forEach(link => {
-            if (link.textContent.toLowerCase().includes(query)) {
-              link.style.display = 'block';
-            } else {
-              link.style.display = 'none';
-            }
-          });
-        }
-    
-        function navigateHome() {
-          window.location.href = 'index.html';
-        }
-    
-        function navigateOfficialWebsite() {
-          window.location.href = 'officialwebsite.html';
-        }
-      </script>
-    </body>
-    </html>
+      <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+    </footer>
+  
+    <!-- JavaScript Files -->
+    <script src="scripts/main.js"></script>
+    <script>
+      function toggleNested(event) {
+        event.preventDefault();
+        const parent = event.target.parentElement;
+        parent.classList.toggle('active');
+      }
+  
+      function performSearch() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const links = document.querySelectorAll('.nav-links a, .sidebar a');
+  
+        links.forEach(link => {
+          if (link.textContent.toLowerCase().includes(query)) {
+            link.style.display = 'block';
+          } else {
+            link.style.display = 'none';
+          }
+        });
+      }
+  
+      function navigateHome() {
+        window.location.href = 'index.html';
+      }
+  
+      function navigateOfficialWebsite() {
+        window.location.href = 'officialwebsite.html';
+      }
+    </script>
+  </body>
+  </html>
+  
