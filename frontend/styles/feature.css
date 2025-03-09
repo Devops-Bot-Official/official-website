@@ -67,8 +67,9 @@ body {
 }
 
 .sidebar a {
-    color: white; /* Ensure the text color is white */
-    text-decoration: none;
+  color: black; /* Ensure the text color is white */
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .sidebar .nested {

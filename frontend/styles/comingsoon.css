@@ -70,7 +70,8 @@ body {
 }
 
 .sidebar a {
-    color: white;
+    color: black; /* Ensure the text color is white */
+    font-weight: bold;
     text-decoration: none;
 }
 
