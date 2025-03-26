@@ -10,6 +10,8 @@
 <body class="official">
   <!-- Header Toolbar -->
   <header class="toolbar">
+    <div class="hamburger-menu" onclick="toggleSidebar()">
+      ☰  </div>
     <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
     <nav class="nav-links">
       <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
@@ -203,78 +205,46 @@
     <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript Files -->
-  <script src="scripts/main.js"></script>
-  <script>
-    function toggleNested(event) {
-      event.preventDefault();
-      const parent = event.target.parentElement;
-      parent.classList.toggle('active');
-    }
+<!-- JavaScript Files -->
+<script src="scripts/main.js"></script>
+<script>
+  function toggleNested(event) {
+    event.preventDefault();
+    const parent = event.target.parentElement;
+    parent.classList.toggle('active');
+  }
 
-    function performSearch() {
-      const query = document.getElementById('search-input').value.toLowerCase();
-      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+  function performSearch() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const links = document.querySelectorAll('.nav-links a, .sidebar a');
 
-      links.forEach(link => {
-        if (link.textContent.toLowerCase().includes(query)) {
-          link.style.display = 'block';
-        } else {
-          link.style.display = 'none';
-        }
-      });
-    }
-
-    function performSidebarSearch() {
-      const query = document.getElementById('sidebar-search-input').value.toLowerCase();
-      const links = document.querySelectorAll('.sidebar a');
-
-      links.forEach(link => {
-        if (link.textContent.toLowerCase().includes(query)) {
-          link.style.display = 'block';
-        } else {
-          link.style.display = 'none';
-        }
-      });
-    }
-
-    function showSuggestions() {
-      const query = document.getElementById('sidebar-search-input').value.toLowerCase();
-      const links = document.querySelectorAll('.sidebar a');
-      const suggestions = document.getElementById('suggestions');
-      suggestions.innerHTML = '';
-
-      if (query === '') {
-        suggestions.style.display = 'none';
-        return;
+    links.forEach(link => {
+      if (link.textContent.toLowerCase().includes(query)) {
+        link.style.display = 'block';
+      } else {
+        link.style.display = 'none';
       }
+    });
+  }
 
-      suggestions.style.display = 'block';
+  function navigateHome() {
+    window.location.href = 'index.html';
+  }
 
-      links.forEach(link => {
-        if (link.textContent.toLowerCase().includes(query)) {
-          const suggestion = document.createElement('div');
-          suggestion.textContent = link.textContent;
-          suggestion.classList.add('suggestion-item');
-          suggestion.onclick = () => {
-            link.scrollIntoView();
-            link.style.backgroundColor = '#f0f0f0';
-            setTimeout(() => {
-              link.style.backgroundColor = '';
-            }, 2000);
-          };
-          suggestions.appendChild(suggestion);
-        }
-      });
-    }
+  function navigateOfficialWebsite() {
+    window.location.href = 'officialwebsite.html';
+  }
 
-    function navigateHome() {
-      window.location.href = 'index.html';
-    }
+  function copyCode(codeBlockId) {
+    const codeBlock = document.getElementById(codeBlockId).textContent;
 
-    function navigateOfficialWebsite() {
-      window.location.href = 'officialwebsite.html';
-    }
-  </script>
+    navigator.clipboard.writeText(codeBlock).then(() => {
+      alert("Code copied to clipboard!");
+    }).catch(err => {
+      console.error('Could not copy text: ', err);
+      alert("Could not copy code. Please try again.");
+    });
+  }
+</script>
 </body>
 </html>

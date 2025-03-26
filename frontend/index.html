@@ -10,6 +10,8 @@
 <body class="home full-screen">
   <!-- Header Toolbar -->
   <header class="toolbar">
+    <div class="hamburger-menu" onclick="toggleSidebar()">
+      ☰  </div>
     <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
     <nav class="nav-links">
       <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
@@ -63,37 +65,46 @@
     <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript Files -->
-  <script src="frontend/scripts/main.js"></script>
-  <script>
-    function performSearch() {
-      const query = document.getElementById('search-input').value.toLowerCase();
-      const links = document.querySelectorAll('.nav-links a');
+<!-- JavaScript Files -->
+<script src="scripts/main.js"></script>
+<script>
+  function toggleNested(event) {
+    event.preventDefault();
+    const parent = event.target.parentElement;
+    parent.classList.toggle('active');
+  }
 
-      links.forEach(link => {
-        if (link.textContent.toLowerCase().includes(query)) {
-          link.style.display = 'block';
-        } else {
-          link.style.display = 'none';
-        }
-      });
-    }
+  function performSearch() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const links = document.querySelectorAll('.nav-links a, .sidebar a');
 
-    function navigateHome() {
-      window.location.href = 'index.html';
-    }
+    links.forEach(link => {
+      if (link.textContent.toLowerCase().includes(query)) {
+        link.style.display = 'block';
+      } else {
+        link.style.display = 'none';
+      }
+    });
+  }
 
-    let currentIndex = 0;
-    const newsItems = document.querySelectorAll('.news-item');
+  function navigateHome() {
+    window.location.href = 'index.html';
+  }
 
-    function showNextNewsItem() {
-      newsItems[currentIndex].classList.remove('visible');
-      currentIndex = (currentIndex + 1) % newsItems.length;
-      newsItems[currentIndex].classList.add('visible');
-    }
+  function navigateOfficialWebsite() {
+    window.location.href = 'officialwebsite.html';
+  }
 
-    setInterval(showNextNewsItem, 5000);
-  </script>
+  function copyCode(codeBlockId) {
+    const codeBlock = document.getElementById(codeBlockId).textContent;
+
+    navigator.clipboard.writeText(codeBlock).then(() => {
+      alert("Code copied to clipboard!");
+    }).catch(err => {
+      console.error('Could not copy text: ', err);
+      alert("Could not copy code. Please try again.");
+    });
+  }
+</script>
 </body>
 </html>
-

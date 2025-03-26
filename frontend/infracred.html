@@ -10,6 +10,8 @@
 <body class="official">
     <!-- Header Toolbar -->
     <header class="toolbar">
+      <div class="hamburger-menu" onclick="toggleSidebar()">
+        ☰  </div>
       <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
       <nav class="nav-links">
         <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
@@ -24,8 +26,7 @@
         <button onclick="performSearch()">Search</button>
       </div>
     </header>
-  
-    <!-- Sidebar (optional) -->
+
       <!-- Sidebar (optional) -->
   <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
     <div class="search-bar">
@@ -273,35 +274,46 @@ Decrypted value for 'DB_PASSWORD': my_secure_password
     <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
   </footer>
 
-  <!-- JavaScript Files -->
-  <script src="scripts/main.js"></script>
-  <script>
-    function toggleNested(event) {
-      event.preventDefault();
-      const parent = event.target.parentElement;
-      parent.classList.toggle('active');
-    }
+<!-- JavaScript Files -->
+<script src="scripts/main.js"></script>
+<script>
+  function toggleNested(event) {
+    event.preventDefault();
+    const parent = event.target.parentElement;
+    parent.classList.toggle('active');
+  }
 
-    function performSearch() {
-      const query = document.getElementById('search-input').value.toLowerCase();
-      const links = document.querySelectorAll('.nav-links a, .sidebar a');
+  function performSearch() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    const links = document.querySelectorAll('.nav-links a, .sidebar a');
 
-      links.forEach(link => {
-        if (link.textContent.toLowerCase().includes(query)) {
-          link.style.display = 'block';
-        } else {
-          link.style.display = 'none';
-        }
-      });
-    }
+    links.forEach(link => {
+      if (link.textContent.toLowerCase().includes(query)) {
+        link.style.display = 'block';
+      } else {
+        link.style.display = 'none';
+      }
+    });
+  }
 
-    function navigateHome() {
-      window.location.href = 'index.html';
-    }
+  function navigateHome() {
+    window.location.href = 'index.html';
+  }
 
-    function navigateOfficialWebsite() {
-      window.location.href = 'officialwebsite.html';
-    }
-  </script>
+  function navigateOfficialWebsite() {
+    window.location.href = 'officialwebsite.html';
+  }
+
+  function copyCode(codeBlockId) {
+    const codeBlock = document.getElementById(codeBlockId).textContent;
+
+    navigator.clipboard.writeText(codeBlock).then(() => {
+      alert("Code copied to clipboard!");
+    }).catch(err => {
+      console.error('Could not copy text: ', err);
+      alert("Could not copy code. Please try again.");
+    });
+  }
+</script>
 </body>
 </html>
