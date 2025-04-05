@@ -4,18 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevOps-Bot | Azure Management Tool</title>
+  <link rel="stylesheet" href="styles/navbar.css">
   <link rel="stylesheet" href="styles/installation.css">
+  <!-- Removed duplicate navbar.css link -->
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
 <body class="official">
   <!-- Header Toolbar -->
   <header class="toolbar">
-    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <div class="logo" onclick="navigateHome()">
+      <img src="styles/assets/images/debops-bot.png" alt="DevOps-Bot Logo" class="logo-img">
+      <span class="logo-text">DevOps-Bot</span>
+    </div> <!-- Corrected: Added closing div tag -->
     <nav class="nav-links">
       <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
       <a href="features.html" class="nav-link">Features</a>
       <a href="docs.html" class="nav-link">Docs</a>
-      <a href="Community.html" class="nav-link">Community</a>
+      <!-- <a href="Community.html" class="nav-link">Community</a> -->
       <a href="blog.html" class="nav-link">Blog</a>
       <a href="About.html" class="nav-link">About</a>
     </nav>
@@ -39,8 +44,6 @@
         <ul class="nested">
           <li><a href="installation.html">Installation</a></li>
           <li><a href="uninstall.html">Uninstall</a></li>
-          <li><a href="comingsoon.html">Requirements</a></li>
-          <li><a href="comingsoon.html">Best Practices</a></li>
           <li>
             <a href="#" onclick="toggleNested(event)">Functions</a>
             <ul class="nested">
@@ -138,8 +141,6 @@
           <li><a href="jenkins.html">Jenkins</a></li>
         </ul>
       </li>
-      <li><a href="comingsoon.html">Use Cases</a></li>
-      <li><a href="comingsoon.html">API Reference</a></li>
       <li><a href="comingsoon.html">Release Notes</a></li>
     </ul>
   </aside>

@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevOps-Bot | Persona CLI</title>
   <link rel="stylesheet" href="styles/installation.css">
+  <link rel="stylesheet" href="styles/navbar.css">
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
 <body class="official">
@@ -15,7 +16,7 @@
         <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
         <a href="features.html" class="nav-link">Features</a>
         <a href="docs.html" class="nav-link">Docs</a>
-        <a href="Community.html" class="nav-link">Community</a>
+        <!-- <a href="Community.html" class="nav-link">Community</a> -->
         <a href="blog.html" class="nav-link">Blog</a>
         <a href="About.html" class="nav-link">About</a>
       </nav>
@@ -26,124 +27,119 @@
     </header>
   
     <!-- Sidebar (optional) -->
-      <!-- Sidebar (optional) -->
-  <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
-    <div class="search-bar">
-      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
-      <div id="suggestions" class="suggestions"></div>
-      <button onclick="performSidebarSearch()">Search</button>
-    </div>
-    <ul>
-      <li><a href="officialwebsite.html">Introduction</a></li>
-      <li>
-        <a href="#" onclick="toggleNested(event)">Getting Started</a>
-        <ul class="nested">
-          <li><a href="installation.html">Installation</a></li>
-          <li><a href="uninstall.html">Uninstall</a></li>
-          <li><a href="comingsoon.html">Requirements</a></li>
-          <li><a href="comingsoon.html">Best Practices</a></li>
-          <li>
-            <a href="#" onclick="toggleNested(event)">Functions</a>
-            <ul class="nested">
-              <li><a href="webhook.html">Webhook</a></li>
-              <li><a href="persona.html">Persona</a></li>
-              <li><a href="infracred.html">Infrascrid</a></li>
-              <li><a href="vault.html">Vault</a></li>
-              <li><a href="plugins.html">Plugins</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
-            <ul class="nested">
-              <li><a href="dob-host-cli.html">Host CLI</a></li>
-              <li><a href="dob-cli.html">Remote CLI</a></li>
-              <li><a href="ui.html">UI</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#" onclick="toggleNested(event)">Features</a>
-        <ul class="nested">
-          <li>
-            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
-            <ul class="nested">
-              <li><a href="infracircle.html">InfraCycle</a></li>
-              <li><a href="dobp.html">DOBProxy</a></li>
-            </ul>
-          </li>
-          <li>
-            <a href="#" onclick="toggleNested(event)">Provisioning</a>
-            <ul class="nested">
-              <li><a href="screenplay.html">Screenplay</a></li>
-            </ul>
-          </li>                             
-          <li>
-            <a href="#" onclick="toggleNested(event)">Configuration</a>
-            <ul class="nested">
-              <li><a href="infraset.html">InfraSet</a></li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#" onclick="toggleNested(event)">Providers</a>
-        <ul class="nested">
-          <li>
-            <a href="#" onclick="toggleNested(event)">AWS</a>
-            <ul class="nested">
-              <li><a href="aws.html">Configuration</a></li>
-              <li>
-                <a href="#" onclick="toggleNested(event)">Commands</a>
-                <ul class="nested">
-                  <li><a href="comingsoon.html">Imperative</a></li>
-                  <li><a href="Aws_declartive.html">Declarative</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#" onclick="toggleNested(event)">Azure</a>
-            <ul class="nested">
-              <li><a href="azure.html">Configuration</a></li>
-              <li>
-                <a href="#" onclick="toggleNested(event)">Commands</a>
-                <ul class="nested">
-                  <li><a href="comingsoon.html">Imperative</a></li>
-                  <li><a href="comingsoon.html">Declarative</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#" onclick="toggleNested(event)">GCP</a>
-            <ul class="nested">
-              <li><a href="gcp.html">Configuration</a></li>
-              <li>
-                <a href="#" onclick="toggleNested(event)">Commands</a>
-                <ul class="nested">
-                  <li><a href="comingsoon.html">Imperative</a></li>
-                  <li><a href="comingsoon.html">Declarative</a></li>
-                </ul>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
-        <ul class="nested">
-          <li><a href="ansible.html">Ansible</a></li>
-          <li><a href="Kubernetes.html">Kubernetes</a></li>
-          <li><a href="dockerswarm.html">Docker Swarm</a></li>
-          <li><a href="jenkins.html">Jenkins</a></li>
-        </ul>
-      </li>
-      <li><a href="comingsoon.html">Use Cases</a></li>
-      <li><a href="comingsoon.html">API Reference</a></li>
-      <li><a href="comingsoon.html">Release Notes</a></li>
-    </ul>
-  </aside>
+    <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
+      <div class="search-bar">
+        <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
+        <div id="suggestions" class="suggestions"></div>
+        <button onclick="performSidebarSearch()">Search</button>
+      </div>
+      <ul>
+        <li><a href="officialwebsite.html">Introduction</a></li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Getting Started</a>
+          <ul class="nested">
+            <li><a href="installation.html">Installation</a></li>
+            <li><a href="uninstall.html">Uninstall</a></li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Functions</a>
+              <ul class="nested">
+                <li><a href="webhook.html">Webhook</a></li>
+                <li><a href="persona.html">Persona</a></li>
+                <li><a href="infracred.html">Infracred</a></li>
+                <li><a href="vault.html">Vault</a></li>
+                <li><a href="plugins.html">Plugins</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+              <ul class="nested">
+                <li><a href="dob-host-cli.html">Host CLI</a></li>
+                <li><a href="dob-cli.html">Remote CLI</a></li>
+                <li><a href="ui.html">UI</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Features</a>
+          <ul class="nested">
+            <li>
+              <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+              <ul class="nested">
+                <li><a href="infracircle.html">InfraCycle</a></li>
+                <li><a href="dobp.html">DOBProxy</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Provisioning</a>
+              <ul class="nested">
+                <li><a href="screenplay.html">Screenplay</a></li>
+              </ul>
+            </li>                             
+            <li>
+              <a href="#" onclick="toggleNested(event)">Configuration</a>
+              <ul class="nested">
+                <li><a href="infraset.html">InfraSet</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Providers</a>
+          <ul class="nested">
+            <li>
+              <a href="#" onclick="toggleNested(event)">AWS</a>
+              <ul class="nested">
+                <li><a href="aws.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="comingsoon.html">Imperative</a></li>
+                    <li><a href="Aws_declartive.html">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">Azure</a>
+              <ul class="nested">
+                <li><a href="azure.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="comingsoon.html">Imperative</a></li>
+                    <li><a href="comingsoon.html">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a href="#" onclick="toggleNested(event)">GCP</a>
+              <ul class="nested">
+                <li><a href="gcp.html">Configuration</a></li>
+                <li>
+                  <a href="#" onclick="toggleNested(event)">Commands</a>
+                  <ul class="nested">
+                    <li><a href="comingsoon.html">Imperative</a></li>
+                    <li><a href="comingsoon.html">Declarative</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+          <ul class="nested">
+            <li><a href="ansible.html">Ansible</a></li>
+            <li><a href="Kubernetes.html">Kubernetes</a></li>
+            <li><a href="dockerswarm.html">Docker Swarm</a></li>
+            <li><a href="jenkins.html">Jenkins</a></li>
+          </ul>
+        </li>
+        <li><a href="comingsoon.html">Release Notes</a></li>
+      </ul>
+    </aside>
   
   <!-- Main Content Area -->
   <main class="main-content">

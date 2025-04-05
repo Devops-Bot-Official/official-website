@@ -16,90 +16,6 @@
     margin: 0;
   }
   
-  .toolbar {
-    background-color: #1f2937;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  .logo {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.logo-img {
-    width: 40px; /* Adjust size as needed */
-    height: 40px;
-    margin-right: 10px; /* Spacing between logo and text */
-}
-
-.logo-text {
-    font-size: 20px;
-}
-  
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    margin: 0 15px;
-    font-size: 16px;
-  }
-  
-  .nav-links a:hover {
-    text-decoration: underline;
-  }
-  
-  .sidebar {
-    width: 300px;
-    background-color: #374151;
-    color: rgb(219, 228, 234);
-    position: fixed;
-    top: 60px; /* Adjust to match the toolbar height */
-    height: calc(100% - 60px); /* Adjust to match the toolbar height */
-    padding-top: 20px;
-    display: block; /* Always visible */
-    overflow-y: auto;
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-   
-  }
-  
-  .sidebar li {
-    padding: 10px 20px;
-  }
-  
-  .sidebar a {
-    color: black; /* Ensure the text color is white */
-    font-weight: bold;
-    text-decoration: none;
-}
-
-  .sidebar .nested {
-    display: none;
-    padding-left: 20px;
-  }
-
-  .sidebar .active > .nested {
-    display: block;
-  }
-  
-  .main-content {
-    margin-left: 300px; /* Adjust to match the sidebar width */
-    padding: 80px 20px 20px 20px; /* Adjust padding to account for the fixed toolbar */
-    flex: 1;
-  }
 
   .footer {
     background-color: #1f2937;
@@ -111,6 +27,13 @@
     z-index: 1000;
   }
 
+  /* Added standard main content layout for pages with sidebar */
+  .main-content {
+    margin-left: 250px; /* Accounts for sidebar */
+    padding: 80px 30px 30px 30px; /* Accounts for navbar height */
+    flex: 1;
+    max-width: 1200px; /* Optional: limits content width */
+  }
 
     .official .hero {
     background-size: cover;
@@ -214,34 +137,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
 
-  .search-bar {
-    display: flex;
-    align-items: center;
-    margin-left: auto;
-  }
-
-  .search-bar input {
-    padding: 5px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px 0 0 5px;
-    outline: none;
-  }
-
-  .search-bar button {
-    padding: 5px 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-left: none;
-    background-color: #3b82f6;
-    color: white;
-    border-radius: 0 5px 5px 0;
-    cursor: pointer;
-  }
-
-  .search-bar button:hover {
-    background-color: #1f2937;
-  }
   .suggestions {
     max-height: 200px;
     overflow-y: auto;

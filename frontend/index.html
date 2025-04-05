@@ -4,18 +4,23 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevOps-Bot | Home</title>
+  <link rel="stylesheet" href="styles/navbar.css">
   <link rel="stylesheet" href="styles/mainpage.css">
+  <!-- Removed duplicate navbar.css link -->
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
 <body class="home full-screen">
   <!-- Header Toolbar -->
   <header class="toolbar">
-    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <div class="logo" onclick="navigateHome()">
+      <img src="styles/assets/images/debops-bot.png" alt="DevOps-Bot Logo" class="logo-img">
+      <span class="logo-text">DevOps-Bot</span>
+    </div> <!-- Corrected: Added closing div tag -->
     <nav class="nav-links">
       <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
       <a href="features.html" class="nav-link">Features</a>
       <a href="docs.html" class="nav-link">Docs</a>
-      <a href="Community.html" class="nav-link">Community</a>
+      <!-- <a href="Community.html" class="nav-link">Community</a> -->
       <a href="blog.html" class="nav-link">Blog</a>
       <a href="About.html" class="nav-link">About</a>
     </nav>
@@ -64,7 +69,7 @@
   </footer>
 
   <!-- JavaScript Files -->
-  <script src="frontend/scripts/main.js"></script>
+  <script src="scripts/main.js"></script> <!-- Corrected path -->
   <script>
     function performSearch() {
       const query = document.getElementById('search-input').value.toLowerCase();
@@ -96,4 +101,3 @@
   </script>
 </body>
 </html>
-

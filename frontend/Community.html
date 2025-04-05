@@ -4,13 +4,26 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DevOps-Bot | Community</title>
-  <link rel="stylesheet" href="styles/feature.css">
+
+  <link rel="stylesheet" href="styles/navbar.css">
+  <link rel="stylesheet" href="styles/main.css"> <!-- Changed from feature.css -->
+
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+  <style>
+    /* Override main.css for pages without sidebar */
+    .main-content {
+      margin-left: 0 !important; /* Remove sidebar margin */
+      padding: 80px 30px 30px 30px; /* Ensure top padding for navbar */
+    }
+  </style>
 </head>
 <body class="official">
   <!-- Header Toolbar -->
   <header class="toolbar">
-    <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+    <div class="logo" onclick="navigateHome()">
+      <img src="styles/assets/images/debops-bot.png" alt="DevOps-Bot Logo" class="logo-img">
+      <span class="logo-text">DevOps-Bot</span>
+    </div> <!-- Corrected: Added closing div tag -->
     <nav class="nav-links">
       <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
       <a href="features.html" class="nav-link">Features</a>
@@ -104,4 +117,3 @@
   </script>
 </body>
 </html>
-
