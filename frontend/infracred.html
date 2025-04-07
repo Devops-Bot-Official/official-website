@@ -3,41 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DevOps-Bot | InfraCrid Management</title>
+  <title>DevOps-Bot | InfraCred Management</title>
   <link rel="stylesheet" href="styles/installation.css">
   <link rel="stylesheet" href="styles/navbar.css">
   <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
 </head>
 <body class="official">
-  <!-- Header Toolbar -->
-  <header class="toolbar">
-    <div class="logo" onclick="navigateHome()">
-      <img src="styles/assets/images/debops-bot.png" alt="DevOps-Bot Logo" class="logo-img">
-      <span class="logo-text">DevOps-Bot</span>
-    </div>
-    <div class="right-section">
-    <nav class="nav-links">
-      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
-      <!-- <a href="features.html" class="nav-link">Features</a> -->
-      <!-- <a href="docs.html" class="nav-link">Docs</a> -->
-      <!-- <a href="Community.html" class="nav-link">Community</a> -->
-      <a href="comingsoon.html" class="nav-link">Blog</a>
-      <a href="About.html" class="nav-link">About</a>
-    </nav>
-    </div>
-    <div class="search-bar">
-      <input type="text" id="search-input" placeholder="Search...">
-      <button onclick="performSearch()">Search</button>
-    </div>
-  </header>
+    <!-- Header Toolbar -->
+    <header class="toolbar">
+      <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+      <nav class="nav-links">
+        <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+        <!-- <a href="features.html" class="nav-link">Features</a> -->
+        <!-- <a href="docs.html" class="nav-link">Docs</a> -->
+        <!-- <a href="Community.html" class="nav-link">Community</a> -->
+        <a href="comingsoon.html" class="nav-link">Blog</a>
+        <a href="About.html" class="nav-link">About</a>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+      </div>
+    </header>
   
   <!-- Sidebar (optional) -->
   <aside id="sidebar" class="sidebar" style="background: url('styles/assets/images/sidebar.png') no-repeat center center; background-size: cover;">
-    <div class="search-bar">
-      <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()">
-      <div id="suggestions" class="suggestions"></div>
-      <button onclick="performSidebarSearch()">Search</button>
-    </div>
+    <!-- <div class="search-bar"> -->
+      <!-- <input type="text" id="sidebar-search-input" placeholder="Search..." oninput="showSuggestions()"> -->
+      <!-- <div id="suggestions" class="suggestions"></div> -->
+      <!-- <button onclick="performSidebarSearch()">Search</button> -->
+    <!-- </div> -->
   
     <ul>
       <li><a href="officialwebsite.html">Introduction</a></li>
@@ -155,15 +150,15 @@
   <!-- Main Content Area -->
   <main class="main-content">
     <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
-      <h1>InfraCrid Management Guide</h1>
-      <p>The InfraCrid function allows you to manage encrypted infrastructure credentials securely. It provides features for adding, editing, and viewing encrypted environment variables, with a simple integration mechanism for pipelines.</p>
+      <h1>InfraCred Management Guide</h1>
+      <p>The InfraCred function allows you to manage encrypted infrastructure credentials securely. It provides features for adding, editing, and viewing encrypted environment variables, with a simple integration mechanism for pipelines.</p>
     </section>
 
     <section class="docker-swarm">
-      <h2>Command Group: <code>infracrid</code></h2>
-      <p>All commands related to managing encrypted infrastructure credentials are grouped under <code>infracrid</code>.</p>
+      <h2>Command Group: <code>infracred</code></h2>
+      <p>All commands related to managing encrypted infrastructure credentials are grouped under <code>infracred</code>.</p>
       <p><strong>Usage:</strong></p>
-      <pre><code class="language-bash">dob infracrid [COMMAND]</code></pre>
+      <pre><code class="language-bash">dob infracred [COMMAND]</code></pre>
       <p><strong>Available Commands:</strong></p>
       <ul>
         <li><code>add</code> – Add a new encrypted environment variable and generate a URL.</li>
@@ -172,21 +167,21 @@
       </ul>
 
       <h2>Command Details</h2>
-      <h3><code>infracrid add</code></h3>
+      <h3><code>infracred add</code></h3>
       <p>Add an encrypted environment variable and generate a URL for usage in the pipeline configuration.</p>
       <p><strong>Usage:</strong></p>
-      <pre><code class="language-bash">dob infracrid add --name &lt;variable_name&gt; --value &lt;variable_value&gt;</code></pre>
+      <pre><code class="language-bash">dob infracred add --name &lt;variable_name&gt; --value &lt;variable_value&gt;</code></pre>
       <p><strong>Details:</strong></p>
       <ul>
         <li>Encrypts the provided value using the cipher library.</li>
         <li>Saves the encrypted value to a <code>.cred</code> file in the predefined <code>BUILDCRID_DIR</code>.</li>
-        <li>Generates a unique URL (<code>infracrid://&lt;name&gt;</code>) for reference in pipeline configurations.</li>
+        <li>Generates a unique URL (<code>infracred://&lt;name&gt;</code>) for reference in pipeline configurations.</li>
       </ul>
 
-      <h3><code>infracrid edit</code></h3>
+      <h3><code>infracred edit</code></h3>
       <p>Edit the value of an existing encrypted environment variable.</p>
       <p><strong>Usage:</strong></p>
-      <pre><code class="language-bash">dob infracrid edit --name &lt;variable_name&gt; --value &lt;new_variable_value&gt;</code></pre>
+      <pre><code class="language-bash">dob infracred edit --name &lt;variable_name&gt; --value &lt;new_variable_value&gt;</code></pre>
       <p><strong>Details:</strong></p>
       <ul>
         <li>Locates the <code>.cred</code> file for the specified variable in the <code>BUILDCRID_DIR</code>.</li>
@@ -197,10 +192,10 @@
         <li>If the variable does not exist, the command displays an error message.</li>
       </ul>
 
-      <h3><code>infracrid view</code></h3>
+      <h3><code>infracred view</code></h3>
       <p>View the decrypted value of an existing encrypted environment variable.</p>
       <p><strong>Usage:</strong></p>
-      <pre><code class="language-bash">infracrid view --name &lt;variable_name&gt;</code></pre>
+      <pre><code class="language-bash">infracred view --name &lt;variable_name&gt;</code></pre>
       <p><strong>Details:</strong></p>
       <ul>
         <li>Decrypts the content of the <code>.cred</code> file for the specified variable.</li>
@@ -226,13 +221,13 @@
 
       <h3>URL Generation</h3>
       <ul>
-        <li>Each environment variable is associated with a unique URL format: <code>infracrid://&lt;name&gt;</code>.</li>
+        <li>Each environment variable is associated with a unique URL format: <code>infracred://&lt;name&gt;</code>.</li>
         <li>These URLs can be used in pipeline configurations to reference variables.</li>
       </ul>
 
       <h2>Example Usages</h2>
       <h3>Add a New Variable</h3>
-      <pre><code class="language-bash">dob infracrid add</code></pre>
+      <pre><code class="language-bash">dob infracred add</code></pre>
       <p><strong>Input:</strong></p>
       <pre><code class="language-yaml">
 Variable Name: DB_PASSWORD
@@ -240,11 +235,11 @@ Variable Value: my_secure_password
       </code></pre>
       <p><strong>Output:</strong></p>
       <pre><code class="language-arduino">
-Variable saved. Use this URL in your config: infracrid://DB_PASSWORD
+Variable saved. Use this URL in your config: infracred://DB_PASSWORD
       </code></pre>
 
       <h3>Edit an Existing Variable</h3>
-      <pre><code class="language-bash">dob infracrid edit</code></pre>
+      <pre><code class="language-bash">dob infracred edit</code></pre>
       <p><strong>Input:</strong></p>
       <pre><code class="language-yaml">
 Variable Name: DB_PASSWORD
@@ -256,7 +251,7 @@ Variable 'DB_PASSWORD' updated successfully.
       </code></pre>
 
       <h3>View a Variable</h3>
-      <pre><code class="language-bash">dob infracrid view</code></pre>
+      <pre><code class="language-bash">dob infracred view</code></pre>
       <p><strong>Input:</strong></p>
       <pre><code class="language-yaml">
 Variable Name: DB_PASSWORD
