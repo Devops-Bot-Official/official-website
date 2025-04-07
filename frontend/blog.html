@@ -21,25 +21,27 @@
 <!-- Removed duplicate body tag -->
 <body class="official">
 
-    <!-- Header Toolbar -->
-    <header class="toolbar">
-      <div class="logo" onclick="navigateHome()">
-        <img src="styles/assets/images/debops-bot.png" alt="DevOps-Bot Logo" class="logo-img">
-        <span class="logo-text">DevOps-Bot</span>
-      </div> <!-- Corrected: Added closing div tag -->
-      <nav class="nav-links">
-        <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
-        <a href="features.html" class="nav-link">Features</a>
-        <a href="docs.html" class="nav-link">Docs</a>
-        <!-- <a href="Community.html" class="nav-link">Community</a> -->
-        <a href="blog.html" class="nav-link">Blog</a>
-        <a href="About.html" class="nav-link">About</a>
-      </nav>
-      <div class="search-bar">
-        <input type="text" id="search-input" placeholder="Search...">
-        <button onclick="performSearch()">Search</button>
-      </div>
-    </header>
+  <!-- Header Toolbar -->
+  <header class="toolbar">
+    <div class="logo" onclick="navigateHome()">
+      <img src="styles/assets/images/debops-bot.png" alt="DevOps-Bot Logo" class="logo-img">
+      <span class="logo-text">DevOps-Bot</span>
+    </div>
+    <div class="right-section">
+    <nav class="nav-links">
+      <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+      <!-- <a href="features.html" class="nav-link">Features</a> -->
+      <!-- <a href="docs.html" class="nav-link">Docs</a> -->
+      <!-- <a href="Community.html" class="nav-link">Community</a> -->
+      <a href="comingsoon.html" class="nav-link">Blog</a>
+      <a href="About.html" class="nav-link">About</a>
+    </nav>
+    </div>
+    <div class="search-bar">
+      <input type="text" id="search-input" placeholder="Search...">
+      <button onclick="performSearch()">Search</button>
+    </div>
+  </header>
 
   <!-- Main Content Area -->
   <main class="main-content">

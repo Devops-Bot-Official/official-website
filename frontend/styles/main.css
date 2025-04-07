@@ -7,7 +7,7 @@
   
   body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: white;
     color: #333;
     line-height: 1.6;
     display: flex;
@@ -150,4 +150,34 @@
   }
   .suggestion-item:hover {
     background-color: #f0f0f0;
+  }
+  
+.toggle-icon {
+  cursor: pointer;
+  font-size: 12px;
+  margin-right: 6px;
+}
+.collapsed > ul.nested {
+  display: none;
+}
+.nested {
+  list-style: none;
+  padding-left: 15px;
+}
+/* Highlight for main (parent) active item */
+.sidebar li.active > a {
+background-color: #00B3C9; /* Vibrant teal */
+color: black;              /* Black text */
+border-radius: 10px;
+padding: 8px;
+font-weight: bold;
+}
+
+/* Highlight for sub (child) active item */
+.sidebar li li.active > a {
+background-color: #E0F7FA; /* Light pastel blue */
+color: black;              /* Black text */
+border-radius: 10px;
+padding: 8px;
+font-weight: bold;
 }

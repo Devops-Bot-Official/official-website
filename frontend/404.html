@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | DevOps-Bot</title>
+  <link rel="stylesheet" href="styles/installation.css">
+  <link rel="stylesheet" href="styles/navbar.css">
+  <link rel="icon" href="styles/assets/images/favicon-32x32.png" type="image/png">
+</head>
+<body class="official">
+    <!-- Header Toolbar -->
+    <header class="toolbar">
+      <div class="logo" onclick="navigateHome()">DevOps-Bot</div>
+      <nav class="nav-links">
+        <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
+        <a href="comingsoon.html" class="nav-link">Blog</a>
+        <a href="About.html" class="nav-link">About</a>
+      </nav>
+      <div class="search-bar">
+        <input type="text" id="search-input" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <section class="hero" style="background: url('styles/assets/images/back.png') no-repeat center center; background-size: cover;">
+        <h1>Oops! Page Not Found</h1>
+        <p>The page you're looking for doesn't exist or may have been moved.</p>
+      </section>
+      <section class="docker-swarm">
+        <h2>What Can You Do?</h2>
+        <ul>
+          <li><strong>Go Back:</strong> Use your browser's back button to return to the previous page.</li>
+          <li><strong>Visit Home:</strong> Click <a href="officialwebsite.html">here</a> to go back to the homepage.</li>
+          <li><strong>Search:</strong> Use the search bar above to find what you're looking for.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>&copy; 2025 DevOps-Bot. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="scripts/main.js"></script>
+    <script>
+      function navigateHome() {
+        window.location.href = 'index.html';
+      }
+      function navigateOfficialWebsite() {
+        window.location.href = 'officialwebsite.html';
+      }
+      function performSearch() {
+        const query = document.getElementById('search-input').value.toLowerCase();
+        const links = document.querySelectorAll('.nav-links a');
+        links.forEach(link => {
+          if (link.textContent.toLowerCase().includes(query)) {
+            link.style.display = 'block';
+          } else {
+            link.style.display = 'none';
+          }
+        });
+      }
+    </script>
+</body>
+</html>

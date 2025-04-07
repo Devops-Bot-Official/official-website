@@ -15,15 +15,17 @@
     <div class="logo" onclick="navigateHome()">
       <img src="styles/assets/images/debops-bot.png" alt="DevOps-Bot Logo" class="logo-img">
       <span class="logo-text">DevOps-Bot</span>
-    </div> <!-- Corrected: Added closing div tag -->
+    </div>
+    <div class="right-section">
     <nav class="nav-links">
       <a href="officialwebsite.html" class="nav-link" onclick="navigateOfficialWebsite()">Home</a>
-      <a href="features.html" class="nav-link">Features</a>
-      <a href="docs.html" class="nav-link">Docs</a>
+      <!-- <a href="features.html" class="nav-link">Features</a> -->
+      <!-- <a href="docs.html" class="nav-link">Docs</a> -->
       <!-- <a href="Community.html" class="nav-link">Community</a> -->
-      <a href="blog.html" class="nav-link">Blog</a>
+      <a href="comingsoon.html" class="nav-link">Blog</a>
       <a href="About.html" class="nav-link">About</a>
     </nav>
+    </div>
     <div class="search-bar">
       <input type="text" id="search-input" placeholder="Search...">
       <button onclick="performSearch()">Search</button>
@@ -37,25 +39,27 @@
       <div id="suggestions" class="suggestions"></div>
       <button onclick="performSidebarSearch()">Search</button>
     </div>
+  
     <ul>
       <li><a href="officialwebsite.html">Introduction</a></li>
-      <li>
-        <a href="#" onclick="toggleNested(event)">Getting Started</a>
+      <li class="collapsed">
+        <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Getting Started</a>
         <ul class="nested">
           <li><a href="installation.html">Installation</a></li>
           <li><a href="uninstall.html">Uninstall</a></li>
-          <li>
-            <a href="#" onclick="toggleNested(event)">Functions</a>
+  
+          <li class="collapsed">
+            <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Functions</a>
             <ul class="nested">
               <li><a href="webhook.html">Webhook</a></li>
               <li><a href="persona.html">Persona</a></li>
-              <li><a href="infracred.html">Infrascrid</a></li>
+              <li><a href="infracred.html">Infracred</a></li>
               <li><a href="vault.html">Vault</a></li>
               <li><a href="plugins.html">Plugins</a></li>
             </ul>
           </li>
-          <li>
-            <a href="#" onclick="toggleNested(event)">User Interfaces</a>
+          <li class="collapsed">
+            <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>User Interfaces</a>
             <ul class="nested">
               <li><a href="dob-host-cli.html">Host CLI</a></li>
               <li><a href="dob-cli.html">Remote CLI</a></li>
@@ -64,39 +68,41 @@
           </li>
         </ul>
       </li>
-      <li>
-        <a href="#" onclick="toggleNested(event)">Features</a>
+  
+      <li class="collapsed">
+        <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Features</a>
         <ul class="nested">
-          <li>
-            <a href="aws.html" onclick="toggleNested(event)">CI/CD</a>
+          <li class="collapsed">
+            <a href="aws.html" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>CI/CD</a>
             <ul class="nested">
               <li><a href="infracircle.html">InfraCycle</a></li>
               <li><a href="dobp.html">DOBProxy</a></li>
             </ul>
           </li>
-          <li>
-            <a href="#" onclick="toggleNested(event)">Provisioning</a>
+          <li class="collapsed">
+            <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Provisioning</a>
             <ul class="nested">
               <li><a href="screenplay.html">Screenplay</a></li>
             </ul>
-          </li>                             
-          <li>
-            <a href="#" onclick="toggleNested(event)">Configuration</a>
+          </li>
+          <li class="collapsed">
+            <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Configuration</a>
             <ul class="nested">
               <li><a href="infraset.html">InfraSet</a></li>
             </ul>
           </li>
         </ul>
       </li>
-      <li>
-        <a href="#" onclick="toggleNested(event)">Providers</a>
+  
+      <li class="collapsed">
+        <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Providers</a>
         <ul class="nested">
-          <li>
-            <a href="#" onclick="toggleNested(event)">AWS</a>
+          <li class="collapsed">
+            <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>AWS</a>
             <ul class="nested">
               <li><a href="aws.html">Configuration</a></li>
-              <li>
-                <a href="#" onclick="toggleNested(event)">Commands</a>
+              <li class="collapsed">
+                <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Commands</a>
                 <ul class="nested">
                   <li><a href="comingsoon.html">Imperative</a></li>
                   <li><a href="Aws_declartive.html">Declarative</a></li>
@@ -104,12 +110,12 @@
               </li>
             </ul>
           </li>
-          <li>
-            <a href="#" onclick="toggleNested(event)">Azure</a>
+          <li class="collapsed">
+            <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Azure</a>
             <ul class="nested">
               <li><a href="azure.html">Configuration</a></li>
-              <li>
-                <a href="#" onclick="toggleNested(event)">Commands</a>
+              <li class="collapsed">
+                <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Commands</a>
                 <ul class="nested">
                   <li><a href="comingsoon.html">Imperative</a></li>
                   <li><a href="comingsoon.html">Declarative</a></li>
@@ -117,12 +123,12 @@
               </li>
             </ul>
           </li>
-          <li>
-            <a href="#" onclick="toggleNested(event)">GCP</a>
+          <li class="collapsed">
+            <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>GCP</a>
             <ul class="nested">
               <li><a href="gcp.html">Configuration</a></li>
-              <li>
-                <a href="#" onclick="toggleNested(event)">Commands</a>
+              <li class="collapsed">
+                <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Commands</a>
                 <ul class="nested">
                   <li><a href="comingsoon.html">Imperative</a></li>
                   <li><a href="comingsoon.html">Declarative</a></li>
@@ -132,8 +138,9 @@
           </li>
         </ul>
       </li>
-      <li>
-        <a href="#" onclick="toggleNested(event)">Third Party Integration Tools</a>
+  
+      <li class="collapsed">
+        <a href="#" onclick="toggleNested(event)"><span class="toggle-icon">▷</span>Third Party Integration Tools</a>
         <ul class="nested">
           <li><a href="ansible.html">Ansible</a></li>
           <li><a href="Kubernetes.html">Kubernetes</a></li>
@@ -141,6 +148,7 @@
           <li><a href="jenkins.html">Jenkins</a></li>
         </ul>
       </li>
+  
       <li><a href="comingsoon.html">Release Notes</a></li>
     </ul>
   </aside>
